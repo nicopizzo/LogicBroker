@@ -1,15 +1,47 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<link rel="stylesheet" type="text/css" href="css/index.css">
-		<title>LogicBroker</title>
-	</head>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, target-densitydpi=device-dpi" />
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <title>Log in</title>
+    </head>
     <body>
-		<img src="img/logo.png"/>
-        <p>Username</p>
-		<p>Password</p>
-		<div>
-			<a href="http://www.google.com">Login</a>
-		</div>
+        <div class="app">
+            <h1>Welcome!</h1>
+
+                <textFields>
+            <div data-role="fieldcontain">
+                <label for="userName">UserName:</label>
+                <input type="text" name="userName" id="userName" value="" />
+            
+                <label for="password">Password:</label>
+                <input type="password" name="password" id="password" value="" />
+            </div>
+                </textFields>
+
+            <logIn>
+        <form action="index2.html" method="get" >
+            <input type="submit" value="Sign in">
+        </form> 
+            </logIn>
+
+            <questions>
+                <ul style="list-style-type:square">
+                    <li>forgot username/password?</li>
+                    <li>need access?</li>
+                    <li>need partner setup?</li>
+                </ul> 
+            </questions>
+
+        </div>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript">
+            app.initialize();
+        </script>
     </body>
 </html>

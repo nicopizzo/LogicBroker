@@ -33,7 +33,7 @@ body {
         left top,
         left bottom,
         color-stop(0, #A7A7A7),
-        color-stop(0.51, #f2edf2)
+        color-stop(0.51, #ffffff)
     );
     background-attachment:fixed;
     font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
@@ -46,18 +46,6 @@ body {
 }
 
 /* Portrait layout (default) */
-.app {
-    background:url(../img/logicbroker_logo.jpg) no-repeat center top; /* 170px x 200px */
-    position: fixed;              /* position in the center of the screen */
-    left:21%;
-    top:25%;
-    height:400px;                   /* text area height */
-    width:225px;                   /* text area width */
-    text-align:center;
-    padding:180px 180px 180px 0px;     /* image height is 200px (bottom 20px are overlapped with text) */
-    margin:-115px 0px 0px -112px;  /* offset vertical: half of image height and text area height */
-                                   /* offset horizontal: half of text area width */
-}
 
 /* Landscape layout (with min-width) */
 @media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
@@ -71,8 +59,8 @@ body {
 
 h1 {
     position: fixed;
-    top: 325px;
-    right: 70px;
+    top:5px;
+    left: 0px;
     font:35px verdana;
     color: red;
     text-transform: capitalize;
@@ -85,9 +73,40 @@ h1 {
 
 textFields {
     position: fixed;
-    top: 66%;
-    right: 70px;
-    text-transform: lowercase;
+    top: 75px;
+    background-color:white;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+    border:solid 1px black;
+    padding:5px;
+    left: 5px;
+    right: 5px;
+    font:12px verdana;
+    text-transform: none;
+}
+
+pendingOrders {
+    position: fixed;
+    top: 200px;
+    background-color:red;
+    color: white;
+    padding:5px;
+    left: 5px;
+    right: 5px;
+    font:16px verdana;
+    text-transform: none;
+}
+
+dataGrid {
+    position: fixed;
+    top: 200px;
+    background-color:red;
+    color: white;
+    padding:5px;
+    left: 5px;
+    right: 5px;
+    font:16px verdana;
+    text-transform: none;
 }
 
 logIn {
@@ -96,6 +115,13 @@ logIn {
     right: 10px;
     text-transform: lowercase;
 }
+logIn2 {
+    position: fixed;
+    top: 387px;
+    left: 0px;
+    text-transform: lowercase;
+}
+
 questions {
     position: fixed;
     top: 425px;
