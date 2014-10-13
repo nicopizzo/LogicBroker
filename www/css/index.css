@@ -1,0 +1,20 @@
+p{
+	color: black;
+	font-family: Times;
+	text-align: center;
+}
+
+div{
+	height: 30px;
+	width: 120px;
+	border-color: black;
+	background-color: red;
+	border-radius: 10px;
+	margin: auto;
+	text-align:center;
+}
+
+a{
+	color: black;
+	text-decoration: none;
+}
