@@ -22,62 +22,73 @@ body
     width: 100%;
 }
 /*@media all and (orientation: portrait)*/
- 
-    .app img 
-    {
-        /*This centers the image dynamically*/
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        /*This dynamically keeps the image the same size*/
-        height: auto;
-        width: auto;
-    }
 
-    #LogIn 
-    {
-        position: relative;
-        top: 20px;
-        text-align: center;
-    }
-    .inputField
-    {
-        margin:5px
-    }
-
-    .inputField label
-    {
-        display:block;
-        width:inherit;
-    }
-    .submit input
-    {
-        margin: 10px
-    }
-    h1 
-    {
-        font:35px verdana;
-        color: red;
-        font-weight:bold;    
-    }
-    .help
-    {
-        font-size: 18px;
-        width: 75%;
-        margin-top: 30px;
-        margin-left: auto;
-        margin-right: auto;        
-    }
-    .help ul
-    {
-        list-style-type: square;
-        display: table;
-        color: red;
-		margin: auto;
-    }
+	#header
+	{
+		text-align: center;
+		font-size: 16px;
+	}
+	
+	/* Tab Code */
+	.tabs
+	{
+		width: 100%;
+		display:inline-block;
+		
+	}
+	
+	.tabLinks:after
+	{
+		display: block;
+		clear: both;
+		content: '';
+	}
+	
+	.tabLinks li
+	{
+		margin: 0% 5%;
+		float: left;
+		list-style: none;
+	}
+	
+	.tabLinks a
+	{
+		padding: 9% 15%;
+		display: inline-block;
+		border-radius: 5px;
+		background: white;
+		font-size: 16px;
+		font-weight: 600;
+		color: red;
+		text-decoration: none;
+		transition: all linear 0.15s;
+	}
+	
+	li.active a
+	{
+		background: #fff;
+		color: blue;
+	}
+	
+	.tabContent
+	{
+		padding: 15px;
+		border-radius:3px;
+		box-shadow: -1px 1px 1px rgba(0,0,0,0.15);
+	}
+	
+	.tab
+	{
+		display: none;
+	}
+	
+	.tab.active
+	{
+		display: block;
+	}
 
     .event.listening 
-    {
+	{
         background-color: #333333;
         display: block;
     }

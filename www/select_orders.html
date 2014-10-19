@@ -1,0 +1,66 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Home</title>
+  <link rel="stylesheet" href="//code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.css"/>
+  <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+  <script src="//code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.js"></script>
+</head>
+<body>
+ 
+<div data-role="page" id="page1">
+  <div data-role="header">
+    <h1>Select Order</h1>
+  </div>
+  <div role="main" class="ui-content">
+    <div data-role="tabs">
+      <div data-role="navbar">
+        <ul>
+          <li><a href="#pending_orders">Pending Orders</a></li>
+          <li><a href="#notifications">Notifications</a></li>
+        </ul>
+      </div>
+      <div id="pending_orders">
+        <p>This is the content of the tab 'One', with the id fragment-1.</p>
+		<table data-role="table" id="order_tabel" class="ui-responsive table-stripe">
+			<thead>
+				<tr>
+					<th scope="col">Order Number</th>
+					<th scope="col">Company Source</th>
+					<th scope="col">Status</th>
+				</tr>
+			</thead>
+			<tbody>
+				<!-- Simply modify below to create a table -->
+				<tr>	
+					<td><a href="http://google.com" data-rel="external">ORD123-456</td>
+					<td>SLURP</td>
+					<td>Submitted</td>
+				</tr>
+				<tr>
+					<td><a href="http://facebook.com" data-rel="external">Test123-456</td>
+					<td>SLURP</td>
+					<td>Submitted</td>
+				</tr>
+				<tr>
+					<td><a href="http://twitter.com" data-rel="external">ORDER10101</td>
+					<td>SLURP</td>
+					<td>Submitted</td>
+				</tr>
+			</tbody>
+		</table>
+      </div>
+      <div id="notifications">
+        <p>This is the content of the tab 'Two', with the id fragment-2.</p>
+      </div>
+    </div>
+  </div>
+	<div data-role="footer" class="ui-bar">
+		<a href="index.html" data-role="button">Log Out</a>
+	</div>
+</div>
+</body>
+ 
+</html>
