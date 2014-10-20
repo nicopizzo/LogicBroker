@@ -1,3 +1,4 @@
 $(document).ready(function() {
-	$("body").css("background-color","#ffff212");
+		$(#page1).css("background-color", "green");
+		alert("done");
 });
