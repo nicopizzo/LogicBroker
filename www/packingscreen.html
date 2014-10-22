@@ -25,153 +25,103 @@
                     </ul>
                 </div>
 
-                <div id="packing">
-                    <div class="ui-grid-d">
+                <div id="CaseInfo">
+                    <form>
+                        <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+                            <legend>Case: #, Type</legend>
+                            <label for="select-native-14">Case #:</label>
+                            <select name="select-native-14" id="select-native-14">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select>
+                            <label for="select-native-15">Container Type:</label>
+                            <select name="select-native-15" id="select-native-15">
+                                <option value="1">Box</option>
+                                <option value="2">Pallet</option>
+                            </select>
+                        </fieldset>
+                    </form>
+                </div>
+
+                <div id="Case">
+                    <div class="ui-grid-a">
+                        <!--Row Headers-->
                         <div class="ui-block-a">
                             <div class="ui-bar ui-bar-b gridHeader"></div>
                         </div>
                         <div class="ui-block-b">
-                            <div class="ui-bar ui-bar-b gridHeader">SKU #</div>
+                            <div class="ui-bar ui-bar-b gridHeader">Item Details</div>
                         </div>
-                        <div class="ui-block-c">
-                            <div class="ui-bar ui-bar-b gridHeader">Product Name</div>
-                        </div>
-                        <div class="ui-block-d">
-                            <div class="ui-bar ui-bar-b gridHeader">Weight (lbs)</div>
-                        </div>
-                        <div class="ui-block-e">
-                            <div class="ui-bar ui-bar-b gridHeader">Qty</div>
-                        </div>
+
                         <!--Row 1-->
-                        <!--Select-->
+                        <div id="packingColumn1">
+                        <!--Delete Bttn-->
                         <div class="ui-block-a">
-                            <div class="ui-bar ui-bar-a" style="height: 60px">
+                            <div class="ui-bar ui-bar-a" style="height:100px">
                                 <form>
-                                    <input name="checkbox-mini-0" id="checkbox-mini-0" data-mini="false" type="checkbox"
-                                        class="center-wrapper">
+                                    <input data-icon="delete" data-iconpos="notext" value="Icon only" type="button">
                                 </form>
                             </div>
                         </div>
-                        <!--SKU-->
-                        <div class="ui-block-b">
-                            <div class="ui-bar ui-bar-a" style="height: 60px">
-                                <p class="skuNumber" id="sku00">
-                                    000000000
-                                </p>
+                        <!--Item Information-->
+                        <div class="ui-block-b" style="height:100px">
+                            <div class="ui-bar ui-bar-a">
+                                <table data-role="table" class="ui-responsive table-stroke">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">SKU:</th>
+                                            <th scope="col">Name:</th>
+                                            <th scope="col">Weight (lbs):</th>
+                                            <th scope="col">Qty:</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>LB-000110</td>
+                                            <td>Viking 5C Rocket Engine</td>
+                                            <td>40.0</td>
+                                            <td>3</td>
+                                        </tr>
+                                     </tbody>
+                                    </table>
                             </div>
                         </div>
-                        <!--Product Name-->
-                        <div class="ui-block-c">
-                            <div class="ui-bar ui-bar-a" style="height: 60px">
-                                <p class="productName" id="productName00">
-                                    TestName
-                                </p>
+                     </div>
+                        <div id="packingColumn2">
+                            <!--Delete Bttn-->
+                            <div class="ui-block-a">
+                                <div class="ui-bar ui-bar-a" style="height:100px">
+                                    <form>
+                                        <input data-icon="delete" data-iconpos="notext" value="Icon only" type="button">
+                                    </form>
+                                </div>
                             </div>
-                        </div>
-                        <!--Product Weight-->
-                        <div class="ui-block-d">
-                            <div class="ui-bar ui-bar-a" style="height: 60px">
-                                <p class="productWeight" id="productWeight00">
-                                    0.00
-                                </p>
-                            </div>
-                        </div>
-                        <div class="ui-block-e">
-                            <div class="ui-bar ui-bar-a" style="height: 60px">
-                                <p class="productQuantity" id="productQuantity00">
-                                    0
-                                </p>
-                            </div>
-                        </div>
-
-                        <!--Row 2-->
-                        <!--Select-->
-                        <div class="ui-block-a">
-                            <div class="ui-bar ui-bar-a" style="height: 60px">
-                                <form>
-                                    <input name="checkbox-mini-0" id="checkbox1" data-mini="false" type="checkbox"
-                                        class="center-wrapper">
-                                </form>
-                            </div>
-                        </div>
-                        <!--SKU-->
-                        <div class="ui-block-b">
-                            <div class="ui-bar ui-bar-a" style="height: 60px">
-                                <p class="skuNumber" id="sku01">
-                                    000000000
-                                </p>
-                            </div>
-                        </div>
-                        <!--Product Name-->
-                        <div class="ui-block-c">
-                            <div class="ui-bar ui-bar-a" style="height: 60px">
-                                <p class="productName" id="productName01">
-                                    TestName
-                                </p>
-                            </div>
-                        </div>
-                        <!--Product Weight-->
-                        <div class="ui-block-d">
-                            <div class="ui-bar ui-bar-a" style="height: 60px">
-                                <p class="productWeight" id="productWeight01">
-                                    0.00
-                                </p>
-                            </div>
-                        </div>
-                        <div class="ui-block-e">
-                            <div class="ui-bar ui-bar-a" style="height: 60px">
-                                <p class="productQuantity" id="productQuantity01">
-                                    0
-                                </p>
-                            </div>
-                        </div>
-
-                        <!--Row 3-->
-                        <!--Select-->
-                        <div class="ui-block-a">
-                            <div class="ui-bar ui-bar-a" style="height: 60px">
-                                <form>
-                                    <input name="checkbox-mini-0" id="checkbox2" data-mini="false" type="checkbox"
-                                        class="center-wrapper">
-                                </form>
-                            </div>
-                        </div>
-                        <!--SKU-->
-                        <div class="ui-block-b">
-                            <div class="ui-bar ui-bar-a" style="height: 60px">
-                                <p class="skuNumber" id="sku02">
-                                    000000000
-                                </p>
-                            </div>
-                        </div>
-                        <!--Product Name-->
-                        <div class="ui-block-c">
-                            <div class="ui-bar ui-bar-a" style="height: 60px">
-                                <p class="productName" id="productName02">
-                                    TestName
-                                </p>
-                            </div>
-                        </div>
-                        <!--Product Weight-->
-                        <div class="ui-block-d">
-                            <div class="ui-bar ui-bar-a" style="height: 60px">
-                                <p class="productWeight" id="productWeight02">
-                                    0.00
-                                </p>
-                            </div>
-                        </div>
-                        <div class="ui-block-e">
-                            <div class="ui-bar ui-bar-a" style="height: 60px">
-                                <p class="productQuantity" id="productQuantity02">
-                                    0
-                                </p>
+                            <!--Item Information-->
+                            <div class="ui-block-b" style="height:100px">
+                                <div class="ui-bar ui-bar-a">
+                                    <table data-role="table" class="ui-responsive table-stroke">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">SKU:</th>
+                                                <th scope="col">Name:</th>
+                                                <th scope="col">Weight (lbs):</th>
+                                                <th scope="col">Qty:</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>LB-000778</td>
+                                                <td>Nuclear Rocket Engine</td>
+                                                <td>60.0</td>
+                                                <td>2</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
-
-                    <div class="containerTotals">
-                    </div>
-
                 </div>
 
                 <div id="order">
@@ -248,8 +198,8 @@
                     </div>
                 </div>
                 <!--added-->
-
             </div>
+        </div>
 
             <div data-role="footer" class="ui-bar">
                 <a href="index.html" data-role="button">Log Out</a>
@@ -284,45 +234,39 @@
         padding: 0px;
         width: 100%;
     }
+    #Case
+    {
+        margin:4px;
+    }
     /*@media all and (orientation: portrait)*/
     .ui-grid-d
     {
         margin: 2%;
     }
+    .caseInfoItem
+    {
+        width:30%;
+        margin: 5px;
+    }
 
     .gridHeader
     {
         background-color: grey;
-        font-size: 10px;
+        
         font-weight: bold;
         text-align: center;
-        height: 50px;
+        height: 20px;
         vertical-align: middle;
     }
 
-    .ui-grid-d .ui-block-a
+    #Case .ui-grid-a .ui-block-a
     {
-        width: 20%;
+        width: 15%;
     }
 
-    .ui-grid-d .ui-block-b
+    #Case .ui-grid-a .ui-block-b
     {
-        width: 20%;
-    }
-
-    .ui-grid-d .ui-block-c
-    {
-        width: 20%;
-    }
-
-    .ui-grid-d .ui-block-d
-    {
-        width: 20%;
-    }
-
-    .ui-grid-d .ui-block-e
-    {
-        width: 20%;
+        width: 85%;
     }
 
     .event.listening
