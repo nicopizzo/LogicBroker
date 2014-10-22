@@ -1,99 +1,193 @@
 ﻿<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Home</title>
-  <link rel="stylesheet" href="//code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.css"/>
-  <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
-  <script src="//code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.js"></script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Home</title>
+    <link rel="stylesheet" href="//code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.css" />
+    <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="//code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.js"></script>
 </head>
 <body>
- 
-<div data-role="page" id="page1">
-  <div data-role="header">
-    <h1>Select Order</h1>
-  </div>
-  <div role="main" class="ui-content">
-    <div data-role="tabs">
-      <div data-role="navbar">
-        <ul>
-          <li><a href="#pending_orders">Pending Orders</a></li>
-          <li><a href="#notifications">Notifications</a></li>
-        </ul>
-      </div>
-      <div id="pending_orders">
-        <p>Please Select an Order</p>
-		<table data-role="table" id="order_tabel" class="ui-responsive table-stripe">
-			<thead>
-				<tr>
-					<th scope="col">Order Number</th>
-					<th scope="col">Company Source</th>
-					<th scope="col">Status</th>
-				</tr>
-			</thead>
-			<tbody>
-				<!-- Pending Orders -->
-				<tr>	
-					<td><a href="order_details.html" data-rel="external">ORD123-456</a></td>
-					<td>SLURP</td>
-					<td>Submitted</td>
-				</tr>
-				<tr>
-					<td><a href="http://facebook.com" data-rel="external">Test123-456</a></td>
-					<td>SLURP</td>
-					<td>Submitted</td>
-				</tr>
-				<tr>
-					<td><a href="http://twitter.com" data-rel="external">ORDER10101</a></td>
-					<td>SLURP</td>
-					<td>Submitted</td>
-				</tr>
-				<tr>	
-					<td><a href="http://google.com" data-rel="external">ORD123-456</a></td>
-					<td>SLURP</td>
-					<td>Submitted</td>
-				</tr>
-			</tbody>
-		</table>
-      </div>
-      <div id="notifications">
-        <p>This is the content of the tab 'Two', with the id fragment-2.</p>
-		<table data-role="table" id="order_tabel" class="ui-responsive table-stripe">
-			<thead>
-				<tr>
-					<th scope="col">Message</th>
-					<th scope="col">From</th>
-					<th scope="col">Date</th>
-				</tr>
-			</thead>
-			<tbody>
-				<!-- Notifications -->
-				<!-- Maybe open a popup window? -->
-				<tr>	
-					<td><a href="http://google.com" data-rel="external">Test1</a></td>
-					<td>SLURP</td>
-					<td>10/19/2014</td>
-				</tr>
-				<tr>
-					<td><a href="http://facebook.com" data-rel="external">Test2</a></td>
-					<td>SLURP</td>
-					<td>10/10/2014</td>
-				</tr>
-				<tr>
-					<td><a href="http://twitter.com" data-rel="external">Test3</a></td>
-					<td>SLURP</td>
-					<td>11/13/2013</td>
-				</tr>
-			</tbody>
-		</table>
-      </div>
+
+    <div data-role="page" id="page1">
+        <div data-role="header">
+            <h1>Select Order</h1>
+        </div>
+        <div role="main" class="ui-content">
+            <div data-role="tabs">
+                <div data-role="navbar">
+                    <ul>
+                        <li><a href="#pending_orders">Pending Orders</a></li>
+                        <li><a href="#notifications">Notifications</a></li>
+                    </ul>
+                </div>
+                <div id="pending_orders">
+                    <p>Please Select an Order</p>
+                    <table data-role="table" id="order_table" class="ui-responsive table-stripe">
+                        <thead>
+                            <tr>
+                                <th scope="col">Order Number</th>
+                                <th scope="col">Company Source</th>
+                                <th scope="col">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Pending Orders -->
+                            <tr>
+                                <td><a href="http://google.com" data-rel="external">ORD123-456</td>
+                                <td>SLURP</td>
+                                <td>Submitted</td>
+                            </tr>
+                            <tr>
+                                <td><a href="http://facebook.com" data-rel="external">Test123-456</td>
+                                <td>SLURP</td>
+                                <td>Submitted</td>
+                            </tr>
+                            <tr>
+                                <td><a href="http://twitter.com" data-rel="external">ORDER10101</td>
+                                <td>SLURP</td>
+                                <td>Submitted</td>
+                            </tr>
+                            <tr>
+                                <td><a href="http://google.com" data-rel="external">ORD123-456</td>
+                                <td>SLURP</td>
+                                <td>Submitted</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div id="notifications">
+                    <p>This is the content of the tab 'Two', with the id fragment-2.</p>
+                    <div data-role="tabs">
+                        <div data-role="navbar">
+                            <ul>
+                                <li><a href="#notifications_tab">Notifications</a></li>
+                                <li><a href="#Documents">Documents</a></li>
+                                <li><a href="#Support_Tickets">Support Tickets</a></li>
+                                <li><a href="#Exceptions">Exceptions</a></li>
+                            </ul>
+                        </div>
+                        <br />
+
+                        <!-- Notifications -->
+                        <div id="notifications_tab">
+                            <table data-role="table" id="notifications_table" class="ui-responsive table-stripe">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Source Key</th>
+                                        <th scope="col">Event Category</th>
+                                        <th scope="col">Machine</th>
+                                        <th scope="col">System</th>
+                                        <th scope="col">Status</th>
+                                        <th scope="col">Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Maybe open a popup window? -->
+                                    <tr>
+                                        <td><a href="http://google.com" data-rel="external">ASN1310004812-001</td>
+                                        <td><a href="http://google.com" data-rel="external">New Shipment Notification</td>
+                                        <td>ANGEL</td>
+                                        <td>WIP</td>
+                                        <td>New</td>
+                                        <td>9/16/2014 5:50:29 PM</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Documents -->
+                        <div id="Documents">
+                            <table data-role="table" id="Table1" class="ui-responsive table-stripe">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Doc Id</th>
+                                        <th scope="col">Partner</th>
+                                        <th scope="col">Doc Type</th>
+                                        <th scope="col">Date</th>
+                                        <th scope="col">LinkKey</th>
+                                        <th scope="col">Status</th>
+                                        <th scope="col">Export</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><a href="http://google.com" data-rel="external">ASN1310004812-001</td>
+                                        <td><a href="http://google.com" data-rel="external">New Shipment Notification</td>
+                                        <td>ANGEL</td>
+                                        <td>WIP</td>
+                                        <td>New</td>
+                                        <td>9/16/2014 5:50:29 PM</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Support Documents -->
+                        <div id="Support_Tickets">
+                            <table data-role="table" id="Table2" class="ui-responsive table-stripe">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Ref Id</th>
+                                        <th scope="col">Summary</th>
+                                        <th scope="col">Item Type</th>
+                                        <th scope="col">Status</th>
+                                        <th scope="col">Submitter</th>
+                                        <th scope="col">Priority</th>
+                                        <th scope="col">Created on</th>
+                                        <th scope="col">Updated on</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>12345</td>
+                                        <td>This is a summary</td>
+                                        <td>Fragile</td>
+                                        <td>Good</td>
+                                        <td>LogicBroker</td>
+                                        <td>High</td>
+                                        <td>9/16/2014 5:50:29 PM</td>
+                                        <td>10/14/2014 4:39:23</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Exceptions -->
+                        <div id="Exceptions">
+                            <table data-role="table" id="Table3" class="ui-responsive table-stripe">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Document #</th>
+                                        <th scope="col">Partner</th>
+                                        <th scope="col">Exception</th>
+                                        <th scope="col">Current Document Status</th>
+                                        <th scope="col">Exception Status</th>
+                                        <th scope="col">Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>12345</td>
+                                        <td>LogicBroker</td>
+                                        <td>Exception</td>
+                                        <td>Good</td>
+                                        <td>No longer active</td>
+                                        <td>9/16/2014 5:50:29 PM</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div data-role="footer" class="ui-bar">
+                <a href="index.html" data-role="button">Log Out</a>
+            </div>
+        </div>
     </div>
-  </div>
-	<div data-role="footer" class="ui-bar">
-		<a href="index.html" data-role="button">Log Out</a>
-	</div>
-</div>
 </body>
- 
+
 </html>
