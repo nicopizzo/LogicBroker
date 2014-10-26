@@ -1,0 +1,248 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Packing Screen</title>
+    <link rel="stylesheet" href="//code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.css" />
+    <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="//code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.js"></script>
+	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>
+	<script>
+		$(document).bind('pageinit', function() {
+			$( "#sortable" ).sortable();
+			$( "#sortable" ).disableSelection();
+			<!-- Refresh list to the end of sort to have a correct display -->
+			$( "#sortable" ).bind( "sortstop", function(event, ui) {
+				$('#sortable').listview('refresh');
+			});
+		});
+	</script>
+	<script src="js/jquery.ui.touch-punch.min.js"></script>
+	<script>$(document).bind('pageinit', function() {
+    $( "#sortable" ).sortable();
+	</script>
+</head>
+
+<body>
+    <div data-role="page" id="page1">
+        <div data-role="header">
+            <h1>Packing Screen</h1>
+        </div>
+
+        <div role="main" class="ui-content">
+            <div data-role="tabs">
+                <div data-role="navbar">
+                    <ul>
+                        <li><a href="#packing">Package</a></li>
+                        <li><a href="#order">Orders</a></li>
+                    </ul>
+                </div>
+                <div id="packing">
+                    <div data-role="content" data-theme="c">
+						<ul data-role="listview" data-inset="true" data-theme="d" id="sortable">
+							<li data-role="list-divider">List</li>
+							<li>Item 1</li>
+							<li>Item 2</li>
+							<li>Item 3</li>
+							<li>Item 4</li>
+							<li>Item 5</li>
+						</ul>
+					</div>
+                </div>
+               
+                    <div id="order">
+
+                        <div data-role="tabs">
+                            <div data-role="navbar">
+                                <ul>
+                                    <li><a href="#order_items">Order Items</a></li>
+                                    <li><a href="#shipping_info">Shipping Info</a></li>
+                                    <li><a href="#other">Other</a></li>
+                                </ul>
+                            </div>
+                            <div id="order_items">
+                                <table data-role="table" id="order_tabel" class="ui-responsive table-stripe">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">SKU</th>
+                                            <th scope="col">Qty</th>
+                                            <th scope="col">Qty Left</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Simply modify below to create a table -->
+                                        <tr>
+                                            <td>LB-000110</td>
+                                            <td>10</td>
+                                            <td>4</td>
+                                        </tr>
+                                        <tr>
+                                            <td>LB-00078</td>
+                                            <td>5</td>
+                                            <td>4</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div>
+                                    <a href="index.html" data-role="button">Add to Case</a>
+                                </div>
+                            </div>
+
+                            <div id="shipping_info">
+                                <label for="basic">Shipping Number:</label>
+                                <input type="text" name="name" id="basic" value="ASN1410013665-001">
+                                <label for="basic">Bill of Lading:</label>
+                                <input type="text" name="name" id="Text1" value="ASN1410013665-001">
+                            </div>
+
+                            <div id="other">
+                                <table data-role="table" id="Table1" class="ui-responsive table-stripe">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Vendor Id</th>
+                                            <th scope="col">ASN</th>
+                                            <th scope="col">Order</th>
+                                            <th scope="col">LinkKey</th>
+                                            <th scope="col">Date</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Simply modify below to create a table -->
+                                        <tr>
+                                            <td>Field Emission Electronic Propulsion</td>
+                                            <td>ASN1410013665-001</td>
+                                            <td>OR1410013665-001</td>
+                                            <td>1410013665</td>
+                                            <td>10/5/2014 3:09:51 PM</td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+
+                        </div>
+                    </div>
+                <!--added-->
+            </div>
+        </div>
+
+            <div data-role="footer" class="ui-bar">
+                <a href="index.html" data-role="button">Log Out</a>
+            </div>
+        </div>
+</body>
+</html>
+
+<style>
+    /*changed for school*/
+
+    *
+    {
+        -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+    }
+
+    body
+    {
+        -webkit-touch-callout: none;
+        -webkit-text-size-adjust: none;
+        -webkit-user-select: none;
+        background-color: #E4E4E4;
+        background-image: linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
+        background-image: -webkit-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
+        background-image: -ms-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
+        background-image: -webkit-gradient( linear, left top, left bottom, color-stop(0, #A7A7A7), color-stop(0.51, #f2edf2) );
+        background-attachment: fixed;
+        font-family: 'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+        font-size: 12px;
+        height: 100%;
+        margin: 0px;
+        padding: 0px;
+        width: 100%;
+    }
+    #Case
+    {
+        margin:4px;
+    }
+    /*@media all and (orientation: portrait)*/
+    .ui-grid-d
+    {
+        margin: 2%;
+    }
+    .caseInfoItem
+    {
+        width:30%;
+        margin: 5px;
+    }
+
+    .gridHeader
+    {
+        background-color: grey;
+        
+        font-weight: bold;
+        text-align: center;
+        height: 20px;
+        vertical-align: middle;
+    }
+
+    #Case .ui-grid-a .ui-block-a
+    {
+        width: 15%;
+    }
+
+    #Case .ui-grid-a .ui-block-b
+    {
+        width: 85%;
+    }
+
+    .event.listening
+    {
+        background-color: #333333;
+        display: block;
+    }
+
+    .event.received
+    {
+        background-color: #4B946A;
+        display: none;
+    }
+
+    @keyframes fade
+    {
+        from
+        {
+            opacity: 1.0;
+        }
+
+        50%
+        {
+            opacity: 0.4;
+        }
+
+        to
+        {
+            opacity: 1.0;
+        }
+    }
+
+    @-webkit-keyframes fade
+    {
+        from
+        {
+            opacity: 1.0;
+        }
+
+        50%
+        {
+            opacity: 0.4;
+        }
+
+        to
+        {
+            opacity: 1.0;
+        }
+    }
+</style>
+
