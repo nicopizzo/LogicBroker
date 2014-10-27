@@ -17,6 +17,11 @@
         <div role="main" class="ui-content">
                 <div id="pending_orders">
                     <p><b>Please Select an Order</b></p>
+                    <label for="select-choice-0" class="select"></label>
+                        <select name="select-choice-0" id="select-choice-1">
+                            <option value="all">All Partners</option>
+                            <option>Field Emission Electronic Propulsion Inc.</option>
+                        </select>
                     <table data-role="table" id="order_table" class="ui-responsive table-stripe">
                         <thead>
                             <tr>
@@ -50,8 +55,21 @@
                         </tbody>
                     </table>
                 </div>
+            </div>
+         <center><p><a>Create New Order</a></p></center>
 
     </div>
 </body>
 
 </html>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('#order_table tr').click(function () {
+            document.location.href = '/splash.html';
+        });
+
+    });
+
+</script>
