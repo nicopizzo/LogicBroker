@@ -1,0 +1,114 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Packing Screen</title>
+    <link rel="stylesheet" href="//code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.css" />
+	<link rel="stylesheet" type="text/css" href="css/splash.css" />
+    <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="//code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.js"></script>
+    
+</head>
+<body>
+<div data-role="page">
+			<div data-role="panel" data-position="left" data-display="overlay"
+					data-theme="b" id="navigationPanel" data-swipe-close="false">
+				<h2><span class="ui-icon-bars ui-btn-icon-left" style="position:relative;"/>Navigation</h2>
+				
+				<ul data-role="listview" style="padding:5%">
+					<li><a href="splash.html" data-rel="close"><span class="ui-icon-home ui-btn-icon-left" style="position:relative;"/>Home</a></li>
+					<li><a href="order_details.html" data-rel="close"><span class="ui-icon-tag ui-btn-icon-left" style="position:relative;"/>Orders Menu</a></li>
+					<li><a href="packingscreen.html" data-rel="close"><span class="ui-icon-shop ui-btn-icon-left" style="position:relative;"/>Packing Menu</a></li>
+					<li><a href="asn_details.html" data-rel="close"><span class="ui-icon-bullets ui-btn-icon-left" style="position:relative;"/>ASN Menu</a></li>
+					<li><a href="index.html" data-rel="close"><span class="ui-icon-power ui-btn-icon-left" style="position:relative;"/>Log Out</a></li>
+				</ul>
+				</br>
+				<a href="#" data-rel="close"><span class="ui-icon-delete ui-btn-icon-left" style="position:relative;"/>Hide Panel</a>
+			</div>
+
+			<div data-role="header" data-theme="a">
+				<h1><span class="ui-icon-home ui-btn-icon-left " style="position:relative;" />Home</h1>
+				<a href="#navigationPanel" class="ui-btn-left ui-btn ui-btn-a ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-bars ui-btn-icon-notext"></a>
+				
+			</div>
+	
+            <div class="ui-grid-solo" id="navigation">
+                <div class="ui-block-a">
+					<div class="ui-bar ui-bar-a ui-corner-all">
+						<a href="order_details.html" data-role="button" data-icon="tag" data-inline="true" style="width:75%; margin:auto">Orders Menu</a>
+					</div>
+					<div class="ui-body ui-body-a ui-corner-all" style="height:auto">
+                                <table data-role="table" id="order_" class="ui-responsive table-stripe">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Pending Orders:</th>
+                                            <th scope="col">Unread Notifications:</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>4</td>
+                                            <td>6</td>
+                                        </tr>
+                                    </tbody>
+                                </table>  
+					</div>
+				</div>
+				
+                <div class="ui-block-a">
+					<div class="ui-bar ui-bar-a ui-corner-all">
+						<a href="packingscreen.html" data-role="button" data-icon="shop" data-inline="true" style="width:75%; margin:auto">Packing Menu</a>
+					</div>
+					<div class="ui-body ui-body-a ui-corner-all" style="height:auto">
+					<table data-role="table" id="order_" class="ui-responsive table-stripe">
+						<thead>
+							<tr>
+								<th scope="col">Unshipped Packages:</th>
+								<th scope="col">Packages Received:</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>3</td>
+								<td>2</td>
+							</tr>
+                         </tbody>
+                     </table>  
+				</div>
+				</div>
+			
+                <div class="ui-block-a">
+					<div class="ui-bar ui-bar-a ui-corner-all">
+						<a href="asn_details.html" data-role="button" data-icon="bullets" data-inline="true" style="width:75%; margin:auto">ASN Menu</a>
+					</div>
+					<div class="ui-body ui-body-a ui-corner-all" style="height:auto">
+					<table data-role="table" id="order_" class="ui-responsive table-stripe">
+						<thead>
+							<tr>
+								<th scope="col">At a Glance #1:</th>
+								<th scope="col">At a Glance #2:</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>1337</td>
+								<td>7331</td>
+							</tr>
+                         </tbody>
+                     </table>  
+				</div>
+				</div>
+				</div>
+            
+</div>
+<script>
+    $(document).ready(function()
+    {
+        var screenHeight = $.mobile.getScreenHeight();
+        $("#navigation").height(screenHeight);
+    })
+</script>
+
+</body>
+</html>
