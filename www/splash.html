@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Packing Screen</title>
+    <title>Splash Screen</title>
     <link rel="stylesheet" href="//code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.css" />
 	<link rel="stylesheet" type="text/css" href="css/splash.css" />
     <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
@@ -29,8 +29,7 @@
 
 			<div data-role="header" data-theme="a">
 				<h1><span class="ui-icon-home ui-btn-icon-left " style="position:relative;" />Home</h1>
-				<a href="#navigationPanel" class="ui-btn-left ui-btn ui-btn-a ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-bars ui-btn-icon-notext"></a>
-				
+				<a href="#navigationPanel" class="ui-btn-left ui-btn ui-btn-a ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-bars ui-btn-icon-notext"></a>				
 			</div>
 	
             <div class="ui-grid-solo" id="navigation">
@@ -39,7 +38,7 @@
 						<a href="order_details.html" data-role="button" data-icon="tag" data-inline="true" style="width:75%; margin:auto">Orders Menu</a>
 					</div>
 					<div class="ui-body ui-body-a ui-corner-all" style="height:auto">
-                                <table data-role="table" id="order_" class="ui-responsive table-stripe">
+                                <table data-role="table" id="gen_order_info" class="ui-responsive table-stripe">
                                     <thead>
                                         <tr>
                                             <th scope="col">Pending Orders:</th>
@@ -61,7 +60,7 @@
 						<a href="packingscreen.html" data-role="button" data-icon="shop" data-inline="true" style="width:75%; margin:auto">Packing Menu</a>
 					</div>
 					<div class="ui-body ui-body-a ui-corner-all" style="height:auto">
-					<table data-role="table" id="order_" class="ui-responsive table-stripe">
+					<table data-role="table" id="gen_packing_info" class="ui-responsive table-stripe">
 						<thead>
 							<tr>
 								<th scope="col">Unshipped Packages:</th>
@@ -83,7 +82,7 @@
 						<a href="asn_details.html" data-role="button" data-icon="bullets" data-inline="true" style="width:75%; margin:auto">ASN Menu</a>
 					</div>
 					<div class="ui-body ui-body-a ui-corner-all" style="height:auto">
-					<table data-role="table" id="order_" class="ui-responsive table-stripe">
+					<table data-role="table" id="gen_asn_info" class="ui-responsive table-stripe">
 						<thead>
 							<tr>
 								<th scope="col">At a Glance #1:</th>
