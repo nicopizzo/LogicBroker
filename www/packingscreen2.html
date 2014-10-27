@@ -8,40 +8,40 @@
     <link rel="stylesheet" href="//code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.css" />
     <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="//code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.js"></script>
-	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>
-	<script>
-		$(document).bind('pageinit', function() {
-			$( ".able" ).sortable();
-			$( ".able" ).disableSelection();
-			<!-- Refresh list to the end of sort to have a correct display -->
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>
+    <script>
+        $(document).bind('pageinit', function() {
+            $( ".able" ).sortable();
+            $( ".able" ).disableSelection();
+            <!-- Refresh list to the end of sort to have a correct display -->
 			$( ".able" ).bind( "sortstop", function(event, ui) {
-				$('.able').listview('refresh');
+			    $('.able').listview('refresh');
 			});
-		});
-	</script>
-	<script src="js/jquery.ui.touch-punch.min.js"></script>
-	<script>$(document).bind('pageinit', function() {
+        });
+    </script>
+    <script src="js/jquery.ui.touch-punch.min.js"></script>
+    <script>$(document).bind('pageinit', function() {
     $( ".able" ).sortable();
-	</script>
-	<script>
-		$(function () {
-		var oldList, newList, item;
-		$(".categories-sortable").sortable({
-        connectWith: $('.categories-sortable'),
-        start: function (event, ui) {
-            item = ui.item;
-            newList = oldList = ui.item.parent();
-        },
-        change: function (event, ui) {
-            if (ui.sender) {
-                newList = ui.placeholder.parent();
-            }
-			},
-		})
-        .disableSelection();
+    </script>
+    <script>
+        $(function () {
+            var oldList, newList, item;
+            $(".categories-sortable").sortable({
+                connectWith: $('.categories-sortable'),
+                start: function (event, ui) {
+                    item = ui.item;
+                    newList = oldList = ui.item.parent();
+                },
+                change: function (event, ui) {
+                    if (ui.sender) {
+                        newList = ui.placeholder.parent();
+                    }
+                },
+            })
+            .disableSelection();
 
-	});
-	</script>
+        });
+    </script>
 </head>
 
 <body>
@@ -59,127 +59,127 @@
                     </ul>
                 </div>
                 <div id="packing">
-					<a href="" data-role="button" data-mini="true">Add Container</a>
+                    <a href="" data-role="button" data-mini="true">Add Container</a>
                     <div data-role="collapsible" data-collapsed="false">
-						<h4>Unpackaged Items</h4>
-						<ul data-role="listview" data-inset="true" data-theme="d" class="categories-sortable">
-							<li>Item 1</li>
-							<li>Item 2</li>
-							<li>Item 3</li>
-							<li>Item 4</li>
-							<li>Item 5</li>
-						</ul>
-					</div>
-					
-					<div data-role="collapsible" data-collapsed="false">
-						<h4>Container
+                        <h4>Unpackaged Items</h4>
+                        <ul data-role="listview" data-inset="true" data-theme="d" class="categories-sortable">
+                            <li>Item 1</li>
+                            <li>Item 2</li>
+                            <li>Item 3</li>
+                            <li>Item 4</li>
+                            <li>Item 5</li>
+                        </ul>
+                    </div>
+
+                    <div data-role="collapsible" data-collapsed="false">
+                        <h4>Container
 							 <a href="" data-role="button" data-inline="true" data-mini="true">Add Case</a>
-							 <a href="" data-role="button" data-inline="true" data-mini="true">Remove Container</a>
-						</h4>
-						
-						<div data-role="collapsible" data-collapsed="false">
-							<h4>Case-Box 
+                            <a href="" data-role="button" data-inline="true" data-mini="true">Remove Container</a>
+                        </h4>
+
+                        <div data-role="collapsible" data-collapsed="false">
+                            <h4>Case-Box 
 								<a href="" data-role="button" data-inline="true" data-mini="true">Remove Case</a>
-							</h4>
-							<ul data-role="listview" data-inset="true" data-theme="d" class="categories-sortable">
-								<li>LB-000110</li>
-								<li>LB-00078</li>
-							</ul>
-						</div>
-						
-						<div data-role="collapsible" data-collapsed="false">
-							<h4>Case-Pallet 
+                            </h4>
+                            <ul data-role="listview" data-inset="true" data-theme="d" class="categories-sortable">
+                                <li>LB-000110</li>
+                                <li>LB-00078</li>
+                            </ul>
+                        </div>
+
+                        <div data-role="collapsible" data-collapsed="false">
+                            <h4>Case-Pallet 
 								<a href="" data-role="button" data-inline="true" data-mini="true">Remove Case</a>
-							</h4>
-							<ul data-role="listview" data-inset="true" data-theme="d" class="categories-sortable">
-								<li>LB-04213q</li>
-								<li>LB-11233</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-               
-                    <div id="order">
-
-                        <div data-role="tabs">
-                            <div data-role="navbar">
-                                <ul>
-                                    <li><a href="#order_items">Order Items</a></li>
-                                    <li><a href="#shipping_info">Shipping Info</a></li>
-                                    <li><a href="#other">Other</a></li>
-                                </ul>
-                            </div>
-                            <div id="order_items">
-                                <table data-role="table" id="order_tabel" class="ui-responsive table-stripe">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">SKU</th>
-                                            <th scope="col">Qty</th>
-                                            <th scope="col">Qty Left</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <!-- Simply modify below to create a table -->
-                                        <tr>
-                                            <td>LB-000110</td>
-                                            <td>10</td>
-                                            <td>4</td>
-                                        </tr>
-                                        <tr>
-                                            <td>LB-00078</td>
-                                            <td>5</td>
-                                            <td>4</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <div>
-                                    <a href="index.html" data-role="button">Add to Case</a>
-                                </div>
-                            </div>
-
-                            <div id="shipping_info">
-                                <label for="basic">Shipping Number:</label>
-                                <input type="text" name="name" id="basic" value="ASN1410013665-001">
-                                <label for="basic">Bill of Lading:</label>
-                                <input type="text" name="name" id="Text1" value="ASN1410013665-001">
-                            </div>
-
-                            <div id="other">
-                                <table data-role="table" id="Table1" class="ui-responsive table-stripe">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Vendor Id</th>
-                                            <th scope="col">ASN</th>
-                                            <th scope="col">Order</th>
-                                            <th scope="col">LinkKey</th>
-                                            <th scope="col">Date</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <!-- Simply modify below to create a table -->
-                                        <tr>
-                                            <td>Field Emission Electronic Propulsion</td>
-                                            <td>ASN1410013665-001</td>
-                                            <td>OR1410013665-001</td>
-                                            <td>1410013665</td>
-                                            <td>10/5/2014 3:09:51 PM</td>
-                                        </tr>
-
-                                    </tbody>
-                                </table>
-                            </div>
-
-
+                            </h4>
+                            <ul data-role="listview" data-inset="true" data-theme="d" class="categories-sortable">
+                                <li>LB-04213q</li>
+                                <li>LB-11233</li>
+                            </ul>
                         </div>
                     </div>
+                </div>
+
+                <div id="order">
+
+                    <div data-role="tabs">
+                        <div data-role="navbar">
+                            <ul>
+                                <li><a href="#order_items">Order Items</a></li>
+                                <li><a href="#shipping_info">Shipping Info</a></li>
+                                <li><a href="#other">Other</a></li>
+                            </ul>
+                        </div>
+                        <div id="order_items">
+                            <table data-role="table" id="order_tabel" class="ui-responsive table-stripe">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">SKU</th>
+                                        <th scope="col">Qty</th>
+                                        <th scope="col">Qty Left</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Simply modify below to create a table -->
+                                    <tr>
+                                        <td>LB-000110</td>
+                                        <td>10</td>
+                                        <td>4</td>
+                                    </tr>
+                                    <tr>
+                                        <td>LB-00078</td>
+                                        <td>5</td>
+                                        <td>4</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div>
+                                <a href="index.html" data-role="button">Add to Case</a>
+                            </div>
+                        </div>
+
+                        <div id="shipping_info">
+                            <label for="basic">Shipping Number:</label>
+                            <input type="text" name="name" id="basic" value="ASN1410013665-001">
+                            <label for="basic">Bill of Lading:</label>
+                            <input type="text" name="name" id="Text1" value="ASN1410013665-001">
+                        </div>
+
+                        <div id="other">
+                            <table data-role="table" id="Table1" class="ui-responsive table-stripe">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Vendor Id</th>
+                                        <th scope="col">ASN</th>
+                                        <th scope="col">Order</th>
+                                        <th scope="col">LinkKey</th>
+                                        <th scope="col">Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Simply modify below to create a table -->
+                                    <tr>
+                                        <td>Field Emission Electronic Propulsion</td>
+                                        <td>ASN1410013665-001</td>
+                                        <td>OR1410013665-001</td>
+                                        <td>1410013665</td>
+                                        <td>10/5/2014 3:09:51 PM</td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+
+
+                    </div>
+                </div>
                 <!--added-->
             </div>
         </div>
 
-            <div data-role="footer" class="ui-bar">
-                <div align="right" data-inline="true"><a href="" data-role="button">Submit</a></div>
-            </div>
+        <div data-role="footer" class="ui-bar">
+            <div align="right" data-inline="true"><a href="" data-role="button">Submit</a></div>
         </div>
+    </div>
 </body>
 </html>
 
@@ -209,25 +209,26 @@
         padding: 0px;
         width: 100%;
     }
+
     #Case
     {
-        margin:4px;
+        margin: 4px;
     }
     /*@media all and (orientation: portrait)*/
     .ui-grid-d
     {
         margin: 2%;
     }
+
     .caseInfoItem
     {
-        width:30%;
+        width: 30%;
         margin: 5px;
     }
 
     .gridHeader
     {
         background-color: grey;
-        
         font-weight: bold;
         text-align: center;
         height: 20px;
