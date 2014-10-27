@@ -11,17 +11,36 @@
 	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>
 	<script>
 		$(document).bind('pageinit', function() {
-			$( "#sortable" ).sortable();
-			$( "#sortable" ).disableSelection();
+			$( ".able" ).sortable();
+			$( ".able" ).disableSelection();
 			<!-- Refresh list to the end of sort to have a correct display -->
-			$( "#sortable" ).bind( "sortstop", function(event, ui) {
-				$('#sortable').listview('refresh');
+			$( ".able" ).bind( "sortstop", function(event, ui) {
+				$('.able').listview('refresh');
 			});
 		});
 	</script>
 	<script src="js/jquery.ui.touch-punch.min.js"></script>
 	<script>$(document).bind('pageinit', function() {
-    $( "#sortable" ).sortable();
+    $( ".able" ).sortable();
+	</script>
+	<script>
+		$(function () {
+		var oldList, newList, item;
+		$(".categories-sortable").sortable({
+        connectWith: $('.categories-sortable'),
+        start: function (event, ui) {
+            item = ui.item;
+            newList = oldList = ui.item.parent();
+        },
+        change: function (event, ui) {
+            if (ui.sender) {
+                newList = ui.placeholder.parent();
+            }
+			},
+		})
+        .disableSelection();
+
+	});
 	</script>
 </head>
 
@@ -40,9 +59,10 @@
                     </ul>
                 </div>
                 <div id="packing">
-                    <div data-role="content" data-theme="c">
-						<ul data-role="listview" data-inset="true" data-theme="d" id="sortable">
-							<li data-role="list-divider">List</li>
+					<a href="" data-role="button" data-mini="true">Add Container</a>
+                    <div data-role="collapsible" data-collapsed="false">
+						<h4>Unpackaged Items</h4>
+						<ul data-role="listview" data-inset="true" data-theme="d" class="categories-sortable">
 							<li>Item 1</li>
 							<li>Item 2</li>
 							<li>Item 3</li>
@@ -50,7 +70,34 @@
 							<li>Item 5</li>
 						</ul>
 					</div>
-                </div>
+					
+					<div data-role="collapsible" data-collapsed="false">
+						<h4>Container
+							 <a href="" data-role="button" data-inline="true" data-mini="true">Add Case</a>
+							 <a href="" data-role="button" data-inline="true" data-mini="true">Remove Container</a>
+						</h4>
+						
+						<div data-role="collapsible" data-collapsed="false">
+							<h4>Case-Box 
+								<a href="" data-role="button" data-inline="true" data-mini="true">Remove Case</a>
+							</h4>
+							<ul data-role="listview" data-inset="true" data-theme="d" class="categories-sortable">
+								<li>LB-000110</li>
+								<li>LB-00078</li>
+							</ul>
+						</div>
+						
+						<div data-role="collapsible" data-collapsed="false">
+							<h4>Case-Pallet 
+								<a href="" data-role="button" data-inline="true" data-mini="true">Remove Case</a>
+							</h4>
+							<ul data-role="listview" data-inset="true" data-theme="d" class="categories-sortable">
+								<li>LB-04213q</li>
+								<li>LB-11233</li>
+							</ul>
+						</div>
+					</div>
+				</div>
                
                     <div id="order">
 
@@ -130,7 +177,7 @@
         </div>
 
             <div data-role="footer" class="ui-bar">
-                <a href="index.html" data-role="button">Log Out</a>
+                <div align="right" data-inline="true"><a href="" data-role="button">Submit</a></div>
             </div>
         </div>
 </body>
