@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Home</title>
+  <link rel="stylesheet" href="//code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.css"/>
+  <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+  <script src="//code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.js"></script>
+  <script type="text/javascript" src="js/select_orders.js"></script>
+</head>
+<body>
+	<div data-role="page" id="page1">
+		<div data-role="header">
+			<h1>Order Details</h1>
+		</div>
+		<h5>Order Status- New Order</h5>
+	
+		<div data-role="tabs">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#billto">Bill To</a></li>
+					<li><a href="#shipto">Ship To</a></li>
+					<li><a href="#items">Items</a></li>
+				</ul>
+			</div>
+			
+			<div id="billto">
+				<table data-role="table" id="billto_info" class="ui-responsive table-stroke">
+					<thead>
+						<tr>
+							<th scope="col">Company</th>
+							<th scope="col">Contact</th>
+							<th scope="col">Address</th>
+							<th scope="col">City</th>
+							<th scope="col">State</th>
+							<th scope="col">Zip</th>
+							<th scope="col">Phone</th>
+							<th scope="col">Fax</th>
+							<th scope="col">Address Code</th>
+							<th scope="col">Reference</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>	
+							<td><form action="demo_form.asp"><input type="text" name="Bill Company" value="Seelyville Laboratory of Unsual"><br></form></td>
+							<td><form action="demo_form.asp"><input type="text" name="Bill Contact" value="Test User"><br></td>
+							<td><form action="demo_form.asp"><input type="text" name="Bill Address" value="10 UIT Way"><br></td>
+							<td><form action="demo_form.asp"><input type="text" name="Bill City" value="Shelton"><br></td>
+							<td><form action="demo_form.asp"><input type="text" name="Bill State" value="CT"><br></td>
+							<td><form action="demo_form.asp"><input type="text" name="Bill Zip" value="06484"><br></td>
+							<td><form action="demo_form.asp"><input type="text" name="Bill Phone" value="860-331-0001"><br></td>
+							<td><form action="demo_form.asp"><input type="text" name="Bill Fax" value=""><br></td>
+							<td><form action="demo_form.asp"><input type="text" name="Bill Address Code" value=""><br></td>
+							<td><form action="demo_form.asp"><input type="text" name="Bill Reference" value=""><br></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			
+			<div id="shipto">
+				<table data-role="table" id="shipto_info" class="ui-responsive table-stroke">
+					<thead>
+						<tr>
+							<th scope="col">Company</th>
+							<th scope="col">Contact</th>
+							<th scope="col">Address</th>
+							<th scope="col">City</th>
+							<th scope="col">State</th>
+							<th scope="col">Zip</th>
+							<th scope="col">Phone</th>
+							<th scope="col">Fax</th>
+							<th scope="col">Email</th>
+							<th scope="col">Address Code</th>	
+						</tr>
+					</thead>
+					<tbody>
+						<tr>	
+							<td><form action="demo_form.asp"><input type="text" name="Ship Company" value=""><br></form></td>
+							<td><form action="demo_form.asp"><input type="text" name="Ship Contact" value=""><br></form></td>
+							<td><form action="demo_form.asp"><input type="text" name="Ship Address" value=""><br></form></td>
+							<td><form action="demo_form.asp"><input type="text" name="Ship City" value=""><br></form></td>
+							<td><form action="demo_form.asp"><input type="text" name="Ship State" value=""><br></form></td>
+							<td><form action="demo_form.asp"><input type="text" name="Ship Zip" value=""><br></form></td>
+							<td><form action="demo_form.asp"><input type="text" name="Ship Phone" value=""><br></form></td>
+							<td><form action="demo_form.asp"><input type="text" name="Ship Fax" value=""><br></form></td>
+							<td><form action="demo_form.asp"><input type="text" name="Ship Email" value=""><br></form></td>
+							<td><form action="demo_form.asp"><input type="text" name="Ship Address Code" value=""><br></form></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			
+			<div id="items">
+                <form action="demo_form_action.asp">
+<input type="text" name="item_name" value="">
+<input type="submit" value="Add Item">
+</form>
+				<table data-role="table" id="items_info" class="ui-responsive table-stripe">
+					<thead>
+						<tr>
+							<td>Item Id</td>
+                            <td>Description</td>
+                            <td>Vendor</td>
+                            <td>Weight</td>
+                            <td>Qty</td>
+                            <td>Unit Price</td>
+						</tr>
+					</thead>
+					<tbody>	
+					<!-- Maybe popup window to display info? -->
+						<tr>
+							<td>LB-000110</td>
+                            <td>Viking 5C Rocket Engine</td>
+                            <td>FEEP</td>
+                            <td>40</td>
+                            <td>1</td>
+                            <td>$22.00</td>
+						</tr>
+					</tbody>
+				</table>
+                <div data-role="collapsible" data-collapsed="true">
+			<h1>More Order Information</h1>
+			<table data-role="table" id="more_info" data-mode="reflow" class="ui-responsive table-stroke">
+				<thead>
+					<tr>
+						<td>Subtotal</td>
+						<td>Discount</td>
+						<td>Freight</td>
+						<td>Miscellaneous</td>
+						<td>Tax</td>
+						<td>Order Total</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>$587.85</td>
+						<td>$0.00</td>
+						<td>$0.00</td>
+						<td>$0.00</td>
+						<td>$0.00</td>
+						<td>$587.85</td>
+					</tr>
+				</tbody>		
+			</table>
+		</div>
+			</div>	
+
+		</div>
+	
+	
+		<div data-role="footer" class="ui-bar">
+			<a href="select_orders.html" data-role="button">Back</a>
+			<a href="index.html" data-role="button">Log Out</a>
+			<a href="" data-role="button">Ship Items</a>
+		</div>
+	</div>
+</body>
+
+</html>
+
+<style>
+
+</style>

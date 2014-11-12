@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>JSSample</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+    $(function () {
+        var params = {
+            // Specify your subscription key
+            key: '0e6b70055b30460b9033881d2e25450c',
+        };
+
+        $.ajax({
+            // Specify values for path parameters (shown as {...})
+            url: '/SLURP/0/salesorders/0e6b70055b30460b9033881d2e25450c?' + $.param(params),
+            type: 'GET',
+            beforeSend: function (xhr) {
+                debugger;
+                xhr.overrideMimeType("application/json");
+            }
+        })
+        .done(function (data) {
+            alert("success");
+        })
+        .fail(function () {
+            alert("error");
+        });
+    });
+</script>
+</body>
+</html>
