@@ -44,7 +44,7 @@ function addContainerEvent() {
 		var colmain = $('#collapsibleSet');
 		var collapsible = $('<div data-role="collapsible" data-collapsed="false" id="container' + containerCount + '">');
 		collapsible.append('<h2>Container ' + containerCount + '</h2>');
-		collapsible.append('<button type="button" data-mini="true" data-inline="true" class="addCaseButton" id="addCaseButton' + containerCount + '" onclick="addCaseEvent()">Add Case</button>');
+		collapsible.append('<button type="button" data-mini="true" data-inline="true" class="addCaseButton" id="addCaseButton' + containerCount + '" onclick="addCaseEvent('+containerCount+')">Add Case</button>');
 		collapsible.append('<button type="button" data-mini="true" data-inline="true" class="removeContainerButton" onclick="removeContainerEvent()">Remove Container</button>');
 		
 		var caseSet = $('<div data-role="collapsible-set" id="caseCollapsibleSet' + containerCount + '" class="caseCollapsibleSet">');
@@ -62,16 +62,9 @@ function addContainerEvent() {
 
 function addCaseEvent(containerId) {
 		caseCount++;
-		var caseSet = $('#container' + containerId + '.caseCollapsibleSet');
-		console.log(caseSet);
-		var case1 = $('<div data-role="collapsible" data-collapsed="false" id="case' + caseCount + '">');
-		console.log(case1);
-		case1.append('<h4>Case-Box ' + caseCount + '</h4>');
-		case1.append('<button type="button" data-mini="true" data-inline="true" class="removeCaseButton" onclick="removeCaseEvent()">Remove Case</button>');
-		case1.append('<ul data-role="listview" data-inset="true" data-theme="d" class="draganddrop"><li>LB-04213q</li></ul>');
-		console.log(case1);
-		caseSet.append(case1);
-		console.log(caseSet);
+		var container = $('#container' + containerId).find('.caseCollapsibleSet');
+		var case1 = '<div data-role="collapsible" data-collapsed="false" id="case' + caseCount + '"><h4>Case-Box ' + caseCount + '</h4><button type="button" data-mini="true" data-inline="true" class="removeCaseButton" onclick="removeCaseEvent()">Remove Case</button><ul data-role="listview" data-inset="true" data-theme="d" class="draganddrop"><li>LB-04213q</li></ul></div>';
+		container.append(case1);
 		$('#container' + containerId).trigger('create');
 		refreshDragandDrop();
 }
