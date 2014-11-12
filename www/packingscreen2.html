@@ -5,9 +5,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Packing Screen</title>
-    <link rel="stylesheet" href="//code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.css" />
-    <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script src="//code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.js"></script>
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.css" />
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.js"></script>
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>
     <script src="js/jquery.ui.touch-punch.min.js"></script>
     <script src="js/packingscreen.js"></script>
@@ -28,7 +28,7 @@
                     </ul>
                 </div>
                 <div id="packing">
-                    <a href="" data-role="button" data-mini="true" class="addContainerButton">Add Container</a>
+                    <button type="button" data-mini="true" id="addContainerButton" onclick="addContainerEvent()">Add Container</button>
                     <div data-role="collapsible" data-collapsed="false">
                         <h4>Unpackaged Items</h4>
                         <ul data-role="listview" data-inset="true" data-theme="d" class="draganddrop" id="unpackaged-items">
@@ -39,30 +39,11 @@
                             <li>Item 5</li>
                         </ul>
                     </div>
-
-                    <div data-role="collapsible" data-collapsed="false">
-                        <h4>Container</h4>
-						<a href="#" data-role="button" data-inline="true" data-mini="true" class="addCaseButton">Add Case</a>
-                        <a href="#" data-role="button" data-inline="true" data-mini="true" class="removeContainerButton">Remove Container</a>
-
-                        <div data-role="collapsible" data-collapsed="false">
-                            <h4>Case-Box</h4>
-							<a href="" data-role="button" data-inline="true" data-mini="true" class="removeCaseButton">Remove Case</a>
-                            <ul data-role="listview" data-inset="true" data-theme="d" class="draganddrop">
-                                <li>LB-000110</li>
-                                <li>LB-00078</li>
-                            </ul>
-                        </div>
-
-                        <div data-role="collapsible" data-collapsed="false">
-                            <h4>Case-Pallet</h4>
-							<a href="#" data-role="button" data-inline="true" data-mini="true" class="removeCaseButton">Remove Case</a>
-                            <ul data-role="listview" data-inset="true" data-theme="d" class="draganddrop">
-                                <li>LB-04213q</li>
-                                <li>LB-11233</li>
-                            </ul>
-                        </div>
-                    </div>
+					
+					<div id="collapsibleSet" data-role="collapsible-set">
+					
+					</div>
+                    
                 </div>
 
                 <div id="order">
