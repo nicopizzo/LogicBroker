@@ -5,9 +5,12 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Packing Screen</title>
-    <link rel="stylesheet" href="//code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.css" />
-    <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script src="//code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.js"></script>
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.css" />
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>
+    <script src="js/jquery.ui.touch-punch.min.js"></script>
+    <script src="js/packingscreen.js"></script>
 </head>
 
 <body>
@@ -25,187 +28,102 @@
                     </ul>
                 </div>
                 <div id="packing">
-                    <div id="CaseInfo">
-                        <form>
-                            <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
-                                <legend>Case: #, Type</legend>
-                                <label for="select-native-14">Case #:</label>
-                                <select name="select-native-14" id="select-native-14">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                </select>
-                                <label for="select-native-15">Container Type:</label>
-                                <select name="select-native-15" id="select-native-15">
-                                    <option value="1">Box</option>
-                                    <option value="2">Pallet</option>
-                                </select>
-                            </fieldset>
-                        </form>
+                    <button type="button" data-mini="true" id="addContainerButton" onclick="addContainerEvent()">Add Container</button>
+                    <div data-role="collapsible" data-collapsed="false">
+                        <h4>Unpackaged Items</h4>
+                        <ul data-role="listview" data-inset="true" data-theme="d" class="draganddrop" id="unpackaged-items">
+                            <li>Item 1</li>
+                            <li>Item 2</li>
+                            <li>Item 3</li>
+                            <li>Item 4</li>
+                            <li>Item 5</li>
+                        </ul>
                     </div>
+					
+					<div id="collapsibleSet" data-role="collapsible-set">
+					
+					</div>
+                    
+                </div>
 
-                    <div id="Case">
-                        <div class="ui-grid-a">
-                            <!--Row Headers-->
-                            <div class="ui-block-a">
-                                <div class="ui-bar ui-bar-b gridHeader"></div>
-                            </div>
-                            <div class="ui-block-b">
-                                <div class="ui-bar ui-bar-b gridHeader">Item Details</div>
-                            </div>
+                <div id="order">
 
-                            <!--Row 1-->
-                            <div id="packingColumn1">
-                                <!--Delete Bttn-->
-                                <div class="ui-block-a">
-                                    <div class="ui-bar ui-bar-a" style="height:100px">
-                                        <form>
-                                            <input data-icon="delete" data-iconpos="notext" value="Icon only" type="button">
-                                        </form>
-                                    </div>
-                                </div>
-                                <!--Item Information-->
-                                <div class="ui-block-b" style="height:100px">
-                                    <div class="ui-bar ui-bar-a">
-                                        <table data-role="table" class="ui-responsive table-stroke">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col">SKU:</th>
-                                                    <th scope="col">Name:</th>
-                                                    <th scope="col">Weight (lbs):</th>
-                                                    <th scope="col">Qty:</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>LB-000110</td>
-                                                    <td>Viking 5C Rocket Engine</td>
-                                                    <td>40.0</td>
-                                                    <td>3</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="packingColumn2">
-                                <!--Delete Bttn-->
-                                <div class="ui-block-a">
-                                    <div class="ui-bar ui-bar-a" style="height:100px">
-                                        <form>
-                                            <input data-icon="delete" data-iconpos="notext" value="Icon only" type="button">
-                                        </form>
-                                    </div>
-                                </div>
-                                <!--Item Information-->
-                                <div class="ui-block-b" style="height:100px">
-                                    <div class="ui-bar ui-bar-a">
-                                        <table data-role="table" class="ui-responsive table-stroke">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col">SKU:</th>
-                                                    <th scope="col">Name:</th>
-                                                    <th scope="col">Weight (lbs):</th>
-                                                    <th scope="col">Qty:</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>LB-000778</td>
-                                                    <td>Nuclear Rocket Engine</td>
-                                                    <td>60.0</td>
-                                                    <td>2</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
+                    <div data-role="tabs">
+                        <div data-role="navbar">
+                            <ul>
+                                <li><a href="#order_items">Order Items</a></li>
+                                <li><a href="#shipping_info">Shipping Info</a></li>
+                                <li><a href="#other">Other</a></li>
+                            </ul>
                         </div>
+                        <div id="order_items">
+                            <table data-role="table" id="order_tabel" class="ui-responsive table-stripe">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">SKU</th>
+                                        <th scope="col">Qty</th>
+                                        <th scope="col">Qty Left</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Simply modify below to create a table -->
+                                    <tr>
+                                        <td>LB-000110</td>
+                                        <td>10</td>
+                                        <td>4</td>
+                                    </tr>
+                                    <tr>
+                                        <td>LB-00078</td>
+                                        <td>5</td>
+                                        <td>4</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div id="shipping_info">
+                            <label for="basic">Shipping Number:</label>
+                            <input type="text" name="name" id="basic" value="ASN1410013665-001">
+                            <label for="basic">Bill of Lading:</label>
+                            <input type="text" name="name" id="Text1" value="ASN1410013665-001">
+                        </div>
+
+                        <div id="other">
+                            <table data-role="table" id="Table1" class="ui-responsive table-stripe">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Vendor Id</th>
+                                        <th scope="col">ASN</th>
+                                        <th scope="col">Order</th>
+                                        <th scope="col">LinkKey</th>
+                                        <th scope="col">Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Simply modify below to create a table -->
+                                    <tr>
+                                        <td>Field Emission Electronic Propulsion</td>
+                                        <td>ASN1410013665-001</td>
+                                        <td>OR1410013665-001</td>
+                                        <td>1410013665</td>
+                                        <td>10/5/2014 3:09:51 PM</td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+
+
                     </div>
                 </div>
-               
-                    <div id="order">
-
-                        <div data-role="tabs">
-                            <div data-role="navbar">
-                                <ul>
-                                    <li><a href="#order_items">Order Items</a></li>
-                                    <li><a href="#shipping_info">Shipping Info</a></li>
-                                    <li><a href="#other">Other</a></li>
-                                </ul>
-                            </div>
-                            <div id="order_items">
-                                <table data-role="table" id="order_tabel" class="ui-responsive table-stripe">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">SKU</th>
-                                            <th scope="col">Qty</th>
-                                            <th scope="col">Qty Left</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <!-- Simply modify below to create a table -->
-                                        <tr>
-                                            <td>LB-000110</td>
-                                            <td>10</td>
-                                            <td>4</td>
-                                        </tr>
-                                        <tr>
-                                            <td>LB-00078</td>
-                                            <td>5</td>
-                                            <td>4</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <div>
-                                    <a href="index.html" data-role="button">Add to Case</a>
-                                </div>
-                            </div>
-
-                            <div id="shipping_info">
-                                <label for="basic">Shipping Number:</label>
-                                <input type="text" name="name" id="basic" value="ASN1410013665-001">
-                                <label for="basic">Bill of Lading:</label>
-                                <input type="text" name="name" id="Text1" value="ASN1410013665-001">
-                            </div>
-
-                            <div id="other">
-                                <table data-role="table" id="Table1" class="ui-responsive table-stripe">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Vendor Id</th>
-                                            <th scope="col">ASN</th>
-                                            <th scope="col">Order</th>
-                                            <th scope="col">LinkKey</th>
-                                            <th scope="col">Date</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <!-- Simply modify below to create a table -->
-                                        <tr>
-                                            <td>Field Emission Electronic Propulsion</td>
-                                            <td>ASN1410013665-001</td>
-                                            <td>OR1410013665-001</td>
-                                            <td>1410013665</td>
-                                            <td>10/5/2014 3:09:51 PM</td>
-                                        </tr>
-
-                                    </tbody>
-                                </table>
-                            </div>
-
-
-                        </div>
-                    </div>
                 <!--added-->
             </div>
         </div>
 
-            <div data-role="footer" class="ui-bar">
-                <a href="index.html" data-role="button">Log Out</a>
-            </div>
+        <div data-role="footer" class="ui-bar">
+            <div align="right" data-inline="true"><a href="" data-role="button">Submit</a></div>
         </div>
+    </div>
 </body>
 </html>
 
@@ -235,25 +153,26 @@
         padding: 0px;
         width: 100%;
     }
+
     #Case
     {
-        margin:4px;
+        margin: 4px;
     }
     /*@media all and (orientation: portrait)*/
     .ui-grid-d
     {
         margin: 2%;
     }
+
     .caseInfoItem
     {
-        width:30%;
+        width: 30%;
         margin: 5px;
     }
 
     .gridHeader
     {
         background-color: grey;
-        
         font-weight: bold;
         text-align: center;
         height: 20px;
@@ -318,4 +237,3 @@
         }
     }
 </style>
-
