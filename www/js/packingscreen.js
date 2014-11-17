@@ -6,13 +6,13 @@ $(document).ready(function() {
 	var collapsible = $('<div data-role="collapsible" data-collapsed="false" id="container' + containerCount +'">');
 	collapsible.append('<h4>Container 1</h4>');
 	collapsible.append('<button type="button" data-mini="true" data-inline="true" class="addCaseButton" id="addCaseButton' + containerCount + '" onclick="addCaseEvent('+containerCount+')">Add Case</button>');
-	collapsible.append('<button type="button" data-mini="true" data-inline="true" class="removeContainerButton" onclick="removeContainerEvent()">Remove Container</button>');
+	collapsible.append('<button type="button" data-mini="true" data-inline="true" class="removeContainerButton" onclick="removeContainerEvent('+containerCount+')">Remove Container</button>');
 
 	var caseSet = $('<div data-role="collapsible-set" class="caseCollapsibleSet" id="caseCollapsibleSet' + containerCount + '">');
 	var case1 = $('<div data-role="collapsible" data-collapsed="false" id="case' + caseCount + '">');
 	case1.append('<h4>Case-Box ' + caseCount + '</h4>');
-	case1.append('<button type="button" data-mini="true" data-inline="true" class="removeCaseButton" onclick="removeCaseEvent()">Remove Case</button>');
-	case1.append('<ul data-role="listview" data-inset="true" data-theme="d" class="draganddrop"><li>LB-04213q</li></ul>');
+	case1.append('<button type="button" data-mini="true" data-inline="true" class="removeCaseButton" onclick="removeCaseEvent('+caseCount+')">Remove Case</button>');
+	case1.append('<ul data-role="listview" data-inset="true" data-theme="d" class="draganddrop"></ul>');
 	caseSet.append(case1);
 	collapsible.append(caseSet);
 	colmain.append(collapsible);
@@ -45,14 +45,14 @@ function addContainerEvent() {
 		var collapsible = $('<div data-role="collapsible" data-collapsed="false" id="container' + containerCount + '">');
 		collapsible.append('<h2>Container ' + containerCount + '</h2>');
 		collapsible.append('<button type="button" data-mini="true" data-inline="true" class="addCaseButton" id="addCaseButton' + containerCount + '" onclick="addCaseEvent('+containerCount+')">Add Case</button>');
-		collapsible.append('<button type="button" data-mini="true" data-inline="true" class="removeContainerButton" onclick="removeContainerEvent()">Remove Container</button>');
+		collapsible.append('<button type="button" data-mini="true" data-inline="true" class="removeContainerButton" onclick="removeContainerEvent('+containerCount+')">Remove Container</button>');
 		
 		var caseSet = $('<div data-role="collapsible-set" id="caseCollapsibleSet' + containerCount + '" class="caseCollapsibleSet">');
 		caseCount++;
-		var case1 = $('<div data-role="collapsible" data-collapsed="false" id="caseSet' + caseCount + '">');
+		var case1 = $('<div data-role="collapsible" data-collapsed="false" id="case' + caseCount + '">');
 		case1.append('<h4>Case-Box ' + caseCount + '</h4>');
-		case1.append('<button type="button" data-mini="true" data-inline="true" class="removeCaseButton" onclick="removeCaseEvent()">Remove Case</button>');
-		case1.append('<ul data-role="listview" data-inset="true" data-theme="d" class="draganddrop"><li>LB-04213q</li></ul>');
+		case1.append('<button type="button" data-mini="true" data-inline="true" class="removeCaseButton" onclick="removeCaseEvent('+caseCount+')">Remove Case</button>');
+		case1.append('<ul data-role="listview" data-inset="true" data-theme="d" class="draganddrop"></ul>');
 		caseSet.append(case1);
 		collapsible.append(caseSet);
 		colmain.append(collapsible);
@@ -63,19 +63,26 @@ function addContainerEvent() {
 function addCaseEvent(containerId) {
 		caseCount++;
 		var container = $('#container' + containerId).find('.caseCollapsibleSet');
-		var case1 = '<div data-role="collapsible" data-collapsed="false" id="case' + caseCount + '"><h4>Case-Box ' + caseCount + '</h4><button type="button" data-mini="true" data-inline="true" class="removeCaseButton" onclick="removeCaseEvent()">Remove Case</button><ul data-role="listview" data-inset="true" data-theme="d" class="draganddrop"><li>LB-04213q</li></ul></div>';
+		var case1 = '<div data-role="collapsible" data-collapsed="false" id="case' + caseCount + '"><h4>Case-Box ' + caseCount + '</h4><button type="button" data-mini="true" data-inline="true" class="removeCaseButton" onclick="removeCaseEvent('+caseCount+')">Remove Case</button><ul data-role="listview" data-inset="true" data-theme="d" class="draganddrop"></ul></div>';
 		container.append(case1);
 		$('#container' + containerId).trigger('create');
 		refreshDragandDrop();
 }
 
-function removeCaseEvent() {
-	$('.removeCaseButton').click(function() {
-		$(this).parent().parent().remove();
-	});
+function removeCaseEvent(caseId) {
+	var unsorted = $('#unpackaged-items');
+	var case1 = $('#case' + caseId).find('.draganddrop');
+	var caselen = $('#case' + caseId).find('.draganddrop li').length;
+	for(var i = 0; i < caselen; i++){
+		var item = $(case1).find(':first-child()');
+		$(unsorted).append(item);
+	}
+	
+	$('#case' + caseId).remove();
+	//$('#packing').trigger('create');
 }
 	
-function removeContainerEvent() {	
+function removeContainerEvent(containerId) {	
 	$('.removeContainerButton').click(function() {
 		$(this).parent().parent().remove();
 	});
