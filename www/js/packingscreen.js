@@ -83,7 +83,18 @@ function removeCaseEvent(caseId) {
 }
 	
 function removeContainerEvent(containerId) {	
-	$('.removeContainerButton').click(function() {
-		$(this).parent().parent().remove();
+	var unsorted = $('#unpackaged-items');
+	var container = $('#container' + containerId);
+	var caseSet = $(container).find('#caseCollapsibleSet' + containerId);
+	
+	$(caseSet).children().each(function() {
+		var case1 = $(this).find('.draganddrop');
+		var caselen = $(this).find('.draganddrop li').length;
+		for(var i = 0; i < caselen; i++){
+			var item = $(case1).find(':first-child()');
+			$(unsorted).append(item);
+		}
 	});
+	
+	$(container).remove();		
 }
