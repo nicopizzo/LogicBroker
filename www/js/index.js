@@ -6,6 +6,7 @@ $(document).ready(function() {
 	$("#logo").css("width", "auto");
 
 	$("#welcomeText").css("text-align", "center");
+	$("#welcomeText").css("color", "red");
 	
 	$("#user").css("margin-left", "10%");
 	$("#user").css("margin-right", "10%");
@@ -14,6 +15,9 @@ $(document).ready(function() {
 	
 	$("#submitButton").css("margin-left", "20%");
 	$("#submitButton").css("margin-right", "20%");
+
+	$("#help").css("color", "red");
+	$("#help").css("text-align", "center");
 	
 
 });
