@@ -5,109 +5,133 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Splash Screen</title>
     <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.css" />
-	<link rel="stylesheet" type="text/css" href="css/splash.css" />
+    <link rel="stylesheet" type="text/css" href="css/splash.css" />
     <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="http://code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.js"></script>
-    
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="js/jquery.scrollbox.js"></script>
+
 </head>
 <body>
-<div data-role="page">
-			<div data-role="panel" data-position="left" data-display="overlay"
-					data-theme="b" id="navigationPanel" data-swipe-close="false">
-				<h2><span class="ui-icon-bars ui-btn-icon-left" style="position:relative;"/>Navigation</h2>
-				
-				<ul data-role="listview" style="padding:5%">
-					<li><a href="splash.html" rel="external" data-rel="close"><span class="ui-icon-home ui-btn-icon-left" style="position:relative;"/>Home</a></li>
-					<li><a href="confirmationscreen.html" rel="external" data-rel="close"><span class="ui-icon-tag ui-btn-icon-left" style="position:relative;"/>Orders Menu</a></li>
-					<li><a href="packingscreen.html" rel="external" data-rel="close"><span class="ui-icon-shop ui-btn-icon-left" style="position:relative;"/>Packing Menu</li>
-					<li><a href="asn_details.html" rel="external" data-rel="close"><span class="ui-icon-bullets ui-btn-icon-left" style="position:relative;"/>ASN Menu</a></li>
-					<li><a href="index.html" rel="external" data-rel="close"><span class="ui-icon-power ui-btn-icon-left" style="position:relative;"/>Log Out</a></li>
-				</ul>
-				</br>
-				<a href="#" data-rel="close"><span class="ui-icon-delete ui-btn-icon-left" style="position:relative;"/>Hide Panel</a>
-			</div>
+    <div data-role="page">
+        <!-- Navigation Panel -->
+        <div data-role="panel" data-position="left" data-display="overlay"
+            data-theme="b" id="navigationPanel" data-swipe-close="false">
+            <h2><span class="ui-icon-bars ui-btn-icon-left" style="position: relative;" />Navigation</h2>
+            <h3>Current Order:</h3>
+            <ul data-role="listview" style="padding: 5%">
+                <li><a href="splash.html" rel="external" data-rel="close"><span class="ui-icon-eye ui-btn-icon-left" style="position: relative;" />Overview</a></li>
+                <li><a href="confirmationscreen.html" rel="external" data-rel="close"><span class="ui-icon-bullets ui-btn-icon-left" style="position: relative;" />Orders Details</a></li>
+                <li><a href="packingscreen.html" rel="external" data-rel="close"><span class="ui-icon-shop ui-btn-icon-left" style="position: relative;" />Packing Menu</a></li>
+                <li><a href="asn_details.html" rel="external" data-rel="close"><span class="ui-icon-tag ui-btn-icon-left" style="position: relative;" />ASN Menu</a></li>
+            </ul>
+            <h3>Misc Options:</h3>
+            <ul data-role="listview" style="padding: 5%">
+                <li><a href="pending_orders.html" rel="external" data-rel="close"><span class="ui-icon-action ui-btn-icon-left" style="position: relative;" />Select Order</a></li>
+                <li><a href="index.html" rel="external" data-rel="close"><span class="ui-icon-power ui-btn-icon-left" style="position: relative;" />Log Out</a></li>
+            </ul>
+            </br>
+				<a href="#" data-rel="close"><span class="ui-icon-delete ui-btn-icon-left" style="position: relative;" />Hide Panel</a>
+        </div>
+        <!-- Navigation Bar -->
+        <div data-role="header" data-theme="a">
+            <h1 style="overflow:visible"><span class="ui-icon-eye ui-btn-icon-left " style="position: relative" />Overview</h1>
+            <a href="#navigationPanel" class="ui-btn-left ui-btn ui-btn-a ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-bars ui-btn-icon-notext"></a>
+        </div>
 
-			<div data-role="header" data-theme="a">
-				<h1><span class="ui-icon-home ui-btn-icon-left " style="position:relative;" />Home</h1>
-				<a href="#navigationPanel" class="ui-btn-left ui-btn ui-btn-a ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-bars ui-btn-icon-notext"></a>				
-			</div>
-	
-            <div class="ui-grid-solo" id="navigation">
-                <div class="ui-block-a">
-					<div class="ui-bar ui-bar-a ui-corner-all">
-						<a href="confirmationscreen.html" rel="external" data-role="button" data-icon="tag" data-inline="true" style="width:75%; margin:auto">Order Details</a>
-					</div>
-					<div class="ui-body ui-body-a ui-corner-all" style="height:auto">
-                                <table data-role="table" id="gen_order_info" class="ui-responsive table-stripe">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Pending Orders:</th>
-                                            <th scope="col">Unread Notifications:</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>4</td>
-                                            <td>6</td>
-                                        </tr>
-                                    </tbody>
-                                </table>  
-					</div>
-				</div>
-				
-                <div class="ui-block-a">
-					<div class="ui-bar ui-bar-a ui-corner-all">
-						<a href="packingscreen.html" rel="external" data-role="button" data-icon="shop" data-inline="true" style="width:75%; margin:auto">Packing Menu</a>
-					</div>
-					<div class="ui-body ui-body-a ui-corner-all" style="height:auto">
-					<table data-role="table" id="gen_packing_info" class="ui-responsive table-stripe">
-						<thead>
-							<tr>
-								<th scope="col">Unshipped Packages:</th>
-								<th scope="col">Packages Received:</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>3</td>
-								<td>2</td>
-							</tr>
-                         </tbody>
-                     </table>  
-				</div>
-				</div>
-			
-                <div class="ui-block-a">
-					<div class="ui-bar ui-bar-a ui-corner-all">
-						<a href="asn_details.html" rel="external" data-role="button" data-icon="bullets" data-inline="true" style="width:75%; margin:auto">ASN Menu</a>
-					</div>
-					<div class="ui-body ui-body-a ui-corner-all" style="height:auto">
-					<table data-role="table" id="gen_asn_info" class="ui-responsive table-stripe">
-						<thead>
-							<tr>
-								<th scope="col">At a Glance #1:</th>
-								<th scope="col">At a Glance #2:</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>1337</td>
-								<td>7331</td>
-							</tr>
-                         </tbody>
-                     </table>  
-				</div>
-				</div>
-				</div>
-            
-</div>
-<script>
-    $(document).ready(function()
-    {
-        var screenHeight = $.mobile.getScreenHeight();
-        $("#navigation").height(screenHeight);
-    })
-</script>
+        <div class="ui-grid-solo" id="navigation">
+            <div class="ui-block-a">
+                <div class="ui-bar ui-bar-a ui-corner-all">
+                    <a href="confirmationscreen.html" rel="external" data-role="button" data-icon="bullets" data-inline="true" style="width: 75%; margin: auto">Order Details</a>
+                </div>
+                <div class="ui-body ui-body-a ui-corner-all" style="height: auto">
+                    <table style="font-size:small; width:100%" class="ui-responsive table-stripe">
+                        <tbody>
+                            <tr>
+                                <th>Order Number:</th>
+                                <td>ORD123-456</td>
+                            </tr>
+                            <tr>
+                                <th>Company Source:</th>
+                                <td>SLURP</td>
+                            </tr>
+                            <tr>
+                                <th>Status:</th>
+                                <td>Submitted</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="ui-block-a">
+                <div class="ui-bar ui-bar-a ui-corner-all">
+                    <a href="packingscreen.html" rel="external" data-role="button" data-icon="shop" data-inline="true" style="width: 75%; margin: auto">Packing Menu</a>
+                </div>
+                <div class="ui-body ui-body-a ui-corner-all" style="height: auto">
+                    <table style="font-size:small; width:100%" class="ui-responsive table-stripe">
+                        <tbody>
+                            <tr>
+                                <th>Total Containers:</th>
+                                <td>3</td>
+                            </tr>
+                            <tr>
+                                <th>Total Cases:</th>
+                                <td>1</td>
+                            </tr>
+                            <tr>
+                                <th># Unpacked Items:</th>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <th>Date Packaged:</th>
+                                <td>11/01/14</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                </div>
+            </div>
+
+            <div class="ui-block-a">
+                <div class="ui-bar ui-bar-a ui-corner-all">
+                    <a href="asn_details.html" rel="external" data-role="button" data-icon="tag" data-inline="true" style="width: 75%; margin: auto">ASN Menu</a>
+                </div>
+                <div class="ui-body ui-body-a ui-corner-all" style="height: auto">
+                    <table style="font-size:small; width:100%" class="ui-responsive table-stripe">
+                        <tbody>
+                            <tr>
+                                <th>Carrier:</th>
+                                <td>UPS</td>
+                            </tr>
+                            <tr>
+                                <th>Tracking #:</th>
+                                <td>ABC1234567</td>
+                            </tr>
+                            <tr>
+                                <th>ASN #:</th>
+                                <td>ASN8319712833-004</td>
+                            </tr>
+                            <tr>
+                                <th>Date Shipped:</th>
+                                <td>11/02/14</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script>
+        $(document).ready(function () {
+            //var screenHeight = $(window).height();
+            //$("#navigation").height(screenHeight);
+        });
+        $("#liveBox").scrollbox();
+
+
+    </script>
 
 </body>
 </html>

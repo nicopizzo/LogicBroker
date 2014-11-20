@@ -5,9 +5,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Packing Screen</title>
-    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.css" />
-    <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script src="http://code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.css" />
+    <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="//code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.js"></script>
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>
     <script src="js/jquery.ui.touch-punch.min.js"></script>
     <script src="js/packingscreen.js"></script>
@@ -15,29 +15,8 @@
 
 <body>
     <div data-role="page" id="page1">
-        <!-- Navigation Panel -->
-        <div data-role="panel" data-position="left" data-display="overlay"
-            data-theme="b" id="navigationPanel" data-swipe-close="false">
-            <h2><span class="ui-icon-bars ui-btn-icon-left" style="position: relative;" />Navigation</h2>
-            <h3>Current Order:</h3>
-            <ul data-role="listview" style="padding: 5%">
-                <li><a href="splash.html" rel="external" data-rel="close"><span class="ui-icon-eye ui-btn-icon-left" style="position: relative;" />Overview</a></li>
-                <li><a href="confirmationscreen.html" rel="external" data-rel="close"><span class="ui-icon-bullets ui-btn-icon-left" style="position: relative;" />Orders Details</a></li>
-                <li><a href="packingscreen.html" rel="external" data-rel="close"><span class="ui-icon-shop ui-btn-icon-left" style="position: relative;" />Packing Menu</a></li>
-                <li><a href="asn_details.html" rel="external" data-rel="close"><span class="ui-icon-tag ui-btn-icon-left" style="position: relative;" />ASN Menu</a></li>
-            </ul>
-            <h3>Misc Options:</h3>
-            <ul data-role="listview" style="padding: 5%">
-                <li><a href="pending_orders.html" rel="external" data-rel="close"><span class="ui-icon-action ui-btn-icon-left" style="position: relative;" />Select Order</a></li>
-                <li><a href="index.html" rel="external" data-rel="close"><span class="ui-icon-power ui-btn-icon-left" style="position: relative;" />Log Out</a></li>
-            </ul>
-            </br>
-				<a href="#" data-rel="close"><span class="ui-icon-delete ui-btn-icon-left" style="position: relative;" />Hide Panel</a>
-        </div>
-        <!-- Navigation Bar -->
-        <div data-role="header" data-theme="a">
-            <h1 style="overflow:visible"><span class="ui-icon-shop ui-btn-icon-left " style="position: relative" />Packing Screen</h1>
-            <a href="#navigationPanel" class="ui-btn-left ui-btn ui-btn-a ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-bars ui-btn-icon-notext"></a>
+        <div data-role="header">
+            <h1>Packing Screen</h1>
         </div>
 
         <div role="main" class="ui-content">
@@ -49,7 +28,7 @@
                     </ul>
                 </div>
                 <div id="packing">
-                    <button type="button" data-mini="true" id="addContainerButton" onclick="addContainerEvent()">Add Container</button>
+                    <a href="" data-role="button" data-mini="true" class="addContainerButton">Add Container</a>
                     <div data-role="collapsible" data-collapsed="false">
                         <h4>Unpackaged Items</h4>
                         <ul data-role="listview" data-inset="true" data-theme="d" class="draganddrop" id="unpackaged-items">
@@ -60,11 +39,30 @@
                             <li>Item 5</li>
                         </ul>
                     </div>
-					
-					<div id="collapsibleSet" data-role="collapsible-set">
-					
-					</div>
-                    
+
+                    <div data-role="collapsible" data-collapsed="false">
+                        <h4>Container</h4>
+						<a href="#" data-role="button" data-inline="true" data-mini="true" class="addCaseButton">Add Case</a>
+                        <a href="#" data-role="button" data-inline="true" data-mini="true" class="removeContainerButton">Remove Container</a>
+
+                        <div data-role="collapsible" data-collapsed="false">
+                            <h4>Case-Box</h4>
+							<a href="" data-role="button" data-inline="true" data-mini="true" class="removeCaseButton">Remove Case</a>
+                            <ul data-role="listview" data-inset="true" data-theme="d" class="draganddrop">
+                                <li>LB-000110</li>
+                                <li>LB-00078</li>
+                            </ul>
+                        </div>
+
+                        <div data-role="collapsible" data-collapsed="false">
+                            <h4>Case-Pallet</h4>
+							<a href="#" data-role="button" data-inline="true" data-mini="true" class="removeCaseButton">Remove Case</a>
+                            <ul data-role="listview" data-inset="true" data-theme="d" class="draganddrop">
+                                <li>LB-04213q</li>
+                                <li>LB-11233</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
 
                 <div id="order">

@@ -10,9 +10,30 @@
 </head>
 <body>
 	<div data-role="page" id="page1">
-		<div data-role="header">
-			<h1>ASN Details</h1>
-		</div>
+		<!-- Navigation Panel -->
+        <div data-role="panel" data-position="left" data-display="overlay"
+            data-theme="b" id="navigationPanel" data-swipe-close="false">
+            <h2><span class="ui-icon-bars ui-btn-icon-left" style="position: relative;" />Navigation</h2>
+            <h3>Current Order:</h3>
+            <ul data-role="listview" style="padding: 5%">
+                <li><a href="splash.html" rel="external" data-rel="close"><span class="ui-icon-eye ui-btn-icon-left" style="position: relative;" />Overview</a></li>
+                <li><a href="confirmationscreen.html" rel="external" data-rel="close"><span class="ui-icon-bullets ui-btn-icon-left" style="position: relative;" />Orders Details</a></li>
+                <li><a href="packingscreen.html" rel="external" data-rel="close"><span class="ui-icon-shop ui-btn-icon-left" style="position: relative;" />Packing Menu</a></li>
+                <li><a href="asn_details.html" rel="external" data-rel="close"><span class="ui-icon-tag ui-btn-icon-left" style="position: relative;" />ASN Menu</a></li>
+            </ul>
+            <h3>Misc Options:</h3>
+            <ul data-role="listview" style="padding: 5%">
+                <li><a href="pending_orders.html" rel="external" data-rel="close"><span class="ui-icon-action ui-btn-icon-left" style="position: relative;" />Select Order</a></li>
+                <li><a href="index.html" rel="external" data-rel="close"><span class="ui-icon-power ui-btn-icon-left" style="position: relative;" />Log Out</a></li>
+            </ul>
+            </br>
+				<a href="#" data-rel="close"><span class="ui-icon-delete ui-btn-icon-left" style="position: relative;" />Hide Panel</a>
+        </div>
+        <!-- Navigation Bar -->
+        <div data-role="header" data-theme="a">
+            <h1 style="overflow:visible"><span class="ui-icon-tag ui-btn-icon-left " style="position: relative" />ASN Menu</h1>
+            <a href="#navigationPanel" class="ui-btn-left ui-btn ui-btn-a ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-bars ui-btn-icon-notext"></a>
+        </div>
 		
 		<div data-role="tabs">
 			<div data-role="navbar">

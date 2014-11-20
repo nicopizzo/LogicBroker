@@ -11,9 +11,24 @@
 <body>
 
     <div data-role="page" id="page1">
-        <div data-role="header">
-            <h1>Select Order</h1>
+        <!--Reduced Navigation Panel -->
+        <div data-role="panel" data-position="left" data-display="overlay"
+            data-theme="b" id="navigationPanel" data-swipe-close="false">
+            <h2><span class="ui-icon-bars ui-btn-icon-left" style="position: relative;" />Navigation</h2>
+            <h3>Misc Options:</h3>
+            <ul data-role="listview" style="padding: 5%">
+                <li><a href="index.html" rel="external" data-rel="close"><span class="ui-icon-power ui-btn-icon-left" style="position: relative;" />Log Out</a></li>
+            </ul>
+            </br>
+				<a href="#" data-rel="close"><span class="ui-icon-delete ui-btn-icon-left" style="position: relative;" />Hide Panel</a>
         </div>
+
+        <!--Navigation Bar -->
+        <div data-role="header" data-theme="a">
+            <h1 style="overflow:visible"><span class="ui-icon-action ui-btn-icon-left " style="position: relative" />Select Order</h1>
+            <a href="#navigationPanel" class="ui-btn-left ui-btn ui-btn-a ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-bars ui-btn-icon-notext"></a>
+        </div>
+        
         <div role="main" class="ui-content">
                 <div id="pending_orders">
                     <p><b>Please Select an Order</b></p>
@@ -22,7 +37,61 @@
                             <option value="all">All Partners</option>
                             <option>Field Emission Electronic Propulsion Inc.</option>
                         </select>
-                    <table data-role="table" id="order_table" class="ui-responsive table-stripe">
+                    <div id="orderSelection">
+                        <table style="font-size:small; width:100%; border:ridge" class="ui-responsive table-stripe">
+                        <tbody>
+                            <tr>
+                                <th>Order Number:</th>
+                                <td>ORD123-456</td>
+                            </tr>
+                            <tr>
+                                <th>Company Source:</th>
+                                <td>SLURP</td>
+                            </tr>
+                            <tr>
+                                <th>Status:</th>
+                                <td>Submitted</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                        <table style="font-size:small; width:100%; border:ridge" class="ui-responsive table-stripe">
+                        <tbody>
+                            <tr>
+                                <th>Order Number:</th>
+                                <td>Test123-456</td>
+                            </tr>
+                            <tr>
+                                <th>Company Source:</th>
+                                <td>SLURP</td>
+                            </tr>
+                            <tr>
+                                <th>Status:</th>
+                                <td>Submitted</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                        <table style="font-size:small; width:100% ; border:ridge" class="ui-responsive table-stripe">
+                        <tbody>
+                            <tr>
+                                <th>Order Number:</th>
+                                <td>ZXY987-654</td>
+                            </tr>
+                            <tr>
+                                <th>Company Source:</th>
+                                <td>SLURP</td>
+                            </tr>
+                            <tr>
+                                <th>Status:</th>
+                                <td>Submitted</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    </div>
+                    <!--OLD KC CODE-->
+                    <!--<table data-role="table" id="order_table" class="ui-responsive table-stripe">
                         <thead>
                             <tr>
                                 <th scope="col">Order Number</th>
@@ -31,7 +100,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <!-- Pending Orders -->
+                            
                             <tr>
                                 <td>ORD123-456</td>
                                 <td>SLURP</td>
@@ -53,12 +122,13 @@
                                 <td>Submitted</td>
                             </tr>
                         </tbody>
-                    </table>
+                    </table>-->
                 </div>
             </div>
         <a href="new_order.html" rel="external" id="createNewOrderButton" data-role="button">Create New Order</a>
 
     </div>
+
 </body>
 
 </html>
@@ -66,7 +136,7 @@
 <script type="text/javascript">
     $(document).ready(function () {
 
-        $('#order_table tr').click(function () {
+        $('#orderSelection tbody').click(function () {
             document.location.href = 'splash.html';
         });
 
