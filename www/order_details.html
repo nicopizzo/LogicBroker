@@ -1,20 +1,41 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Home</title>
-  <link rel="stylesheet" href="//code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.css"/>
-  <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
-  <script src="//code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.js"></script>
+  <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.css"/>
+  <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+  <script src="http://code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.js"></script>
   <script type="text/javascript" src="js/select_orders.js"></script>
 </head>
 <body>
 	<div data-role="page" id="page1">
-		<div data-role="header">
-			<h1>Order Details</h1>
+		<!-- Navigation Panel -->
+        <div data-role="panel" data-position="left" data-display="overlay"
+            data-theme="b" id="navigationPanel" data-swipe-close="false">
+            <h2><span class="ui-icon-bars ui-btn-icon-left" style="position: relative;" />Navigation</h2>
+            <h3>Current Order:</h3>
+            <ul data-role="listview" style="padding: 5%">
+                <li><a href="splash.html" rel="external" data-rel="close"><span class="ui-icon-eye ui-btn-icon-left" style="position: relative;" />Overview</a></li>
+                <li><a href="confirmationscreen.html" rel="external" data-rel="close"><span class="ui-icon-bullets ui-btn-icon-left" style="position: relative;" />Orders Details</a></li>
+                <li><a href="packingscreen.html" rel="external" data-rel="close"><span class="ui-icon-shop ui-btn-icon-left" style="position: relative;" />Packing Menu</a></li>
+                <li><a href="asn_details.html" rel="external" data-rel="close"><span class="ui-icon-tag ui-btn-icon-left" style="position: relative;" />ASN Menu</a></li>
+            </ul>
+            <h3>Misc Options:</h3>
+            <ul data-role="listview" style="padding: 5%">
+                <li><a href="pending_orders.html" rel="external" data-rel="close"><span class="ui-icon-action ui-btn-icon-left" style="position: relative;" />Select Order</a></li>
+                <li><a href="index.html" rel="external" data-rel="close"><span class="ui-icon-power ui-btn-icon-left" style="position: relative;" />Log Out</a></li>
+            </ul>
+            </br>
+				<a href="#" data-rel="close"><span class="ui-icon-delete ui-btn-icon-left" style="position: relative;" />Hide Panel</a>
+        </div>
+        <!-- Navigation Bar -->
+        <div data-role="header" data-theme="a">
+            <h1 style="overflow:visible"><span class="ui-icon-bullets ui-btn-icon-left " style="position: relative" />Order Details</h1>
+            <a href="#navigationPanel" class="ui-btn-left ui-btn ui-btn-a ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-bars ui-btn-icon-notext"></a>
             <a href="#" data-rel="back" class="ui-btn-right ui-btn ui-icon-back ui-btn-icon-notext ui-shadow ui-corner-all"  data-role="button" role="button">Back</a>
-		</div>
+        </div>
 		<h5>Order Status- Submitted</h5>
 	
 		<div data-role="tabs">
@@ -159,8 +180,8 @@
 	
 	
 		<div data-role="footer" class="ui-bar">
-			<a href="select_orders.html" data-role="button">Back</a>
-			<a href="index.html" data-role="button">Log Out</a>
+			<a href="splash.html" rel="external" data-role="button">Back</a>
+			<a href="index.html" rel="external" data-role="button">Log Out</a>
 			<a href="" data-role="button">Ship Items</a>
 		</div>
 	</div>

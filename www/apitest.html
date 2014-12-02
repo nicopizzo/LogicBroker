@@ -1,33 +1,42 @@
 ﻿<!DOCTYPE html>
 <html>
-<head>
+    <head>
 <title>JSSample</title>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
 </head>
 <body>
-<script type="text/javascript">
+
+<h2>API Testing</h2>
+    <p id="test"></p>
+
+<script>   
+
+    //added function
+
     $(function () {
         var params = {
             // Specify your subscription key
-            key: '0e6b70055b30460b9033881d2e25450c',
+            'subscription-key': 'cf8b78d7408f4aa3abcb25a8261c98dc',
         };
 
         $.ajax({
             // Specify values for path parameters (shown as {...})
-            url: '/SLURP/0/salesorders/0e6b70055b30460b9033881d2e25450c?' + $.param(params),
+            url: 'https://logicbroker.azure-api.net/stage-api/v1/0/salesorders?status=Submitted&' + $.param(params),
             type: 'GET',
-            beforeSend: function (xhr) {
-                debugger;
-                xhr.overrideMimeType("application/json");
-            }
         })
         .done(function (data) {
             alert("success");
+            var len = data.Body.SalesOrders.length;
+            for (var i=0; i <= len; i++) {
+                $("#test").append(data.Body.SalesOrders[i].OrderNumber + "<br>" + data.Body.SalesOrders[i].OrderDate + "<br>" + data.Body.SalesOrders[i].Status + "<br><br>");
+            }
         })
         .fail(function () {
             alert("error");
         });
     });
 </script>
+
 </body>
 </html>
+
