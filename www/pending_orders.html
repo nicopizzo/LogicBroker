@@ -7,6 +7,12 @@
     <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.css" />
     <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="http://code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.js"></script>
+	<style>
+		th, td
+		{
+			text-align: left
+		}
+	</style>
 </head>
 <body>
 
@@ -40,93 +46,10 @@
                             <option>Field Emission Electronic Propulsion Inc.</option>
                         </select>
                     <div id="orderSelection">
-                        <table style="font-size:small; width:100%; border:ridge" class="ui-responsive table-stripe">
-                        <tbody>
-                            <tr>
-                                <th>Order Number:</th>
-                                <td>ORD123-456</td>
-                            </tr>
-                            <tr>
-                                <th>Company Source:</th>
-                                <td>SLURP</td>
-                            </tr>
-                            <tr>
-                                <th>Status:</th>
-                                <td>Submitted</td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                        <table style="font-size:small; width:100%; border:ridge" class="ui-responsive table-stripe">
-                        <tbody>
-                            <tr>
-                                <th>Order Number:</th>
-                                <td>Test123-456</td>
-                            </tr>
-                            <tr>
-                                <th>Company Source:</th>
-                                <td>SLURP</td>
-                            </tr>
-                            <tr>
-                                <th>Status:</th>
-                                <td>Submitted</td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                        <table style="font-size:small; width:100% ; border:ridge" class="ui-responsive table-stripe">
-                        <tbody>
-                            <tr>
-                                <th>Order Number:</th>
-                                <td>ZXY987-654</td>
-                            </tr>
-                            <tr>
-                                <th>Company Source:</th>
-                                <td>SLURP</td>
-                            </tr>
-                            <tr>
-                                <th>Status:</th>
-                                <td>Submitted</td>
-                            </tr>
-                        </tbody>
-                    </table>
-
+						<!--Generated Tables go here -->
                     </div>
-                    <!--OLD KC CODE-->
-                    <!--<table data-role="table" id="order_table" class="ui-responsive table-stripe">
-                        <thead>
-                            <tr>
-                                <th scope="col">Order Number</th>
-                                <th scope="col">Company Source</th>
-                                <th scope="col">Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            
-                            <tr>
-                                <td>ORD123-456</td>
-                                <td>SLURP</td>
-                                <td>Submitted</td>
-                            </tr>
-                            <tr>
-                                <td>Test123-456</td>
-                                <td>SLURP</td>
-                                <td>Submitted</td>
-                            </tr>
-                            <tr>
-                                <td>ORDER10101</td>
-                                <td>SLURP</td>
-                                <td>Submitted</td>
-                            </tr>
-                            <tr>
-                                <td>ORD123-456</td>
-                                <td>SLURP</td>
-                                <td>Submitted</td>
-                            </tr>
-                        </tbody>
-                    </table>-->
                 </div>
-            </div>
+        </div>
 
     </div>
 
@@ -135,12 +58,38 @@
 </html>
 
 <script type="text/javascript">
+	
+	//TODO: Function that gets order info and returns [3][n] array for n orders
+	
+	var createTable = function()
+	{
+		var orderNumber = "32767";
+		var companySource = "Huskies";
+		var orderStatus = "DONE!";
+	
+		//Opening tags for table element
+		var tableCode = "<table style='font-size:small; width:100%; border:ridge' class='ui-responsive table-stripe'><tbody>";
+		//Add table rows here following the format below
+		tableCode += "<tr><th>Order Number:</th><td class='orderNumber'>" + orderNumber + "</td></tr>";
+		tableCode += "<tr><th>Company Source:</th><td>" + companySource + "</td></tr>";
+		tableCode += "<tr><th>Status:</th><td>" + orderStatus + "</td></tr>";
+		//Closing tags for table
+		tableCode += "</tbody></table>"	
+		$("#orderSelection").append(tableCode);
+	};
+	
+	
+	//Things to be accomplished on load
     $(document).ready(function () {
-
-        $('#orderSelection tbody').click(function () {
-            document.location.href = 'splash.html';
-        });
-
+		//Add tables
+		createTable();
+		//Add click event to each
+		//Controls click function for each generated table
+		$('#orderSelection tbody').click(function()
+		{
+			window.location.href = 'splash.html';
+			
+		});
     });
 
 </script>
