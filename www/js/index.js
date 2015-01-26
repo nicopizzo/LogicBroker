@@ -17,7 +17,31 @@ $(document).ready(function() {
 	$("#submitButton").css("margin-right", "20%");
 
 	$("#help").css("color", "red");
-	$("#help").css("text-align", "center");
+	$("#help").css("text-align", "center");	
 	
-
+	
+	$("#submitButton").click(function() {
+		var user = $("#userId").val();
+		var pass = $("#password").val();
+		authenticate(user,pass);
+	});
 });
+
+function authenticate(user,pass) {
+	// do authentication process and return key
+	var key = "00000000000000000";
+	var authpass = 1;
+	if(authpass == 1){
+		window.location = "pending_orders.html?auth=" + key;
+	}
+	else{
+		alert("Invalid Username or Password");
+	}
+	
+}
+
+
+
+
+
+
