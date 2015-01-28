@@ -28,7 +28,7 @@ var createTable = function () {
         origin: 'foo'
     })
     .done(function (data) {
-        alert("success");
+        //alert("success");
         //Add table rows here following the format below
         var len = data.Body.SalesOrders.length;
         for (var i = 0; i <= len; i++) {
@@ -73,9 +73,8 @@ $(document).ready(function () {
 	createTable();
 	//Add click event to each
 	//Controls click function for each generated table
-	$('#orderSelection tbody').click(function()
+	$(document).on('click', '#orderSelection tbody', function() 
 	{
 		window.location.href = 'splash.html';
-		
 	});
 });
