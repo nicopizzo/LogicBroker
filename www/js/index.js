@@ -29,7 +29,7 @@ $(document).ready(function() {
 
 function authenticate(user,pass) {
 	// do authentication process and return key
-	var key = "00000000000000000";
+	var key = '36bc998ba68b49488cacd8d72440fb33';
 	var authpass = 1;
 	if(authpass == 1){
 		window.location = "pending_orders.html?auth=" + key;

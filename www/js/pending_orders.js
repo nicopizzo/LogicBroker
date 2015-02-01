@@ -15,15 +15,11 @@
 //	$("#orderSelection").append(tableCode);
 //};
 
-var createTable = function () {
-    var params = {
-        // Specify your subscription key
-        'subscription-key': '36bc998ba68b49488cacd8d72440fb33',
-    };
-
+function createTable(key) {
+	
     $.ajax({
         // Specify values for path parameters (shown as {...})
-        url: 'https://logicbroker.azure-api.net/stage-api/v1/0/salesorders?status=Submitted&' + $.param(params),
+        url: 'https://logicbroker.azure-api.net/stage-api/v1/0/salesorders?status=Submitted&subscription-key=' + key,
         type: 'GET',
         origin: 'foo'
     })
@@ -36,7 +32,7 @@ var createTable = function () {
 			var companySource = 'unknown';
 			
 			$.ajax({
-				url: 'https://logicbroker.azure-api.net/stage-api/v1/0/salesorders/' + lbk + '?' + $.param(params),
+				url: 'https://logicbroker.azure-api.net/stage-api/v1/0/salesorders/' + lbk + '?subscription-key=' + key,
 				type: 'GET',
 				origin: 'foo',
 				async: false
@@ -70,7 +66,7 @@ $(document).ready(function () {
 	var key = getUrlParameter('auth');
 	
 	//Add tables
-	createTable();
+	createTable(key);
 	//Add click event to each
 	//Controls click function for each generated table
 	$(document).on('click', '#orderSelection tbody', function() 
