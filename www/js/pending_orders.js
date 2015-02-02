@@ -1,24 +1,6 @@
-//var createTable = function()
-//{
-//	var orderNumber = "32767";
-//	var companySource = "Huskies";
-//	var orderStatus = "DONE!";
-
-//	//Opening tags for table element
-//	var tableCode = "<table style='font-size:small; width:100%; border:ridge' class='ui-responsive table-stripe'><tbody>";
-//	//Add table rows here following the format below
-//	tableCode += "<tr><th>Order Number:</th><td class='orderNumber'>" + orderNumber + "</td></tr>";
-//	tableCode += "<tr><th>Company Source:</th><td>" + companySource + "</td></tr>";
-//	tableCode += "<tr><th>Status:</th><td>" + orderStatus + "</td></tr>";
-//	//Closing tags for table
-//	tableCode += "</tbody></table>"	
-//	$("#orderSelection").append(tableCode);
-//};
-
 function createTable(key) {
 	
     $.ajax({
-        // Specify values for path parameters (shown as {...})
         url: 'https://logicbroker.azure-api.net/stage-api/v1/0/salesorders?status=Submitted&subscription-key=' + key,
         type: 'GET',
         origin: 'foo'
@@ -44,18 +26,29 @@ function createTable(key) {
 				alert('Failed to get company source');
 			});
 				
-            var tableCode = "<table style='font-size:small; width:100%; border:ridge' class='ui-responsive table-stripe'><tbody>";
+            var tableCode = "<table style='font-size:small; width:100%; border:ridge' class='ui-responsive table-stripe' id='lb" + lbk + "'><tbody>";
             tableCode += "<tr><th>Order Number:</th><td class='orderNumber'>" + data.Body.SalesOrders[i].OrderNumber + "</td></tr>";
             tableCode += "<tr><th>Company Source:</th><td>" + companySource + "</td></tr>";
             tableCode += "<tr><th>Status:</th><td>" + data.Body.SalesOrders[i].Status + "</td></tr>";
             //Closing tags for table
             tableCode += "</tbody></table>"
             $("#orderSelection").append(tableCode);
+			
+			// set click event
+			setClickEvent(key,lbk);
         }
     })
     .fail(function () {
         alert("error");
     });
+};
+
+function setClickEvent(key,id){
+	$(document).on('click', '#lb' + id, function()
+	{
+		console.log('splash.html?auth=' + key + '&lbk=' + id);
+		window.location = 'splash.html?auth=' + key + '&lbk=' + id;
+	});
 };
 	
 	
@@ -67,10 +60,4 @@ $(document).ready(function () {
 	
 	//Add tables
 	createTable(key);
-	//Add click event to each
-	//Controls click function for each generated table
-	$(document).on('click', '#orderSelection tbody', function() 
-	{
-		window.location.href = 'splash.html';
-	});
 });
