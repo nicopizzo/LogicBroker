@@ -7,7 +7,8 @@
   <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.css"/>
   <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
   <script src="http://code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.js"></script>
-  <script type="text/javascript" src="js/select_orders.js"></script>
+  <script src="js/order_details.js"></script>
+  <script src="js/Common.js"></script>
 </head>
 <body>
 	<div data-role="page" id="page1">
@@ -65,16 +66,16 @@
 					</thead>
 					<tbody>
 						<tr>	
-							<td>Seelyville Laboratory of Unsual</td>
-							<td>Test User</td>
-							<td>10 UIT Way</td>
-							<td>Shelton</td>
-							<td>CT</td>
-							<td>06484</td>
-							<td>860-331-0001</td>
-							<td></td>
-							<td></td>
-							<td></td>
+							<td id='billToCompany'></td>
+							<td id='billToContact'></td>
+							<td id='billToAddress'></td>
+							<td id='billToCity'></td>
+							<td id='billToState'></td>
+							<td id='billToZip'></td>
+							<td id='billToPhone'></td>
+							<td id='billToFax'></td>
+							<td id='billToAddressCode'></td>
+							<td id='billToReference'></td>
 						</tr>
 					</tbody>
 				</table>
@@ -98,16 +99,16 @@
 					</thead>
 					<tbody>
 						<tr>	
-							<td>Seelyville Laboratory of Unsual</td>
-							<td>Test User</td>
-							<td>10 UIT Way</td>
-							<td>Shelton</td>
-							<td>CT</td>
-							<td>06484</td>
-							<td>860-331-0001</td>
-							<td></td>
-							<td>test@test.com</td>
-							<td>Default Ship To</td>
+							<td id='shipToCompany'></td>
+							<td id='shipToContact'></td>
+							<td id='shipToAddress'></td>
+							<td id='shipToCity'></td>
+							<td id='shipToState'></td>
+							<td id='shipToZip'></td>
+							<td id='shipToPhone'></td>
+							<td id='shipToFax'></td>
+							<td id='shipToEmail'></td>
+							<td id='shipToAddressCode'></td>
 						</tr>
 					</tbody>
 				</table>
@@ -124,7 +125,7 @@
 							<td>E-Price</td>
 						</tr>
 					</thead>
-					<tbody>	
+					<tbody id="itemsInfo">	
 					<!-- Maybe popup window to display info? -->
 						<tr>
 							<td>LB-000110</td>
@@ -164,12 +165,12 @@
 				</thead>
 				<tbody>
 					<tr>
-						<td>$587.85</td>
-						<td>$0.00</td>
-						<td>$0.00</td>
-						<td>$0.00</td>
-						<td>$0.00</td>
-						<td>$587.85</td>
+						<td id="subtotal"></td>
+						<td id="discount"></td>
+						<td id="freight"></td>
+						<td id="misc"></td>
+						<td id="tax"></td>
+						<td id="orderTotal"></td>
 					</tr>
 				</tbody>		
 			</table>
