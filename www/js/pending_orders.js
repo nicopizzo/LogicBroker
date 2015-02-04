@@ -9,7 +9,7 @@ function createTable(key) {
         //alert("success");
         //Add table rows here following the format below
         var len = data.Body.SalesOrders.length;
-        for (var i = 0; i <= len; i++) {
+        for (var i = 0; i < len; i++) {
 			var lbk = data.Body.SalesOrders[i].LogicbrokerKey;
 			var companySource = 'unknown';
 			

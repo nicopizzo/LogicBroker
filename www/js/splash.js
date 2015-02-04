@@ -12,7 +12,7 @@ function setOrderDetails(key,lbk){
 		$('#companySource').append(companySource);
 		$('#status').append('Submitted');
 		// sets click event
-		$(document).on('click',function() {
+		$('#orderDetails').on('click',function() {
 			console.log('order_details.html?auth=' + key + '&lbk=' + lbk);
 			window.location = 'order_details.html?auth=' + key + '&lbk=' + lbk;
 		});
@@ -35,6 +35,11 @@ function setASN(key,lbk){
 $(document).ready(function(){
 	var key = getUrlParameter('auth');
 	var lbk = getUrlParameter('lbk');
+	
+	// set side navigation
+	navigateToPendingOrders('#sidePendingOrders', key);
+	navigateToSplash('#sideSplash',key,lbk);
+	navigateToOrderDetails('#sideOrderDetails',key,lbk);
 	
 	setOrderDetails(key,lbk);
 	setPacking(key,lbk);

@@ -18,14 +18,14 @@
             <h2><span class="ui-icon-bars ui-btn-icon-left" style="position: relative;" />Navigation</h2>
             <h3>Current Order:</h3>
             <ul data-role="listview" style="padding: 5%">
-                <li><a href="splash.html" rel="external" data-rel="close"><span class="ui-icon-eye ui-btn-icon-left" style="position: relative;" />Overview</a></li>
-                <li><a href="order_details.html" rel="external" data-rel="close"><span class="ui-icon-bullets ui-btn-icon-left" style="position: relative;" />Orders Details</a></li>
+                <li><a id="sideSplash" rel="external" data-rel="close"><span class="ui-icon-eye ui-btn-icon-left" style="position: relative;" />Overview</a></li>
+                <li><a id="sideOrderDetails" rel="external" data-rel="close"><span class="ui-icon-bullets ui-btn-icon-left" style="position: relative;" />Orders Details</a></li>
                 <li><a href="packingscreen.html" rel="external" data-rel="close"><span class="ui-icon-shop ui-btn-icon-left" style="position: relative;" />Packing Menu</a></li>
                 <li><a href="asn_details.html" rel="external" data-rel="close"><span class="ui-icon-tag ui-btn-icon-left" style="position: relative;" />ASN Menu</a></li>
             </ul>
             <h3>Misc Options:</h3>
             <ul data-role="listview" style="padding: 5%">
-                <li><a href="pending_orders.html" rel="external" data-rel="close"><span class="ui-icon-action ui-btn-icon-left" style="position: relative;" />Select Order</a></li>
+                <li><a id="sidePendingOrders" rel="external" data-rel="close"><span class="ui-icon-action ui-btn-icon-left" style="position: relative;" />Select Order</a></li>
                 <li><a href="index.html" rel="external" data-rel="close"><span class="ui-icon-power ui-btn-icon-left" style="position: relative;" />Log Out</a></li>
             </ul>
             </br>
@@ -115,7 +115,7 @@
 			</div>
 			
 			<div id="items">
-				<table data-role="table" id="items_info" class="ui-responsive table-stripe">
+				<table data-role="table" id="itemsInfo" class="ui-responsive table-stripe">
 					<thead>
 						<tr>
 							<td>Item Id</td>
@@ -125,29 +125,8 @@
 							<td>E-Price</td>
 						</tr>
 					</thead>
-					<tbody id="itemsInfo">	
-					<!-- Maybe popup window to display info? -->
-						<tr>
-							<td>LB-000110</td>
-							<td>40</td>
-							<td>10</td>
-							<td>$22.00</td>
-							<td>$220.00</td>
-						</tr>
-						<tr>
-							<td>LB-000078</td>
-							<td>40</td>
-							<td>5</td>
-							<td>$46.95</td>
-							<td>$234.75</td>
-						</tr>
-						<tr>
-							<td>LB-000060</td>
-							<td>40</td>
-							<td>2</td>
-							<td>$66.55</td>
-							<td>$133.10</td>
-						</tr>
+					<tbody id="itemsInfo">
+					<!-- Dynamically create item boxs  -->
 					</tbody>
 				</table>
                 <div data-role="collapsible" data-collapsed="true">
@@ -165,25 +144,18 @@
 				</thead>
 				<tbody>
 					<tr>
-						<td id="subtotal"></td>
-						<td id="discount"></td>
-						<td id="freight"></td>
-						<td id="misc"></td>
-						<td id="tax"></td>
-						<td id="orderTotal"></td>
+						<td id="subtotal">$</td>
+						<td id="discount">$</td>
+						<td id="freight">$</td>
+						<td id="misc">$</td>
+						<td id="tax">$</td>
+						<td id="orderTotal">$</td>
 					</tr>
 				</tbody>		
 			</table>
 		</div>
 			</div>	
 
-		</div>
-	
-	
-		<div data-role="footer" class="ui-bar">
-			<a href="splash.html" rel="external" data-role="button">Back</a>
-			<a href="index.html" rel="external" data-role="button">Log Out</a>
-			<a href="" data-role="button">Ship Items</a>
 		</div>
 	</div>
 </body>
