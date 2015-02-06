@@ -57,12 +57,17 @@
                     <p><b>Please Select an Order</b></p>
                     <label for="select-choice-0" class="select"></label>
                         <select name="select-choice-0" id="select-choice-1">
+                            <option disabled="disabled" selected="selected">Please Select Company</option>
                             <option value="all">All Partners</option>
-                            <option>Field Emission Electronic Propulsion Inc.</option>
+                            <option value="feep">Field Emission Electronic Propulsion Inc.</option>
+                            <option value="test">Test Comp</option>
                         </select>
+                    <input type="button" onclick="filter()" value="Filter">
                     <div id="orderSelection">
 					<img src="img\spinner_48x48.gif" class="spinner" />
-						<!--Generated Tables go here -->
+                    <div id="tableDiv">
+                        <!--Generated Tables go here -->
+                    </div>
                     </div>
                 </div>
         </div>

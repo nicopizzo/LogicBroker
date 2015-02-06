@@ -1,5 +1,7 @@
-function createTable(key) {
-	
+﻿function createTable(key) {
+    // string value for Company Filter
+    var companyFilter = getFilterString();
+
     $.ajax({
         url: 'https://logicbroker.azure-api.net/stage-api/v1/0/salesorders?status=Submitted&subscription-key=' + key,
         type: 'GET',
@@ -19,23 +21,26 @@ function createTable(key) {
 				origin: 'foo',
 				async: false
 			})
-			.done(function(data2) {
+			.done(function (data2) {
 				companySource = data2.Body.SalesOrder.ExtendedAttributes[0].Value;
 			})
 			.fail(function() {
 				alert('Failed to get company source');
 			});
-				
-            var tableCode = "<table style='font-size:small; width:100%; border:ridge' class='ui-responsive table-stripe' id='lb" + lbk + "'><tbody>";
-            tableCode += "<tr><th>Order Number:</th><td class='orderNumber'>" + data.Body.SalesOrders[i].OrderNumber + "</td></tr>";
-            tableCode += "<tr><th>Company Source:</th><td>" + companySource + "</td></tr>";
-            tableCode += "<tr><th>Status:</th><td>" + data.Body.SalesOrders[i].Status + "</td></tr>";
-            //Closing tags for table
-            tableCode += "</tbody></table>"
-            $("#orderSelection").append(tableCode);
-			
-			// set click event
-			setClickEvent(key,lbk);
+
+            //if statement to get filter
+			if (companySource == companyFilter || companyFilter == "All Partners") {
+			    var tableCode = "<table style='font-size:small; width:100%; border:ridge' class='ui-responsive table-stripe' id='lb" + lbk + "'><tbody>";
+			    tableCode += "<tr><th>Order Number:</th><td class='orderNumber'>" + data.Body.SalesOrders[i].OrderNumber + "</td></tr>";
+			    tableCode += "<tr><th>Company Source:</th><td>" + companySource + "</td></tr>";
+			    tableCode += "<tr><th>Status:</th><td>" + data.Body.SalesOrders[i].Status + "</td></tr>";
+			    //Closing tags for table
+			    tableCode += "</tbody></table>"
+			    $("#tableDiv").append(tableCode);
+
+			    // set click event
+			    setClickEvent(key, lbk);
+			}
         }
     })
     .fail(function () {
@@ -58,7 +63,22 @@ function setClickEvent(key,id){
 	});
 };
 
-//Things to be accomplished on load
+// Returns whats in drop down - string
+function getFilterString() {
+    var elem = document.getElementById("select-choice-1");
+    var companyFilter = elem.options[elem.selectedIndex].text;
+    return companyFilter;
+};
+
+function filter() {
+    //document.getElementById(orderSelection).innerHTML = "";
+    $("#tableDiv").empty();
+    var key = getUrlParameter('auth');
+    createTable(key);
+};
+
+
+////Things to be accomplished on load
 $(document).ready(function () {
 	
 	//gets authentication key
@@ -67,3 +87,5 @@ $(document).ready(function () {
 	//Add tables
 	createTable(key);
 });
+
+
