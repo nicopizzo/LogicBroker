@@ -10,10 +10,22 @@
 	<script src="js/Common.js"></script>
 	<script src="js/pending_orders.js"></script>
 	<style>
+		/* Table headers and data slots */
 		th, td
 		{
 			text-align: left
 		}
+		
+		/* Loader Spinners */
+		IMG.spinner
+		{
+			/* Centers loader spinner in containing div */
+			display: block;
+			margin-top: 10%;
+			margin-left: auto;
+			margin-right: auto;
+		}
+	
 	</style>
 </head>
 <body>
@@ -38,6 +50,7 @@
             <!-- here is the back button below !-->
             <a href="#" data-rel="back" class="ui-btn-right ui-btn ui-icon-back ui-btn-icon-notext ui-shadow ui-corner-all"  data-role="button" role="button">Back</a>
         </div>
+		
         
         <div role="main" class="ui-content">
                 <div id="pending_orders">
@@ -48,6 +61,7 @@
                             <option>Field Emission Electronic Propulsion Inc.</option>
                         </select>
                     <div id="orderSelection">
+					<img src="img\spinner_48x48.gif" class="spinner" />
 						<!--Generated Tables go here -->
                     </div>
                 </div>

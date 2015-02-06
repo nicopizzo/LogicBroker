@@ -31,6 +31,14 @@ function setASN(key,lbk){
 	
 };
 
+//Hide & Show tables while ajax running
+$(document).ajaxStart(function(){
+	$("table").hide();
+});
+
+$(document).ajaxStop(function(){
+	$("table").show();
+});
 
 $(document).ready(function(){
 	var key = getUrlParameter('auth');

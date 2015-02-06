@@ -29,3 +29,13 @@ function navigateToOrderDetails(id,key, lbk){
 		window.location= 'order_details.html?auth=' + key + '&lbk=' + lbk;
 	});
 };
+
+// Hide & Show loader spinners while waiting on ajax
+$(document).ajaxStart(function(){
+	$('IMG.spinner').attr('src', 'img/spinner_48x48.gif');
+	$("IMG.spinner").show();
+});
+
+$(document).ajaxStop(function(){
+	$("IMG.spinner").hide();
+});

@@ -29,6 +29,14 @@ th, td
 	text-align: left
 }
 
+/* Load Spinner while waiting on ajax */
+IMG.spinner
+{
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
     .event.listening 
     {
         background-color: #333333;

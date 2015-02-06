@@ -39,7 +39,14 @@ function createTable(key) {
         }
     })
     .fail(function () {
-        alert("error");
+		//Allow user the ability to reload page if an error occurs
+        var dialog = "Error: Unable to retrieve pending orders.Would you like to try again?";
+		var choice = confirm(dialog);
+		if (choice == true)
+		{
+			//refresh page
+			location.reload();
+		}
     });
 };
 
@@ -50,8 +57,7 @@ function setClickEvent(key,id){
 		window.location = 'splash.html?auth=' + key + '&lbk=' + id;
 	});
 };
-	
-	
+
 //Things to be accomplished on load
 $(document).ready(function () {
 	
