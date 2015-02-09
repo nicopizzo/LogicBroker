@@ -24,9 +24,16 @@ function setShipToPage(data){
 
 function setItemsPage(data){
 	//$('#subtotal').append(data.Body.SalesOrder.OrderLines);
-	$('#discount').append(data.Body.SalesOrder.Discount);
-	$('#tax').append(data.Body.SalesOrder.Taxes);
-	$('#orderTotal').append(data.Body.SalesOrder.TotalAmount);
+	
+	var moreTableCode = "<table style='font-size:small; width:100%; border:ridge' class='ui-responsive table-stripe'><tbody>";
+	moreTableCode += "<tr><th>Subtotal:</th><td class='orderNumber'>$" + "" + "</td></tr>";
+	moreTableCode += "<tr><th>Discount:</th><td>$" + data.Body.SalesOrder.Discount + "</td></tr>";
+    moreTableCode += "<tr><th>Freight:</th><td>$" + "" + "</td></tr>";
+	moreTableCode += "<tr><th>Miscellaneous:</th><td>$" + "" + "</td></tr>";
+	moreTableCode += "<tr><th>Tax:</th><td>$" + data.Body.SalesOrder.Taxes + "</td></tr>";
+	moreTableCode += "<tr><th>Order Total:</th><td>$" + data.Body.SalesOrder.TotalAmount + "</td></tr>";
+    moreTableCode += "</tbody></table>"
+    $("#colMoreInfo").append(moreTableCode);
 	
 	// dynamic items
 	var len = data.Body.SalesOrder.OrderLines.length;
@@ -37,15 +44,15 @@ function setItemsPage(data){
 		var uprice = data.Body.SalesOrder.OrderLines[i].Price;
 		var eprice = uprice * qty;
 		
-		
-		var tableItem = "<tr><td>" + itemId + "</td>";
-		tableItem += "<td>" + weight + "</td>";
-		tableItem += "<td>" + qty + "</td>";
-		tableItem += "<td>$" + uprice + "</td>";
-		tableItem += "<td>$" + eprice + "</td></tr>";
-		$("#itemsInfo").append(tableItem);
+		var itemsTableCode = "<table style='font-size:small; width:100%; border:ridge' class='ui-responsive table-stripe'><tbody>";
+		itemsTableCode += "<tr><th>Item Id:</th><td class='orderNumber'>" + itemId + "</td></tr>";
+		itemsTableCode += "<tr><th>Weight:</th><td>" + weight + "</td></tr>";
+	    itemsTableCode += "<tr><th>Qty:</th><td>" + qty + "</td></tr>";
+		itemsTableCode += "<tr><th>U-Price:</th><td>$" + uprice + "</td></tr>";
+		itemsTableCode += "<tr><th>E-Price:</th><td>$" + eprice + "</td></tr>";
+	    itemsTableCode += "</tbody></table>"
+	    $("#colItems").append(itemsTableCode);
 	}
-	alert('done');
 };
 
 $(document).ready(function(){

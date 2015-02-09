@@ -115,47 +115,19 @@
 			</div>
 			
 			<div id="items">
-				<table data-role="table" id="itemsInfo" class="ui-responsive table-stripe">
-					<thead>
-						<tr>
-							<td>Item Id</td>
-							<td>Weight</td>
-							<td>Qty</td>
-							<td>U-Price</td>
-							<td>E-Price</td>
-						</tr>
-					</thead>
-					<tbody id="itemsInfo">
-					<!-- Dynamically create item boxs  -->
-					</tbody>
-				</table>
+				<div data-role="collapsible" data-collapsed="false">
+					<h1>Items</h1>
+					<div id="colItems">
+					<!-- Dynamic Items Here -->
+					</div>
+				</div>
                 <div data-role="collapsible" data-collapsed="true">
-			<h1>More Order Information</h1>
-			<table data-role="table" id="more_info" data-mode="reflow" class="ui-responsive table-stroke">
-				<thead>
-					<tr>
-						<td>Subtotal</td>
-						<td>Discount</td>
-						<td>Freight</td>
-						<td>Miscellaneous</td>
-						<td>Tax</td>
-						<td>Order Total</td>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td id="subtotal">$</td>
-						<td id="discount">$</td>
-						<td id="freight">$</td>
-						<td id="misc">$</td>
-						<td id="tax">$</td>
-						<td id="orderTotal">$</td>
-					</tr>
-				</tbody>		
-			</table>
-		</div>
-			</div>	
-
+					<h1>More Order Information</h1>
+					<div id="colMoreInfo">
+					
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </body>
