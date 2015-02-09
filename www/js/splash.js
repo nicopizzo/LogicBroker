@@ -18,13 +18,17 @@ function setOrderDetails(key,lbk){
 		});
 	})
 	.fail(function() {
-		$('#orderNumber').append('Failed to load');
+		$('#packingScreen').append('Failed to load');
 	});
 	
 };
 
 function setPacking(key,lbk){
 	
+	$('#packingScreen').on('click',function() {
+			console.log('packingscreen.html?auth=' + key + '&lbk=' + lbk);
+			window.location = 'packingscreen.html?auth=' + key + '&lbk=' + lbk;
+	});
 };
 
 function setASN(key,lbk){
@@ -49,7 +53,14 @@ $(document).ready(function(){
 	navigateToSplash('#sideSplash',key,lbk);
 	navigateToOrderDetails('#sideOrderDetails',key,lbk);
 	
-	setOrderDetails(key,lbk);
-	setPacking(key,lbk);
-	setASN(key,lbk);
+	$.ajax({
+		url: 'https://logicbroker.azure-api.net/stage-api/v1/0/salesorders/' + lbk + '?subscription-key=' + key,
+        type: 'GET',
+        origin: 'foo'
+	})
+	.done(function(data) {
+		setOrderDetails(key,lbk);
+		setPacking(key,lbk);
+		setASN(key,lbk);
+	})
 });

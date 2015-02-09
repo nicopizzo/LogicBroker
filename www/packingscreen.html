@@ -11,6 +11,7 @@
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>
     <script src="js/jquery.ui.touch-punch.min.js"></script>
     <script src="js/packingscreen.js"></script>
+	<script src="js/Common.js"></script>
 </head>
 
 <body>
@@ -21,14 +22,14 @@
             <h2><span class="ui-icon-bars ui-btn-icon-left" style="position: relative;" />Navigation</h2>
             <h3>Current Order:</h3>
             <ul data-role="listview" style="padding: 5%">
-                <li><a href="splash.html" rel="external" data-rel="close"><span class="ui-icon-eye ui-btn-icon-left" style="position: relative;" />Overview</a></li>
-                <li><a href="order_details.html" rel="external" data-rel="close"><span class="ui-icon-bullets ui-btn-icon-left" style="position: relative;" />Orders Details</a></li>
+                <li><a id="sideSplash" rel="external" data-rel="close"><span class="ui-icon-eye ui-btn-icon-left" style="position: relative;" />Overview</a></li>
+                <li><a id="sideOrderDetails" rel="external" data-rel="close"><span class="ui-icon-bullets ui-btn-icon-left" style="position: relative;" />Orders Details</a></li>
                 <li><a href="packingscreen.html" rel="external" data-rel="close"><span class="ui-icon-shop ui-btn-icon-left" style="position: relative;" />Packing Menu</a></li>
                 <li><a href="asn_details.html" rel="external" data-rel="close"><span class="ui-icon-tag ui-btn-icon-left" style="position: relative;" />ASN Menu</a></li>
             </ul>
             <h3>Misc Options:</h3>
             <ul data-role="listview" style="padding: 5%">
-                <li><a href="pending_orders.html" rel="external" data-rel="close"><span class="ui-icon-action ui-btn-icon-left" style="position: relative;" />Select Order</a></li>
+                <li><a id="sidePendingOrders" rel="external" data-rel="close"><span class="ui-icon-action ui-btn-icon-left" style="position: relative;" />Select Order</a></li>
                 <li><a href="index.html" rel="external" data-rel="close"><span class="ui-icon-power ui-btn-icon-left" style="position: relative;" />Log Out</a></li>
             </ul>
             </br>
@@ -54,11 +55,7 @@
                     <div data-role="collapsible" data-collapsed="false">
                         <h4>Unpackaged Items</h4>
                         <ul data-role="listview" data-inset="true" data-theme="d" class="draganddrop" id="unpackaged-items">
-                            <li>Item 1</li>
-                            <li>Item 2</li>
-                            <li>Item 3</li>
-                            <li>Item 4</li>
-                            <li>Item 5</li>
+							<!-- Items go here -->
                         </ul>
                     </div>
 					
