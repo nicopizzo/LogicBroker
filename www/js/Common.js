@@ -12,6 +12,15 @@ function getUrlParameter(sParam)
     }
 };
 
+function nullTester(val){
+	if(val == null){
+		return "";
+	}
+	else{
+		return val;
+	}
+};
+
 function navigateToPendingOrders(id,key){
 	$(id).on('click', function(){
 		window.location = "pending_orders.html?auth=" + key;
