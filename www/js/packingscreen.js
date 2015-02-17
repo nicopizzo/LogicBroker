@@ -23,6 +23,9 @@ $(document).ready(function() {
 			var qty = data.Body.SalesOrder.OrderLines[i].Quantity;
 			var itemToAdd = $('<li>' + sku + '----' + qty + '</li>');
 			$('#unpackaged-items').append(itemToAdd);
+			
+			// setup order items body
+			$('#order_items').append(createTable(["SKU","QTY","QTY Left"], [sku,qty,qty]), null);
 		}
 		
 		// drag and drop setup

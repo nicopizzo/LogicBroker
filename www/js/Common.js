@@ -21,6 +21,27 @@ function nullTester(val){
 	}
 };
 
+function createTable(headers, values, id){
+	var sizeHeader = headers.length;
+	if(sizeHeader != values.length){
+		return "";
+	}
+	else{
+		var createdTable;
+		if(id == null){
+			createdTable = "<table style='font-size:small; width:100%; border:ridge' class='ui-responsive table-stripe'><tbody>";
+		}
+		else{
+			createdTable = "<table style='font-size:small; width:100%; border:ridge' class='ui-responsive table-stripe' id='" + id + "'><tbody>";
+		}
+		for(var i = 0; i < sizeHeader; i++){
+			createdTable += "<tr><th>" + headers[i] + ":</th><td>" + values[i] + "</td></tr>";
+		}
+		createdTable += "</tbody></table>";
+		return createdTable;
+	}
+};
+
 function navigateToPendingOrders(id,key){
 	$(id).on('click', function(){
 		window.location = "pending_orders.html?auth=" + key;
