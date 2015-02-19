@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
 	$("#logo").css("display", "block");
 	$("#logo").css("margin-left", "auto");
 	$("#logo").css("margin-right", "auto");
