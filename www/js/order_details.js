@@ -23,7 +23,9 @@ function setShipToPage(data){
 };
 
 function setItemsPage(data){
-	//$('#subtotal').append(data.Body.SalesOrder.OrderLines);
+	//For items summary
+	var totalItems = 0;
+	var totalWeight = 0.0;
 	
 	var moreTableCode = "<table style='font-size:small; width:100%; border:ridge' class='ui-responsive table-stripe'><tbody>";
 	moreTableCode += "<tr><th>Subtotal:</th><td class='orderNumber'>$ " + "" + "</td></tr>";
@@ -39,20 +41,28 @@ function setItemsPage(data){
 	var len = data.Body.SalesOrder.OrderLines.length;
 	for (var i = 0; i < len; i++) {
 		var itemId = data.Body.SalesOrder.OrderLines[i].ItemIdentifier.SupplierSKU;
+		var description = data.Body.SalesOrder.OrderLines[i].Description;
 		var weight = data.Body.SalesOrder.OrderLines[i].Weight;
 		var qty = data.Body.SalesOrder.OrderLines[i].Quantity;
 		var uprice = data.Body.SalesOrder.OrderLines[i].Price;
-		var eprice = uprice * qty;
+		//var eprice = uprice * qty;
+		//Update totalItems and totalWeight
+		totalItems += qty;
+		totalWeight += weight * qty;
 		
 		var itemsTableCode = "<table style='font-size:small; width:100%; border:ridge' class='ui-responsive table-stripe'><tbody>";
-		itemsTableCode += "<tr><th>Item Id:</th><td class='orderNumber'>" + itemId + "</td></tr>";
-		itemsTableCode += "<tr><th>Weight:</th><td>" + weight + "</td></tr>";
-	    itemsTableCode += "<tr><th>Qty:</th><td>" + qty + "</td></tr>";
-		itemsTableCode += "<tr><th>U-Price:</th><td>$ " + uprice + "</td></tr>";
-		itemsTableCode += "<tr><th>E-Price:</th><td>$ " + eprice + "</td></tr>";
+		itemsTableCode += "<tr><th>Name:</th><td>" + description + "</td></tr>";
+		itemsTableCode += "<tr><th>SKU:</th><td class='orderNumber'>" + itemId + "</td></tr>";
+		itemsTableCode += "<tr><th>Qty:</th><td>" + qty + "</td></tr>";
+		itemsTableCode += "<tr><th>Weight:</th><td>" + weight + " lbs. / unit</td></tr>";
+		itemsTableCode += "<tr><th>Price:</th><td>$ " + uprice + " / unit</td></tr>";
+		//itemsTableCode += "<tr><th>E-Price:</th><td>$ " + eprice + "</td></tr>";
 	    itemsTableCode += "</tbody></table>"
 	    $("#colItems").append(itemsTableCode);
 	}
+	//Create table for order overview
+	var itemSummaryTable = createTable(["Total Items", "Total Weight"], [totalItems, totalWeight]);
+	$('#colOverview').append(itemSummaryTable);
 };
 
 $(document).ready(function(){

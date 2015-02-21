@@ -9,6 +9,25 @@
   <script src="http://code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.js"></script>
   <script src="js/order_details.js"></script>
   <script src="js/Common.js"></script>
+  <style>
+		/* Table headers and data slots */
+		th, td
+		{
+			text-align: left;
+			padding: 8px;
+		}
+		
+		/* Loader Spinners */
+		IMG.spinner
+		{
+			/* Centers loader spinner in containing div */
+			display: block;
+			margin-top: 10%;
+			margin-left: auto;
+			margin-right: auto;
+		}
+	
+	</style>
 </head>
 <body>
 	<div data-role="page" id="page1">
@@ -37,18 +56,38 @@
             <a href="#navigationPanel" class="ui-btn-left ui-btn ui-btn-a ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-bars ui-btn-icon-notext"></a>
             <a href="#" data-rel="back" class="ui-btn-right ui-btn ui-icon-back ui-btn-icon-notext ui-shadow ui-corner-all"  data-role="button" role="button">Back</a>
         </div>
-		<h5>Order Status- Submitted</h5>
 	
 		<div data-role="tabs">
 			<div data-role="navbar">
 				<ul>
+					<!-- ui-btn-active class added to "Bill To" initially so its highlighted first by default! -->
+					<li><a class='ui-btn-active' href="#order">Order</a></li>
 					<li><a href="#billto">Bill To</a></li>
 					<li><a href="#shipto">Ship To</a></li>
-					<li><a href="#items">Items</a></li>
 				</ul>
 			</div>
 			
+			
+			
+			
 			<div id="billto">
+			<!-- JEFFS EXPERIMENTAL STUFF -->
+			<table style='font-size:medium; width:100%; border:ridge; margin-top: 5%' class='ui-responsive table-stripe' id='billto_info'>
+				<tbody>
+					<tr><th>Company:</th><td id='billToCompany'></td></tr>
+					<tr><th>Contact:</th><td id='billToContact'></td></tr>
+					<tr><th>Address:</th><td id='billToAddress'></td></tr>
+					<tr><th>City:</th><td id='billToCity'></td></tr>
+					<tr><th>State:</th><td id='billToState'></td></tr>
+					<tr><th>Zip:</th><td id='billToZip'></td></tr>
+					<tr><th>Phone:</th><td id='billToPhone'></td></tr>
+					<tr><th>Fax:</th><td id='billToFax'></td></tr>
+					<tr><th>Address Code:</th><td id='billToAddressCode'></td></tr>
+					<tr><th>Reference:</th><td id='billToReference'></td></tr>
+				</tbody>
+			</table>
+			<!-- JEFFS EXPERIMENTAL STUFF -->
+			<!-- KCS OLD CODE --
 				<table data-role="table" id="billto_info" class="ui-responsive table-stroke">
 					<thead>
 						<tr>
@@ -79,9 +118,25 @@
 						</tr>
 					</tbody>
 				</table>
+			<!-- KCS OLD CODE -->
 			</div>
 			
 			<div id="shipto">
+			<table style='font-size:medium; width:100%; border:ridge; margin-top: 5%' class='ui-responsive table-stripe' id='shipto_info'>
+				<tbody>
+					<tr><th>Company:</th><td id='shipToCompany'></td></tr>
+					<tr><th>Contact:</th><td id='shipToContact'></td></tr>
+					<tr><th>Address:</th><td id='shipToAddress'></td></tr>
+					<tr><th>City:</th><td id='shipToCity'></td></tr>
+					<tr><th>State:</th><td id='shipToState'></td></tr>
+					<tr><th>Zip:</th><td id='shipToZip'></td></tr>
+					<tr><th>Phone:</th><td id='shipToPhone'></td></tr>
+					<tr><th>Fax:</th><td id='shipToFax'></td></tr>
+					<tr><th>Address Code:</th><td id='shipToAddressCode'></td></tr>
+					<tr><th>Reference:</th><td id='shipToReference'></td></tr>
+				</tbody>
+			</table>
+				<!-- KCs OLD CODE --
 				<table data-role="table" id="shipto_info" class="ui-responsive table-stroke">
 					<thead>
 						<tr>
@@ -112,19 +167,26 @@
 						</tr>
 					</tbody>
 				</table>
+				<!-- KCs OLD CODE -->
 			</div>
 			
-			<div id="items">
+			<div id="order">
 				<div data-role="collapsible" data-collapsed="false">
-					<h1>Items</h1>
-					<div id="colItems">
-					<!-- Dynamic Items Here -->
+					<h1>Overview:</h1>
+					<div id="colOverview">
+					
 					</div>
 				</div>
-                <div data-role="collapsible" data-collapsed="true">
-					<h1>More Order Information</h1>
+				<div data-role="collapsible" data-collapsed="true">
+					<h1>Pricing Summary:</h1>
 					<div id="colMoreInfo">
 					
+					</div>
+				</div>
+				<div data-role="collapsible" data-collapsed="true">
+					<h1>Items List:</h1>
+					<div id="colItems">
+					<!-- Dynamic Items Here -->
 					</div>
 				</div>
 			</div>
@@ -133,7 +195,3 @@
 </body>
 
 </html>
-
-<style>
-
-</style>
