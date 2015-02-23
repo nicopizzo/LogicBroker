@@ -73,7 +73,7 @@ function refreshDragandDrop() {
 function addContainerEvent() {
 		containerCount++;
 		var colmain = $('#collapsibleSet');
-		var collapsible = $('<div data-role="collapsible" data-collapsed="false" id="container' + containerCount + '">');
+		var collapsible = $('<div data-role="collapsible" data-collapsed="false" class="cont" id="container' + containerCount + '">');
 		collapsible.append('<h2>Container ' + containerCount + '</h2>');
 		collapsible.append('<button type="button" data-mini="true" data-inline="true" class="addCaseButton" id="addCaseButton' + containerCount + '" onclick="addCaseEvent('+containerCount+')">Add Case</button>');
 		collapsible.append('<button type="button" data-mini="true" data-inline="true" class="removeContainerButton" onclick="removeContainerEvent('+containerCount+')">Remove Container</button>');
@@ -128,4 +128,22 @@ function removeContainerEvent(containerId) {
 	});
 	
 	$(container).remove();		
+}
+
+// event on submit
+function processPacking(){
+	var test = 0;
+	var containerSet = $('#collapsibleSet').children();
+	for(var i=0; i< containerSet.length; i++){
+		var caseSet = containerSet.eq(i).find('.caseCollapsibleSet').children();
+		for(var j=0; j<caseSet.length; j++){
+			var itemsSet = caseSet.eq(j).find('ul').children();
+			for(var k=0; k<itemsSet.length; k++){
+				var curItem = itemsSet.eq(k).text();
+				//alert(curItem);
+			}
+		}
+		test += caseSet.length;
+	}
+	alert('containers=' + containerSet.length + 'cases=' + test);
 }
