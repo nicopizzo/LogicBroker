@@ -33,7 +33,7 @@
 
             //if statement to get filter
 			if ((companySource == companyFilter || companyFilter == "All Partners")&&(orderNumber==orderFilter||orderFilter=="")) {
-			    var tableCode = "<table style='font-size:small; width:100%; border:ridge' class='ui-responsive table-stripe' id='lb" + lbk + "'><tbody>";
+			    var tableCode = "<table style='font-size:small; width:100%; border:ridge' class='ui-responsive table-stripe clickable-div' id='lb" + lbk + "'><tbody>";
 			    tableCode += "<tr><th>Order Number:</th><td class='orderNumber'>" + data.Body.SalesOrders[i].OrderNumber + "</td></tr>";
 			    tableCode += "<tr><th>Company Source:</th><td>" + companySource + "</td></tr>";
 			    tableCode += "<tr><th>Status:</th><td>" + data.Body.SalesOrders[i].Status + "</td></tr>";
