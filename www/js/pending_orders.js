@@ -1,8 +1,7 @@
-﻿function createTable(key) {
-    // string value for Company Filter
-    var companyFilter = getCompanyString();
-    // value for order filter
-    var orderFilter = getOrderString();
+﻿var orders;
+
+function getOrders(key) {	
+	var allOrders = [];
 
     $.ajax({
         url: 'https://logicbroker.azure-api.net/stage-api/v1/0/salesorders?status=Submitted&subscription-key=' + key,
@@ -17,6 +16,7 @@
 			var lbk = data.Body.SalesOrders[i].LogicbrokerKey;
 			var companySource = 'unknown';
 			var orderNumber = data.Body.SalesOrders[i].OrderNumber;
+			var status = data.Body.SalesOrders[i].Status;
 			
 			$.ajax({
 				url: 'https://logicbroker.azure-api.net/stage-api/v1/0/salesorders/' + lbk + '?subscription-key=' + key,
@@ -30,20 +30,16 @@
 			.fail(function() {
 				alert('Failed to get company source');
 			});
-
-            //if statement to get filter
-			if ((companySource == companyFilter || companyFilter == "All Partners")&&(orderNumber==orderFilter||orderFilter=="")) {
-			    var tableCode = "<table style='font-size:small; width:100%; border:ridge' class='ui-responsive table-stripe clickable-div' id='lb" + lbk + "'><tbody>";
-			    tableCode += "<tr><th>Order Number:</th><td class='orderNumber'>" + data.Body.SalesOrders[i].OrderNumber + "</td></tr>";
-			    tableCode += "<tr><th>Company Source:</th><td>" + companySource + "</td></tr>";
-			    tableCode += "<tr><th>Status:</th><td>" + data.Body.SalesOrders[i].Status + "</td></tr>";
-			    //Closing tags for table
-			    tableCode += "</tbody></table>"
-			    $("#tableDiv").append(tableCode);
-
-			    // set click event
-			    setClickEvent(key, lbk);
-			}
+			
+			// build struct and add to order array
+			var order = {
+				'orderNumber' : orderNumber,
+				'companySource' : companySource,
+				'status' : status,
+				'lbk' : lbk
+			};
+			
+			allOrders.push(order);
         }
     })
     .fail(function () {
@@ -56,6 +52,39 @@
 			location.reload();
 		}
     });
+	
+	return allOrders;
+};
+
+function createTable(orders, key){
+	// string value for Company Filter
+    var companyFilter = getCompanyString();
+    // value for order filter
+    var orderFilter = getOrderString();
+	var numOrders = orders.length;
+	console.log(numOrders);
+	var ordersFound = 0;
+	for(var i=0; i < numOrders; i++){
+		var currentOrder = orders[i];
+		if ((currentOrder['companySource'] == companyFilter || companyFilter == "All Partners")&&(currentOrder['orderNumber']==orderFilter||orderFilter=="")) {
+			var tableCode = "<table style='font-size:small; width:100%; border:ridge' class='ui-responsive table-stripe clickable-div' id='lb" + currentOrder['lbk'] + "'><tbody>";
+			tableCode += "<tr><th>Order Number:</th><td class='orderNumber'>" + currentOrder['orderNumber'] + "</td></tr>";
+			tableCode += "<tr><th>Company Source:</th><td>" + currentOrder['companySource'] + "</td></tr>";
+			tableCode += "<tr><th>Status:</th><td>" + currentOrder['status'] + "</td></tr>";
+			//Closing tags for table
+			tableCode += "</tbody></table>"
+			$("#tableDiv").append(tableCode);
+
+			// set click event
+			setClickEvent(key, currentOrder['lbk']);
+			ordersFound++;
+		}
+	}
+	
+	if(ordersFound <= 0){
+		alert('No Orders Found');
+	}
+		
 };
 
 function setClickEvent(key,id){
@@ -81,8 +110,7 @@ function getOrderString() {
 function filter() {
     //document.getElementById(orderSelection).innerHTML = "";
     $("#tableDiv").empty();
-    var key = getUrlParameter('auth');
-    createTable(key);
+    createTable(orders, getUrlParameter('auth'));
 };
 
 
@@ -92,8 +120,10 @@ $(document).ready(function () {
 	//gets authentication key
 	var key = getUrlParameter('auth');
 	
+	orders = getOrders(key);
+	
 	//Add tables
-	createTable(key);
+	//createTable(orders);
 });
 
 
