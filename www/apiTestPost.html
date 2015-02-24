@@ -1,0 +1,342 @@
+﻿!DOCTYPE html>
+<html>
+<head>
+<title>JSSample</title>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+    var params = {
+        // Specify your subscription key
+        'subscription-key': '36bc998ba68b49488cacd8d72440fb33',
+        'CoId': 15056
+    };
+    //Cppied from the developer portal more or less orderNumber and logicbroker key have been switched
+    var sendingData =
+    {
+        "ShipFromAddress": {
+            "CompanyName": "Seelyville Laboratory of Unusual Research Projects",
+            "FirstName": "KC",
+            "LastName": "Philcox",
+            "Title": null,
+            "Address1": "1111 Test Post Drive",
+            "Address2": null,
+            "City": "Beacon Falls",
+            "State": "CT",
+            "Country": "US",
+            "Zip": "06403",
+            "Province": null,
+            "AddressCode": null,
+            "StateCode": null,
+            "CountryCode": null,
+            "Phone": "203-463-3300",
+            "ContactID": null,
+            "ContactType": 0,
+            "Email": null,
+            "TaxNumber": null,
+            "FaxNumber": null,
+            "Note": null,
+            "ExtendedAttributes": null
+        },
+        "ShipmentDate": null,
+        "ExpectedDeliveryDate": "2014-03-10T00:00:00",
+        "InvoiceNumber": "",
+        "ShipmentNumber": "232591006",
+        "ShipmentLines": [
+        {
+            "ItemIdentifier": {
+                "SupplierSKU": null,
+                "PartnerSKU": "46430663",
+                "ParentSKU": "",
+                "ManufacturerSKU": null,
+                "ExternalSKU": null,
+                "ASIN": null,
+                "UPC": "",
+                "ISBN": null,
+                "SerialNumber": null
+            },
+            "Price": 6.5,
+            "Cost": 0.0,
+            "MSRP": 0.0,
+            "Description": "Camera accessories",
+            "Discounts": null,
+            "ShipmentInfos": [
+            {
+                "DateShipped": null,
+                "CarrierCode": "UNSP",
+                "ClassCode": null,
+                "TrackingNumber": null,
+                "ShippingDiscounts": null,
+                "SellerFullfillmentId": null,
+                "ShipmentCost": 156.0,
+                "ShipmentTaxes": null,
+                "InsuranceCost": 0.0
+            }
+            ],
+            "Taxes": null,
+            "WarehouseCode": null,
+            "ShippingAddress": null,
+            "IsDropShip": false,
+            "Quantity": 24,
+            "LineNumber": 1,
+            "Weight": 0.0,
+            "WeightUOM": null,
+            "ExtendedAttributes": [
+            {
+                "Name": "Color",
+                "Value": "BLACK",
+                "Section": "LogicBroker"
+            },
+            {
+                "Name": "ParentSkuUOM",
+                "Value": "EA",
+                "Section": "LogicBroker"
+            },
+            {
+                "Name": "Size Code",
+                "Value": "8",
+                "Section": "LogicBroker"
+            },
+            {
+                "Name": "StyleNumber",
+                "Value": "08-15244",
+                "Section": "LogicBroker"
+            },
+            {
+                "Name": "StyleQualifier",
+                "Value": "IT",
+                "Section": "LogicBroker"
+            },
+            {
+                "Name": "053",
+                "Value": "24",
+                "Section": "SDQ1"
+            }
+            ]
+        },
+        {
+            "ItemIdentifier": {
+                "SupplierSKU": null,
+                "PartnerSKU": "46430676",
+                "ParentSKU": "",
+                "ManufacturerSKU": null,
+                "ExternalSKU": null,
+                "ASIN": null,
+                "UPC": "",
+                "ISBN": null,
+                "SerialNumber": null
+            },
+            "Price": 6.5,
+            "Cost": 0.0,
+            "MSRP": 0.0,
+            "Description": "Refill pack",
+            "Discounts": null,
+            "ShipmentInfos": [
+            {
+                "DateShipped": "2014-09-30T16:00:00",
+                "CarrierCode": "UNSP",
+                "ClassCode": null,
+                "TrackingNumber": null,
+                "ShippingDiscounts": null,
+                "SellerFullfillmentId": null,
+                "ShipmentCost": 156.0,
+                "ShipmentTaxes": null,
+                "InsuranceCost": 0.0
+            }
+            ],
+            "Taxes": null,
+            "WarehouseCode": null,
+            "ShippingAddress": null,
+            "IsDropShip": null,
+            "Quantity": 24,
+            "LineNumber": 1,
+            "Weight": 0.0,
+            "WeightUOM": null,
+            "ExtendedAttributes": [
+            {
+                "Name": "Color",
+                "Value": "BLACK",
+                "Section": "LogicBroker"
+            },
+            {
+                "Name": "ParentSkuUOM",
+                "Value": "EA",
+                "Section": "LogicBroker"
+            },
+            {
+                "Name": "Size Code",
+                "Value": "10",
+                "Section": "LogicBroker"
+            },
+            {
+                "Name": "StyleNumber",
+                "Value": "08-15244",
+                "Section": "LogicBroker"
+            },
+            {
+                "Name": "StyleQualifier",
+                "Value": "IT",
+                "Section": "LogicBroker"
+            },
+            {
+                "Name": "053",
+                "Value": "24",
+                "Section": "SDQ1"
+            }
+            ]
+        }
+        ],
+        "Identifier": {
+            "SourceKey": "232591006",
+            "LogicbrokerKey": "36",
+            "DestinationKey": null,
+            "LinkKey": "1402025786"
+        },
+        "OrderNumber": "OR1412014793-001",
+        "PartnerPO": "232591006",
+        "SupplierPO": null,
+        "OrderDate": "2014-02-12T00:00:00",
+        "Discounts": null,
+        "Taxes": null,
+        "Payments": null,
+        "PaymentTerm": {
+            "TermsDescription": "CC Payment in ship",
+            "PayInNumberOfDays": 0
+        },
+        "ShipmentInfos": [
+        {
+            "DateShipped": "2014-09-30T16:00:00",
+            "CarrierCode": "UNSP",
+            "ClassCode": "UNSP",
+            "TrackingNumber": null,
+            "ShippingDiscounts": null,
+            "SellerFullfillmentId": null,
+            "ShipmentCost": 0.0,
+            "ShipmentTaxes": null,
+            "InsuranceCost": 0.0,
+            "ContainerCode": "008103400142178605",
+            "Qty": 0,
+            "ContainerType": "Box",
+            "ShipmentContainerParentCode": "008103400121403032"
+        },
+        {
+            "DateShipped": "2014-09-30T16:00:00",
+            "CarrierCode": "UNSP",
+            "ClassCode": "UNSP",
+            "TrackingNumber": null,
+            "ShippingDiscounts": null,
+            "SellerFullfillmentId": null,
+            "ShipmentCost": 0.0,
+            "ShipmentTaxes": null,
+            "InsuranceCost": 0.0,
+            "ContainerCode": "008103400142178674",
+            "Qty": 0,
+            "ContainerType": "Box",
+            "ShipmentContainerParentCode": "008103400121403032"
+        }
+        ],
+        "ShipToAddress": {
+            "CompanyName": "Burlington Coat Factory",
+            "FirstName": null,
+            "LastName": null,
+            "Title": null,
+            "Address1": "4287 Route 130 South",
+            "Address2": null,
+            "City": "Edgewater Park",
+            "State": "NJ",
+            "Country": null,
+            "Zip": "08010",
+            "Province": null,
+            "AddressCode": null,
+            "StateCode": null,
+            "CountryCode": null,
+            "Phone": null,
+            "ContactID": null,
+            "ContactType": 0,
+            "Email": null,
+            "TaxNumber": null,
+            "FaxNumber": null,
+            "Note": null,
+            "ExtendedAttributes": null
+        },
+        "BillToAddress": {
+            "CompanyName": "Burlington Coat Factory",
+            "FirstName": null,
+            "LastName": null,
+            "Title": null,
+            "Address1": "ATTN: ACCOUNTS PAYABLE",
+            "Address2": "1830 ROUTE 130 N",
+            "City": "BURLINGTON",
+            "State": "NJ",
+            "Country": null,
+            "Zip": "08016",
+            "Province": null,
+            "AddressCode": "02",
+            "StateCode": null,
+            "CountryCode": null,
+            "Phone": null,
+            "ContactID": null,
+            "ContactType": 0,
+            "Email": "",
+            "TaxNumber": null,
+            "FaxNumber": null,
+            "Note": null,
+            "ExtendedAttributes": null
+        },
+        "ExtendedAttributes": [
+        {
+            "Name": "SourceSystem",
+            "Value": "Exact",
+            "Section": "Documents"
+        },
+        {
+            "Name": "LinkKey",
+            "Value": "1402025786",
+            "Section": "Documents"
+        },
+        {
+            "Name": "ExportedFileName",
+            "Value": "63527840656248801355782.xml",
+            "Section": "LogicBroker"
+        },
+        {
+            "Name": "Key",
+            "Value": "c4bfcaaf-76be-4d18-b2be-a10368a2d687",
+            "Section": "Documents"
+        }
+        ],
+        "TotalAmount": 624.0,
+        "Currency": null,
+        "Status": null,
+        "HandlingAmount": 0.0,
+        "HandlingTaxes": [
+        {
+            "TaxTitle": "Sales order tax",
+            "TaxCode": null,
+            "TaxAmount": 0.0,
+            "TaxRate": null
+        }
+        ],
+        "Note": null,
+        "WarehouseCode": null
+    }
+
+
+    $(document).ready(function () {
+        $.ajax({
+            url: 'https://logicbroker.azure-api.net/stage-api/v1/10633/shipments?' + $.param(params),
+            type: 'POST',
+            data: JSON.stringify(sendingData),
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json'
+        })
+        .done(function (data) {
+            alert("success");
+        })
+        .fail(function () {
+            alert("error");
+        });
+    });
+</script>
+</body>
+</html>

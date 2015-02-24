@@ -41,7 +41,6 @@ function createTable(headers, values, id){
 		return createdTable;
 	}
 };
-
 function navigateToPendingOrders(id,key){
 	$(id).on('click', function(){
 		window.location = "pending_orders.html?auth=" + key;

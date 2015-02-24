@@ -1,5 +1,10 @@
-function setBillToPage(data){
-	$('#billToCompany').append(nullTester(data.Body.SalesOrder.BillToAddress.CompanyName));
+function setGeneralDetails(data) {
+    $('#ordernumber').append(nullTester(data.Body.SalesOrder.Identifier.SourceKey));
+    $('#status').append('Submitted');
+};
+
+function setBillToPage(data) {
+    $('#billToCompany').append(nullTester(data.Body.SalesOrder.BillToAddress.CompanyName));
 	$('#billToContact').append(nullTester(data.Body.SalesOrder.BillToAddress.FirstName) + " " + nullTester(data.Body.SalesOrder.BillToAddress.LastName));
 	$('#billToAddress').append(nullTester(data.Body.SalesOrder.BillToAddress.Address1));
 	$('#billToCity').append(nullTester(data.Body.SalesOrder.BillToAddress.City));
@@ -7,6 +12,7 @@ function setBillToPage(data){
 	$('#billToZip').append(nullTester(data.Body.SalesOrder.BillToAddress.Zip));
 	$('#billToPhone').append(nullTester(data.Body.SalesOrder.BillToAddress.Phone));
 	$('#billToAddressCode').append(nullTester(data.Body.SalesOrder.BillToAddress.AddressCode));
+	$('#billToEmail').append(nullTester(data.Body.SalesOrder.ShipToAddress.Email));
 };
 
 function setShipToPage(data){
@@ -79,10 +85,11 @@ $(document).ready(function(){
         type: 'GET',
         origin: 'foo'
     })
-	.done(function(data){
+	.done(function (data) {
 		setBillToPage(data);
 		setShipToPage(data);
 		setItemsPage(data);
+		setGeneralDetails(data);
 	})
 	.fail(function() {
 		alert("Error");
