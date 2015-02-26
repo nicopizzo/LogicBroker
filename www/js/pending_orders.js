@@ -40,6 +40,8 @@ function getOrders(key) {
 			};
 			
 			allOrders.push(order);
+			//Automatically filter by default choice on load
+			filter();
         }
     })
     .fail(function () {
