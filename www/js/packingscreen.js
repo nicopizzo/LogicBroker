@@ -68,8 +68,24 @@ function refreshDragandDrop() {
 			},
 			stop: function (event, ui){
 				// event on drop
-				buildPopupQty(ui.item);
-				$('#popupQty').popup('open');
+				if(oldList != newList){
+					var maxQty = buildPopupQty(ui.item);
+					$('#popupQty').popup('open');
+					
+					$('#popupSubmit').on('click', function() {
+						var sliderValue = parseInt($('#popSlider').val());
+						if(sliderValue < maxQty){
+							splitItems(ui.item, oldList, maxQty, sliderValue);
+						}
+						$('#popupQty').popup('close');
+					});
+					
+					$('#popupClose').on('click', function() {
+						// revert changes
+						$(oldList).append(item);
+					});
+				}
+				
 			},
 		})
 	.disableSelection();
@@ -138,12 +154,28 @@ function removeContainerEvent(containerId) {
 }
 
 function buildPopupQty(item){
+	$('#popupQty').empty();
+	var popupContents = '<p>Move How Many?</p><a href="#" id="popupClose" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>';
 	var qtyIndex = item.text().indexOf('----') + 4;
 	var maxQty = item.text().substring(qtyIndex);
-	$('#popupSlider').empty();
-	var slider = '<input id="slider" type="number" data-type="range" value="' + maxQty + '" min="1" max="' + maxQty + '" />'
-	$('#popupSlider').append(slider);
+	popupContents += '<input id="popSlider" type="number" data-type="range" value="' + maxQty + '" min="1" max="' + maxQty + '" />';
+	popupContents += '<button type="button" data-mini="true" data-inline="false" id="popupSubmit">Done</button>';
+	$('#popupQty').append(popupContents);
 	$('#popupQty').trigger('create');
+	
+	return parseInt(maxQty);
+}
+
+function splitItems(item, returnList, maxQty, sliderVal){
+	// first check for like items in returnList
+	var remainingQty = maxQty - sliderVal;
+	var itemIndex = item.text().indexOf('----') + 4;
+	var remainingItem = '<li>' + item.text().substring(0,itemIndex) + remainingQty + '</li>';
+	var selectedItem = item.text().substring(0,itemIndex) + sliderVal
+	item.text(selectedItem);
+	$(returnList).append(remainingItem);
+	$('#collapsibleSet').trigger('create');
+	refreshDragandDrop();
 }
 
 // event on submit
