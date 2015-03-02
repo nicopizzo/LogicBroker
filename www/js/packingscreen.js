@@ -66,6 +66,11 @@ function refreshDragandDrop() {
 					newList = ui.placeholder.parent();
 				}
 			},
+			stop: function (event, ui){
+				// event on drop
+				buildPopupQty(ui.item);
+				$('#popupQty').popup('open');
+			},
 		})
 	.disableSelection();
 	
@@ -130,6 +135,15 @@ function removeContainerEvent(containerId) {
 	});
 	
 	$(container).remove();		
+}
+
+function buildPopupQty(item){
+	var qtyIndex = item.text().indexOf('----') + 4;
+	var maxQty = item.text().substring(qtyIndex);
+	$('#popupSlider').empty();
+	var slider = '<input id="slider" type="number" data-type="range" value="' + maxQty + '" min="1" max="' + maxQty + '" />'
+	$('#popupSlider').append(slider);
+	$('#popupQty').trigger('create');
 }
 
 // event on submit
@@ -459,5 +473,5 @@ function shipmentCreate(data) {
         "Note": null,
         "WarehouseCode": null
     }
-    alert(JSON.stringify(sendingData));
+    //alert(JSON.stringify(sendingData));
 }

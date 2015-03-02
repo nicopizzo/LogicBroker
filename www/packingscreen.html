@@ -5,10 +5,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Packing Screen</title>
-    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.css" />
-    <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script src="http://code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.js"></script>
-    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="http://code.jquery.com/ui/1.11.3/jquery-ui.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
     <script src="js/jquery.ui.touch-punch.min.js"></script>
     <script src="js/packingscreen.js"></script>
 	<script src="js/Common.js"></script>
@@ -51,6 +51,16 @@
                     </ul>
                 </div>
                 <div id="packing">
+					<!-- popup -->
+					<div id="popupQty" data-role="popup" data-position-to="window" data-dismissible="false" data-overlay-theme="a" class="ui-content">
+						<p>Move How Many?</p>
+						<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+						<div id='popupSlider'>
+						
+						</div>
+						<button type="button" data-mini="true" data-inline="false" id="popupSubmit">Done</button>
+					</div>
+					
                     <button type="button" data-mini="true" id="addContainerButton" onclick="addContainerEvent()">Add Container</button>
                     <div data-role="collapsible" data-collapsed="false">
                         <h4>Unpackaged Items</h4>
@@ -232,4 +242,9 @@
             opacity: 1.0;
         }
     }
+	
+	.ui-popup-container, .ui-popup 
+	{
+		width: 80%;
+	}	
 </style>
