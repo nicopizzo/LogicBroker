@@ -77,6 +77,7 @@ function refreshDragandDrop() {
 						if(sliderValue < maxQty){
 							splitItems(ui.item, oldList, maxQty, sliderValue);
 						}
+						combineLikeItems(newList);
 						$('#popupQty').popup('close');
 					});
 					
@@ -133,6 +134,7 @@ function removeCaseEvent(caseId) {
 	}
 	
 	$('#case' + caseId).remove();
+	combineLikeItems($('#unpackaged-items'));
 	//$('#packing').trigger('create');
 }
 	
@@ -150,7 +152,8 @@ function removeContainerEvent(containerId) {
 		}
 	});
 	
-	$(container).remove();		
+	$(container).remove();	
+	combineLikeItems($('#unpackaged-items'));
 }
 
 function buildPopupQty(item){
@@ -167,13 +170,48 @@ function buildPopupQty(item){
 }
 
 function splitItems(item, returnList, maxQty, sliderVal){
-	// first check for like items in returnList
 	var remainingQty = maxQty - sliderVal;
 	var itemIndex = item.text().indexOf('----') + 4;
 	var remainingItem = '<li>' + item.text().substring(0,itemIndex) + remainingQty + '</li>';
 	var selectedItem = item.text().substring(0,itemIndex) + sliderVal
 	item.text(selectedItem);
 	$(returnList).append(remainingItem);
+	$('#collapsibleSet').trigger('create');
+	refreshDragandDrop();
+}
+
+function combineLikeItems(itemList){
+	var items = [];
+	var qtys = [];
+	var isChanged = 0;
+	var listChildren = itemList.children();
+	for(var i = 0; i < listChildren.length; i++){
+		var itemIndex = $($(listChildren).eq(i)).text().indexOf('----');
+		var o = {
+			'sku' :  $($(listChildren).eq(i)).text().substring(0,itemIndex),
+			'qty' :  parseInt($($(listChildren).eq(i)).text().substring(itemIndex+4))
+		};
+		
+		var result = $.inArray(o['sku'],items)
+		if(result == -1){
+			items.push(o['sku']);
+			qtys.push(o['qty']);
+		}
+		else{
+			var newQty = qtys[result] + parseInt(o['qty']);
+			var newText =  $($(listChildren).eq(i)).text().substring(0,itemIndex+4) + newQty;
+			qtys[result] = newQty;
+			isChanged = 1;
+		}
+	}
+	// recreate list
+	if(isChanged == 1){
+		$(itemList).empty();
+		for(var i = 0; i < items.length; i++){
+			var itemCode = '<li>' + items[i] + '----' + qtys[i] + '</li>';
+			$(itemList).append(itemCode);
+		}
+	}
 	$('#collapsibleSet').trigger('create');
 	refreshDragandDrop();
 }
