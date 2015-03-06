@@ -5,12 +5,36 @@ function setOrderDetails(key,lbk){
         type: 'GET',
         origin: 'foo'
 	})
-	.done(function(data) {
-		var orderNumber = data.Body.SalesOrder.Identifier.SourceKey;
-		var companySource = data.Body.SalesOrder.ExtendedAttributes[0].Value;
+	.done(function (data) {
+	/* Assign Data of Interest to local variables */
+
+	  var orderNumber = data.Body.SalesOrder.Identifier.SourceKey;
+    //Assume Company Source comes from the person being billed for order (retailer)
+	  var companySource = data.Body.SalesOrder.BillToAddress.CompanyName;
+	  var orderDate = data.Body.SalesOrder.OrderDate;
+    //Loop through orders to get total items, total weight, etc
+	      var len = data.Body.SalesOrder.OrderLines.length;
+	      var totalWeight = 0.0;
+	      var totalItems = 0;
+	      for (var i = 0; i < len; i++)
+	      {
+	          var curOrder = data.Body.SalesOrder.OrderLines[i];
+            //Get number of items in this order
+	          var curQuantity = curOrder.Quantity;
+            //Get total weight of all the items in this order
+	          var curWeight = curOrder.Weight * curQuantity;
+            //Add this order's totals to the running totals
+	              totalItems += curQuantity;
+	              totalWeight += curWeight;
+	      }
+    /* Append local variables where necessary in HTML */
+
 		$('#orderNumber').append(orderNumber);
 		$('#companySource').append(companySource);
-		$('#status').append('Submitted');
+		$('#dateOrdered').append(orderDate);
+		$('#totalItems').append(totalItems);
+		$('#totalWeight').append(totalWeight);
+
 		// sets click event
 		$('#orderDetails').on('click',function() {
 			console.log('order_details.html?auth=' + key + '&lbk=' + lbk);
@@ -35,11 +59,11 @@ function setASN(key,lbk){
 	
 };
 
-//Hide & Show tables while ajax running
+//Hide tables while ajax running
 $(document).ajaxStart(function(){
 	$("table").hide();
 });
-
+//Show tables when ajax stops
 $(document).ajaxStop(function(){
 	$("table").show();
 });

@@ -2,7 +2,7 @@
 
 function getOrders(key) {	
 	var allOrders = [];
-
+    //Retrieve information via "SalesOrders- get list" for general data about all orders
     $.ajax({
         url: 'https://logicbroker.azure-api.net/stage-api/v1/0/salesorders?status=Submitted&subscription-key=' + key,
         type: 'GET',
@@ -17,7 +17,7 @@ function getOrders(key) {
 			var companySource = 'unknown';
 			var orderNumber = data.Body.SalesOrders[i].OrderNumber;
 			var status = data.Body.SalesOrders[i].Status;
-			
+			//Retrieve information via "SalesOrder-get" for a particular order
 			$.ajax({
 				url: 'https://logicbroker.azure-api.net/stage-api/v1/0/salesorders/' + lbk + '?subscription-key=' + key,
 				type: 'GET',
@@ -25,7 +25,8 @@ function getOrders(key) {
 				async: false
 			})
 			.done(function (data2) {
-			    companySource = data2.Body.SalesOrder.ExtendedAttributes[0].Value;
+                //Assume that the company source is who is being billed
+			    companySource = data2.Body.SalesOrder.BillToAddress.CompanyName;
 			})
 			.fail(function() {
 				alert('Failed to get company source');

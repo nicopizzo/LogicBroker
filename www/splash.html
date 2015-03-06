@@ -41,16 +41,22 @@
             <a href="#navigationPanel" class="ui-btn-left ui-btn ui-btn-a ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-bars ui-btn-icon-notext"></a>
             <a href="#" data-rel="back" class="ui-btn-right ui-btn ui-icon-back ui-btn-icon-notext ui-shadow ui-corner-all"  data-role="button" role="button">Back</a>
         </div>
-
+        <!--Main Content-->
         <div class="ui-grid-solo" id="navigation">
+            <!--Order Details Block-->
             <div class="ui-block-a">
+                <!--Order Details Title Bar/Navigation Button-->
                 <div class="ui-bar ui-bar-a ui-corner-all">
                     <a id="orderDetails" rel="external" data-role="button" data-icon="bullets" data-inline="true" style="width: 75%; margin: auto">Order Details</a>
                 </div>
+                <!--Contents of Order Details-->
                 <div class="ui-body ui-body-a ui-corner-all" style="height: auto">
+                    <!--Spinner that appears while AJAX running/Disappears when not-->
 					<img src="img\spinner_48x48.gif" class="spinner" />
+                    <!--Table that disappears while AJAX running/Appears when not-->
                     <table style="font-size:small; width:100%" class="ui-responsive table-stripe">
                         <tbody>
+                            <!--td Elements populated dynamically-->
                             <tr>
                                 <th>Order Number:</th>
                                 <td id='orderNumber'></td>
@@ -60,37 +66,34 @@
                                 <td id='companySource'></td>
                             </tr>
                             <tr>
-                                <th>Status:</th>
-                                <td id='status'></td>
+                                <th>Date Ordered:</th>
+                                <td id='dateOrdered'></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
-
+            <!--Packing Screen Block-->
             <div class="ui-block-a">
+                <!--Packing Screen Title Bar/Navigation Button-->
                 <div class="ui-bar ui-bar-a ui-corner-all">
                     <a id="packingScreen" rel="external" data-role="button" data-icon="shop" data-inline="true" style="width: 75%; margin: auto">Packing Menu</a>
                 </div>
+                <!--Packing Screen Block Content-->
                 <div class="ui-body ui-body-a ui-corner-all" style="height: auto">
-					<img src="img\spinner_48x48.gif" class="spinner" />
+                    <!--Spinner that appears while AJAX running/Disappears when not-->
+					          <img src="img\spinner_48x48.gif" class="spinner" />
+                    <!--Table that disappears while AJAX running/Appears when not-->
                     <table style="font-size:small; width:100%" class="ui-responsive table-stripe">
                         <tbody>
+                            <!--td Elements populated dynamically-->
                             <tr>
-                                <th>Total Containers:</th>
-                                <td>3</td>
+                                <th>Total Items:</th>
+                                <td id='totalItems'></td>
                             </tr>
                             <tr>
-                                <th>Total Cases:</th>
-                                <td>1</td>
-                            </tr>
-                            <tr>
-                                <th># Unpacked Items:</th>
-                                <td>0</td>
-                            </tr>
-                            <tr>
-                                <th>Date Packaged:</th>
-                                <td>11/01/14</td>
+                                <th>Total Weight (lbs.):</th>
+                                <td id='totalWeight'></td>
                             </tr>
                         </tbody>
                     </table>

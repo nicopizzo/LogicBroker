@@ -14,19 +14,19 @@
 #navigation .ui-block-a
 {
     height: 30%;
-	width: 75%;
+	width: 85%;
 	margin: auto;
 }
 #navigation .ui-bar-a
 {
-    /*height: 75%;
-    width: 75%;*/
 	margin: auto;
 }
 
+/*Controls the table appearances*/
 th, td
 {
-	text-align: left
+	text-align: left;
+    padding: 8px;
 }
 
 /* Load Spinner while waiting on ajax */
