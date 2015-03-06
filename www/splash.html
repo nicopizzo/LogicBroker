@@ -1,136 +1,136 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Splash Screen</title>
-    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.css" />
-    <link rel="stylesheet" type="text/css" href="css/splash.css" />
-    <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script src="http://code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="js/jquery.scrollbox.js"></script>
-	<script src="js/splash.js"></script>
-	<script src="js/Common.js"></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Splash Screen</title>
+  <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.css" />
+  <link rel="stylesheet" type="text/css" href="css/splash.css" />
+  <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+  <script src="http://code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script src="js/jquery.scrollbox.js"></script>
+  <script src="js/splash.js"></script>
+  <script src="js/Common.js"></script>
 
 </head>
 <body>
-    <div data-role="page">
-        <!-- Navigation Panel -->
-        <div data-role="panel" data-position="left" data-display="overlay"
-            data-theme="b" id="navigationPanel" data-swipe-close="false">
-            <h2><span class="ui-icon-bars ui-btn-icon-left" style="position: relative;" />Navigation</h2>
-            <h3>Current Order:</h3>
-            <ul data-role="listview" style="padding: 5%">
-                <li><a id="sideSplash" rel="external" data-rel="close"><span class="ui-icon-eye ui-btn-icon-left" style="position: relative;" />Overview</a></li>
-                <li><a id="sideOrderDetails" rel="external" data-rel="close"><span class="ui-icon-bullets ui-btn-icon-left" style="position: relative;" />Orders Details</a></li>
-                <li><a href="packingscreen.html" rel="external" data-rel="close"><span class="ui-icon-shop ui-btn-icon-left" style="position: relative;" />Packing Menu</a></li>
-                <li><a href="asn_details.html" rel="external" data-rel="close"><span class="ui-icon-tag ui-btn-icon-left" style="position: relative;" />ASN Menu</a></li>
-            </ul>
-            <h3>Misc Options:</h3>
-            <ul data-role="listview" style="padding: 5%">
-                <li><a id="sidePendingOrders" rel="external" data-rel="close"><span class="ui-icon-action ui-btn-icon-left" style="position: relative;" />Select Order</a></li>
-                <li><a href="index.html" rel="external" data-rel="close"><span class="ui-icon-power ui-btn-icon-left" style="position: relative;" />Log Out</a></li>
-            </ul>
-            </br>
-				<a href="#" data-rel="close"><span class="ui-icon-delete ui-btn-icon-left" style="position: relative;" />Hide Panel</a>
-        </div>
-        <!-- Navigation Bar -->
-        <div data-role="header" data-theme="a">
-            <h1 style="overflow:visible"><span class="ui-icon-eye ui-btn-icon-left " style="position: relative" />Overview</h1>
-            <a href="#navigationPanel" class="ui-btn-left ui-btn ui-btn-a ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-bars ui-btn-icon-notext"></a>
-            <a href="#" data-rel="back" class="ui-btn-right ui-btn ui-icon-back ui-btn-icon-notext ui-shadow ui-corner-all"  data-role="button" role="button">Back</a>
-        </div>
-        <!--Main Content-->
-        <div class="ui-grid-solo" id="navigation">
-            <!--Order Details Block-->
-            <div class="ui-block-a">
-                <!--Order Details Title Bar/Navigation Button-->
-                <div class="ui-bar ui-bar-a ui-corner-all">
-                    <a id="orderDetails" rel="external" data-role="button" data-icon="bullets" data-inline="true" style="width: 75%; margin: auto">Order Details</a>
-                </div>
-                <!--Contents of Order Details-->
-                <div class="ui-body ui-body-a ui-corner-all" style="height: auto">
-                    <!--Spinner that appears while AJAX running/Disappears when not-->
-					<img src="img\spinner_48x48.gif" class="spinner" />
-                    <!--Table that disappears while AJAX running/Appears when not-->
-                    <table style="font-size:small; width:100%" class="ui-responsive table-stripe">
-                        <tbody>
-                            <!--td Elements populated dynamically-->
-                            <tr>
-                                <th>Order Number:</th>
-                                <td id='orderNumber'></td>
-                            </tr>
-                            <tr>
-                                <th>Company Source:</th>
-                                <td id='companySource'></td>
-                            </tr>
-                            <tr>
-                                <th>Date Ordered:</th>
-                                <td id='dateOrdered'></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <!--Packing Screen Block-->
-            <div class="ui-block-a">
-                <!--Packing Screen Title Bar/Navigation Button-->
-                <div class="ui-bar ui-bar-a ui-corner-all">
-                    <a id="packingScreen" rel="external" data-role="button" data-icon="shop" data-inline="true" style="width: 75%; margin: auto">Packing Menu</a>
-                </div>
-                <!--Packing Screen Block Content-->
-                <div class="ui-body ui-body-a ui-corner-all" style="height: auto">
-                    <!--Spinner that appears while AJAX running/Disappears when not-->
-					          <img src="img\spinner_48x48.gif" class="spinner" />
-                    <!--Table that disappears while AJAX running/Appears when not-->
-                    <table style="font-size:small; width:100%" class="ui-responsive table-stripe">
-                        <tbody>
-                            <!--td Elements populated dynamically-->
-                            <tr>
-                                <th>Total Items:</th>
-                                <td id='totalItems'></td>
-                            </tr>
-                            <tr>
-                                <th>Total Weight (lbs.):</th>
-                                <td id='totalWeight'></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    
-                </div>
-            </div>
-
-            <div class="ui-block-a">
-                <div class="ui-bar ui-bar-a ui-corner-all">
-                    <a href="asn_details.html" rel="external" data-role="button" data-icon="tag" data-inline="true" style="width: 75%; margin: auto">ASN Menu</a>
-                </div>
-                <div class="ui-body ui-body-a ui-corner-all" style="height: auto">
-					<img src="img\spinner_48x48.gif" class="spinner" />
-                    <table style="font-size:small; width:100%" class="ui-responsive table-stripe">
-                        <tbody>
-                            <tr>
-                                <th>Carrier:</th>
-                                <td>UPS</td>
-                            </tr>
-                            <tr>
-                                <th>Tracking #:</th>
-                                <td>ABC1234567</td>
-                            </tr>
-                            <tr>
-                                <th>ASN #:</th>
-                                <td>ASN8319712833-004</td>
-                            </tr>
-                            <tr>
-                                <th>Date Shipped:</th>
-                                <td>11/02/14</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-
+  <div data-role="page">
+    <!-- Navigation Panel -->
+    <div data-role="panel" data-position="left" data-display="overlay"
+         data-theme="b" id="navigationPanel" data-swipe-close="false">
+      <h2><span class="ui-icon-bars ui-btn-icon-left" style="position: relative;" />Navigation</h2>
+      <h3>Current Order:</h3>
+      <ul data-role="listview" style="padding: 5%">
+        <li><a id="sideSplash" rel="external" data-rel="close"><span class="ui-icon-eye ui-btn-icon-left" style="position: relative;" />Overview</a></li>
+        <li><a id="sideOrderDetails" rel="external" data-rel="close"><span class="ui-icon-bullets ui-btn-icon-left" style="position: relative;" />Orders Details</a></li>
+        <li><a href="packingscreen.html" rel="external" data-rel="close"><span class="ui-icon-shop ui-btn-icon-left" style="position: relative;" />Packing Menu</a></li>
+        <li><a href="asn_details.html" rel="external" data-rel="close"><span class="ui-icon-tag ui-btn-icon-left" style="position: relative;" />ASN Menu</a></li>
+      </ul>
+      <h3>Misc Options:</h3>
+      <ul data-role="listview" style="padding: 5%">
+        <li><a id="sidePendingOrders" rel="external" data-rel="close"><span class="ui-icon-action ui-btn-icon-left" style="position: relative;" />Select Order</a></li>
+        <li><a href="index.html" rel="external" data-rel="close"><span class="ui-icon-power ui-btn-icon-left" style="position: relative;" />Log Out</a></li>
+      </ul>
+      </br>
+      <a href="#" data-rel="close"><span class="ui-icon-delete ui-btn-icon-left" style="position: relative;" />Hide Panel</a>
     </div>
+    <!-- Navigation Bar -->
+    <div data-role="header" data-theme="a">
+      <h1 style="overflow:visible"><span class="ui-icon-eye ui-btn-icon-left " style="position: relative" />Overview</h1>
+      <a href="#navigationPanel" class="ui-btn-left ui-btn ui-btn-a ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-bars ui-btn-icon-notext"></a>
+      <a href="#" data-rel="back" class="ui-btn-right ui-btn ui-icon-back ui-btn-icon-notext ui-shadow ui-corner-all" data-role="button" role="button">Back</a>
+    </div>
+    <!--Main Content-->
+    <div class="ui-grid-solo" id="navigation">
+      <!--Order Details Block-->
+      <div class="ui-block-a">
+        <!--Order Details Title Bar/Navigation Button-->
+        <div class="ui-bar ui-bar-a ui-corner-all">
+          <a id="orderDetails" rel="external" data-role="button" data-icon="bullets" data-inline="true" style="width: 75%; margin: auto">Order Details</a>
+        </div>
+        <!--Contents of Order Details-->
+        <div class="ui-body ui-body-a ui-corner-all" style="height: auto">
+          <!--Spinner that appears while AJAX running/Disappears when not-->
+          <img src="img\spinner_48x48.gif" class="spinner" />
+          <!--Table that disappears while AJAX running/Appears when not-->
+          <table style="font-size:small; width:100%" class="ui-responsive table-stripe">
+            <tbody>
+              <!--td Elements populated dynamically-->
+              <tr>
+                <th>Order Number:</th>
+                <td id='orderNumber'></td>
+              </tr>
+              <tr>
+                <th>Company Source:</th>
+                <td id='companySource'></td>
+              </tr>
+              <tr>
+                <th>Date Ordered:</th>
+                <td id='dateOrdered'></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <!--Packing Screen Block-->
+      <div class="ui-block-a">
+        <!--Packing Screen Title Bar/Navigation Button-->
+        <div class="ui-bar ui-bar-a ui-corner-all">
+          <a id="packingScreen" rel="external" data-role="button" data-icon="shop" data-inline="true" style="width: 75%; margin: auto">Packing Menu</a>
+        </div>
+        <!--Packing Screen Block Content-->
+        <div class="ui-body ui-body-a ui-corner-all" style="height: auto">
+          <!--Spinner that appears while AJAX running/Disappears when not-->
+          <img src="img\spinner_48x48.gif" class="spinner" />
+          <!--Table that disappears while AJAX running/Appears when not-->
+          <table style="font-size:small; width:100%" class="ui-responsive table-stripe">
+            <tbody>
+              <!--td Elements populated dynamically-->
+              <tr>
+                <th>Total Items:</th>
+                <td id='totalItems'></td>
+              </tr>
+              <tr>
+                <th>Total Weight (lbs.):</th>
+                <td id='totalWeight'></td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+
+      <div class="ui-block-a">
+        <div class="ui-bar ui-bar-a ui-corner-all">
+          <a href="asn_details.html" rel="external" data-role="button" data-icon="tag" data-inline="true" style="width: 75%; margin: auto">ASN Menu</a>
+        </div>
+        <div class="ui-body ui-body-a ui-corner-all" style="height: auto">
+          <img src="img\spinner_48x48.gif" class="spinner" />
+          <table style="font-size:small; width:100%" class="ui-responsive table-stripe">
+            <tbody>
+              <tr>
+                <th>Carrier:</th>
+                <td>UPS</td>
+              </tr>
+              <tr>
+                <th>Tracking #:</th>
+                <td>ABC1234567</td>
+              </tr>
+              <tr>
+                <th>ASN #:</th>
+                <td>ASN8319712833-004</td>
+              </tr>
+              <tr>
+                <th>Date Shipped:</th>
+                <td>11/02/14</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
 </body>
 </html>
