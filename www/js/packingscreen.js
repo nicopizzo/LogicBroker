@@ -28,7 +28,10 @@ $(document).ready(function() {
 		for (var i = 0; i < len; i++) {
 			var sku = data.Body.SalesOrder.OrderLines[i].ItemIdentifier.SupplierSKU;
 			var qty = data.Body.SalesOrder.OrderLines[i].Quantity;
+<<<<<<< HEAD
       //Adding a 5px margin on top of item to make drag n drop easier on a phone
+=======
+>>>>>>> origin/master
 			var itemToAdd = $('<li class="dragableItem" style="margin-top: 5px">' + sku + '----' + qty + '</li>');
 			$('#unpackaged-items').append(itemToAdd);
 			
@@ -149,7 +152,11 @@ function addContainerEvent() {
 function addCaseEvent(containerId) {
 		caseCount++;
 		var container = $('#container' + containerId).find('.caseCollapsibleSet');
+<<<<<<< HEAD
 		var case1 = '<div data-role="collapsible" data-collapsed="false" id="case' + caseCount + '"><h4>Case-Box ' + caseCount + '</h4><ul data-role="listview" data-inset="true" data-theme="d" class="draganddrop" style="min-height: 100px;"></ul><button type="button" data-mini="true" data-inline="true" class="removeCaseButton" onclick="removeCaseEvent(' + caseCount + ')">Remove Case</button></div>';
+=======
+		var case1 = '<div data-role="collapsible" data-collapsed="false" id="case' + caseCount + '"><h4>Case-Box ' + caseCount + '</h4><button type="button" data-mini="true" data-inline="true" class="removeCaseButton" onclick="removeCaseEvent(' + caseCount + ')">Remove Case</button><ul data-role="listview" data-inset="true" data-theme="d" class="draganddrop" style="min-height: 100px;"></ul></div>';
+>>>>>>> origin/master
 		container.append(case1);
 		$('#container' + containerId).trigger('create');
 		refreshDragandDrop();
