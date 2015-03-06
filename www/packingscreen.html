@@ -57,9 +57,10 @@
 					</div>
 					
                     <button type="button" data-mini="true" id="addContainerButton" onclick="addContainerEvent()">Add Container</button>
-                    <div data-role="collapsible" data-collapsed="false">
+                    <div id="unpackagedCollapsible" data-role="collapsible" data-collapsed="false">
                         <h4>Unpackaged Items</h4>
                         <ul data-role="listview" data-inset="true" data-theme="d" class="draganddrop" id="unpackaged-items">
+                        
 							<!-- Items go here -->
                         </ul>
                     </div>
@@ -135,36 +136,12 @@
 </html>
 
 <style>
-    /*changed for school*/
-
-    *
-    {
-        -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
-    }
-
-    body
-    {
-        -webkit-touch-callout: none;
-        -webkit-text-size-adjust: none;
-        -webkit-user-select: none;
-        background-color: #E4E4E4;
-        background-image: linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
-        background-image: -webkit-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
-        background-image: -ms-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
-        background-image: -webkit-gradient( linear, left top, left bottom, color-stop(0, #A7A7A7), color-stop(0.51, #f2edf2) );
-        background-attachment: fixed;
-        font-family: 'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
-        font-size: 12px;
-        height: 100%;
-        margin: 0px;
-        padding: 0px;
-        width: 100%;
-    }
-
+    
     #Case
     {
         margin: 4px;
     }
+    
     /*@media all and (orientation: portrait)*/
     .ui-grid-d
     {
@@ -252,5 +229,11 @@
 	.dragableItem
 	{
 		font-size: 150%;
+    border-style: solid;
+    background-color: white;
+    margin-top: 10px;
+    padding: 0;
+    display: block;
+    overflow:visible;
 	}
 </style>

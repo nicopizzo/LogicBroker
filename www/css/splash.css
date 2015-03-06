@@ -13,9 +13,12 @@
 }
 #navigation .ui-block-a
 {
-    height: 30%;
+  height: 30%;
 	width: 85%;
-	margin: auto;
+	margin-left: auto;
+  margin-right: auto;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 #navigation .ui-bar-a
 {

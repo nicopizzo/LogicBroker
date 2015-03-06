@@ -28,7 +28,8 @@ $(document).ready(function() {
 		for (var i = 0; i < len; i++) {
 			var sku = data.Body.SalesOrder.OrderLines[i].ItemIdentifier.SupplierSKU;
 			var qty = data.Body.SalesOrder.OrderLines[i].Quantity;
-			var itemToAdd = $('<li class="dragableItem">' + sku + '----' + qty + '</li>');
+      //Adding a 5px margin on top of item to make drag n drop easier on a phone
+			var itemToAdd = $('<li class="dragableItem" style="margin-top: 5px">' + sku + '----' + qty + '</li>');
 			$('#unpackaged-items').append(itemToAdd);
 			
 			// setup order items body
@@ -39,16 +40,20 @@ $(document).ready(function() {
 		var colmain = $('#collapsibleSet');
 		var collapsible = $('<div data-role="collapsible" data-collapsed="false" id="container' + containerCount +'">');
 		collapsible.append('<h4>Container 1</h4>');
-		collapsible.append('<button type="button" data-mini="true" data-inline="true" class="addCaseButton" id="addCaseButton' + containerCount + '" onclick="addCaseEvent('+containerCount+')">Add Case</button>');
-		collapsible.append('<button type="button" data-mini="true" data-inline="true" class="removeContainerButton" onclick="removeContainerEvent('+containerCount+')">Remove Container</button>');
+		
 
 		var caseSet = $('<div data-role="collapsible-set" class="caseCollapsibleSet" id="caseCollapsibleSet' + containerCount + '">');
 		var case1 = $('<div data-role="collapsible" data-collapsed="false" id="case' + caseCount + '">');
 		case1.append('<h4>Case-Box ' + caseCount + '</h4>');
-		case1.append('<button type="button" data-mini="true" data-inline="true" class="removeCaseButton" onclick="removeCaseEvent('+caseCount+')">Remove Case</button>');
-		case1.append('<ul data-role="listview" data-inset="true" data-theme="d" class="draganddrop"></ul>');
+    //Adding min-height style to make a bigger initial drag and drop target
+		case1.append('<ul data-role="listview" data-inset="true" data-theme="d" class="draganddrop" style="min-height: 100px;"></ul>');
+	  //Putting Buttons at the bottom of case to make drag and drop easier
+		case1.append('<button type="button" data-mini="true" data-inline="true" class="removeCaseButton" onclick="removeCaseEvent(' + caseCount + ')">Remove Case</button>');
 		caseSet.append(case1);
 		collapsible.append(caseSet);
+    //Putting Buttons at the bottom of container to make drag and drop easier
+		collapsible.append('<button type="button" data-mini="true" data-inline="true" class="addCaseButton" id="addCaseButton' + containerCount + '" onclick="addCaseEvent(' + containerCount + ')">Add Case</button>');
+		collapsible.append('<button type="button" data-mini="true" data-inline="true" class="removeContainerButton" onclick="removeContainerEvent(' + containerCount + ')">Remove Container</button>');
 		colmain.append(collapsible);
 		colmain.trigger('create');
 		refreshDragandDrop();
@@ -59,20 +64,32 @@ $(document).ready(function() {
 });
 
 function refreshDragandDrop() {
-	var oldList, newList, item;
+  var oldList, newList, item;
+  
 	$(".draganddrop").sortable({
 		connectWith: $('.draganddrop'),
-			start: function (event, ui) {
-				item = ui.item;
-				newList = oldList = ui.item.parent();
+		start: function (event, ui) {
+		  //jQuery object representing the current dragged element
+		  item = ui.item;
+      //Save current parent to both newList and oldList
+		  newList = oldList = ui.item.parent();
+
+		  /* Jeffs experimental code still under development */
+		  //var oldListID = ui.item.parent().attr("id");
+		  //if (oldListID === "unpackaged-items") {
+		  //  ui.item.addClass("currentlyDragging");
+		  //  //Temporarily collapse unpackaged collapsible for easier drag and drop
+		  //  $("#unpackaged-items li").not(".currentlyDragging").hide();
+		  //  $(".currentlyDragging").removeClass("currentlyDragging");
+		  //}
 			},
 			change: function (event, ui) {
 				if (ui.sender) {
-					newList = ui.placeholder.parent();
+				  newList = ui.placeholder.parent();
 				}
 			},
 			stop: function (event, ui){
-				// event on drop
+			  // event on drop
 				if(oldList != newList){
 					var maxQty = buildPopupQty(ui.item);
 					$('#popupQty').popup('open');
@@ -92,6 +109,12 @@ function refreshDragandDrop() {
 						$(oldList).append(item);
 					});
 				}
+
+        /* Jeff's Experimental Code */
+			  //if (oldListID === "unpackaged-items")
+			  //{
+			  //  $("#unpackaged-items li").not(".currentlyDragging").show();
+			  //}
 				
 			},
 		})
@@ -105,17 +128,19 @@ function addContainerEvent() {
 		var colmain = $('#collapsibleSet');
 		var collapsible = $('<div data-role="collapsible" data-collapsed="false" class="cont" id="container' + containerCount + '">');
 		collapsible.append('<h2>Container ' + containerCount + '</h2>');
-		collapsible.append('<button type="button" data-mini="true" data-inline="true" class="addCaseButton" id="addCaseButton' + containerCount + '" onclick="addCaseEvent('+containerCount+')">Add Case</button>');
-		collapsible.append('<button type="button" data-mini="true" data-inline="true" class="removeContainerButton" onclick="removeContainerEvent('+containerCount+')">Remove Container</button>');
+		
 		
 		var caseSet = $('<div data-role="collapsible-set" id="caseCollapsibleSet' + containerCount + '" class="caseCollapsibleSet">');
 		caseCount++;
 		var case1 = $('<div data-role="collapsible" data-collapsed="false" id="case' + caseCount + '">');
 		case1.append('<h4>Case-Box ' + caseCount + '</h4>');
+		case1.append('<ul data-role="listview" data-inset="true" data-theme="d" class="draganddrop" style="min-height: 100px;"></ul>');
 		case1.append('<button type="button" data-mini="true" data-inline="true" class="removeCaseButton" onclick="removeCaseEvent('+caseCount+')">Remove Case</button>');
-		case1.append('<ul data-role="listview" data-inset="true" data-theme="d" class="draganddrop"></ul>');
 		caseSet.append(case1);
 		collapsible.append(caseSet);
+    //Putting Buttons at the end to make drag and drop easier
+		collapsible.append('<button type="button" data-mini="true" data-inline="true" class="addCaseButton" id="addCaseButton' + containerCount + '" onclick="addCaseEvent(' + containerCount + ')">Add Case</button>');
+		collapsible.append('<button type="button" data-mini="true" data-inline="true" class="removeContainerButton" onclick="removeContainerEvent(' + containerCount + ')">Remove Container</button>');
 		colmain.append(collapsible);
 		colmain.trigger('create');
 		refreshDragandDrop();
@@ -124,7 +149,7 @@ function addContainerEvent() {
 function addCaseEvent(containerId) {
 		caseCount++;
 		var container = $('#container' + containerId).find('.caseCollapsibleSet');
-		var case1 = '<div data-role="collapsible" data-collapsed="false" id="case' + caseCount + '"><h4>Case-Box ' + caseCount + '</h4><button type="button" data-mini="true" data-inline="true" class="removeCaseButton" onclick="removeCaseEvent('+caseCount+')">Remove Case</button><ul data-role="listview" data-inset="true" data-theme="d" class="draganddrop"></ul></div>';
+		var case1 = '<div data-role="collapsible" data-collapsed="false" id="case' + caseCount + '"><h4>Case-Box ' + caseCount + '</h4><ul data-role="listview" data-inset="true" data-theme="d" class="draganddrop" style="min-height: 100px;"></ul><button type="button" data-mini="true" data-inline="true" class="removeCaseButton" onclick="removeCaseEvent(' + caseCount + ')">Remove Case</button></div>';
 		container.append(case1);
 		$('#container' + containerId).trigger('create');
 		refreshDragandDrop();
@@ -178,7 +203,7 @@ function buildPopupQty(item){
 function splitItems(item, returnList, maxQty, sliderVal){
 	var remainingQty = maxQty - sliderVal;
 	var itemIndex = item.text().indexOf('----') + 4;
-	var remainingItem = '<li class="dragableItem">' + item.text().substring(0,itemIndex) + remainingQty + '</li>';
+	var remainingItem = '<li class="dragableItem" style="margin-top: 5px">' + item.text().substring(0,itemIndex) + remainingQty + '</li>';
 	var selectedItem = item.text().substring(0,itemIndex) + sliderVal
 	item.text(selectedItem);
 	$(returnList).append(remainingItem);
@@ -214,7 +239,7 @@ function combineLikeItems(itemList){
 	if(isChanged == 1){
 		$(itemList).empty();
 		for(var i = 0; i < items.length; i++){
-			var itemCode = '<li class="dragableItem">' + items[i] + '----' + qtys[i] + '</li>';
+		  var itemCode = '<li class="dragableItem" style="margin-top: 5px">' + items[i] + '----' + qtys[i] + '</li>';
 			$(itemList).append(itemCode);
 		}
 	}
