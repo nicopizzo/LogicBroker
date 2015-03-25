@@ -59,6 +59,12 @@ function navigateToOrderDetails(id,key, lbk){
 	});
 };
 
+function navigateToPackingScreen(id,key, lbk) {
+    $(id).on('click', function (){
+        window.location = 'packingscreen.html?auth=' + key + '&lbk=' + lbk;
+    });
+};
+
 // Hide & Show loader spinners while waiting on ajax
 $(document).ajaxStart(function(){
 	$('IMG.spinner').attr('src', 'img/spinner_48x48.gif');

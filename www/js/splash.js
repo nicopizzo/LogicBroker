@@ -55,6 +55,7 @@ function setPacking(key,lbk){
 	});
 };
 
+
 function setASN(key,lbk){
 	
 };
@@ -75,7 +76,8 @@ $(document).ready(function(){
 	// set side navigation
 	navigateToPendingOrders('#sidePendingOrders', key);
 	navigateToSplash('#sideSplash',key,lbk);
-	navigateToOrderDetails('#sideOrderDetails',key,lbk);
+	navigateToOrderDetails('#sideOrderDetails', key, lbk);
+    navigateToPackingScreen('#sidePackingScreen', key, lbk);
 	
 	$.ajax({
 		url: 'https://logicbroker.azure-api.net/stage-api/v1/0/salesorders/' + lbk + '?subscription-key=' + key,
