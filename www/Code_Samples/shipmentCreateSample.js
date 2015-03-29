@@ -161,67 +161,6 @@ var sendingData =
       //    "PartnerSKU": "46430676", ....
       //}
   ],
-  // OUR PACKING STANDARD STARTS HERE!
-  "ShipmentLayout": {
-    "Containers": {
-      "Container": [
-        {
-          "ContainerCode": "000000001",
-          "Cases": {
-            "Case": [
-              {
-                "CaseCode": "1000000",
-                "CaseType": "Box",
-                "Items": {
-                  "Item": {
-                    "SKU": "LB-000110",
-                    "Qty": "5",
-                    "ItemDescription": "maybe have the description as an attribute?"
-                  }
-                }
-              },
-              {
-                "CaseCode": "2000000",
-                "CaseType": "Box",
-                "Items": {
-                  "Item": [
-                    {
-                      "SKU": "LB-000078",
-                      "Qty": "5",
-                      "ItemDescription": "maybe have the description as an attribute?"
-                    },
-                    {
-                      "SKU": "LB-000110",
-                      "Qty": "5",
-                      "ItemDescription": "maybe have the description as an attribute?"
-                    }
-                  ]
-                }
-              }
-            ]
-          }
-        },
-        {
-          "ContainerCode": "000000002",
-          "Cases": {
-            "Case": {
-              "CaseCode": "3000000",
-              "CaseType": "Box",
-              "Items": {
-                "Item": {
-                  "SKU": "LB-000060",
-                  "Qty": "2",
-                  "ItemDescription": "maybe have the description as an attribute?"
-                }
-              }
-            }
-          }
-        }
-      ]
-    }
-  },
-  //OUR PACKING STANDARD ENDS HERE
-
   //Available in attribute of same name
   "Identifier": {
     "SourceKey": "232591006",

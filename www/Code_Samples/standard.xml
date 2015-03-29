@@ -1,0 +1,52 @@
+<ShipmentLayout>
+	<Containers>
+		<Container>
+			<ContainerCode>000000001</ContainerCode>
+			<Cases>
+				<Case>
+					<CaseCode>1000000</CaseCode>
+					<CaseType>Box</CaseType>
+					<Items>
+						<Item>
+							<SKU>LB-000110</SKU>
+							<Qty>5</Qty>
+							<!--<ItemDescription>maybe have the description as an attribute?</ItemDescription>-->
+						</Item>
+					</Items>
+				</Case>
+				<Case>
+					<CaseCode>2000000</CaseCode>
+					<CaseType>Box</CaseType>
+					<Items>
+						<Item>
+							<SKU>LB-000078</SKU>
+							<Qty>5</Qty>
+							<!--<ItemDescription>maybe have the description as an attribute?</ItemDescription>-->
+						</Item>
+						<Item>
+							<SKU>LB-000110</SKU>
+							<Qty>5</Qty>
+							<!--<ItemDescription>maybe have the description as an attribute?</ItemDescription>-->
+						</Item>
+					</Items>
+				</Case>
+			</Cases>
+		</Container>
+		<Container>
+			<ContainerCode>000000002</ContainerCode>
+			<Cases>
+				<Case>
+					<CaseCode>3000000</CaseCode>
+					<CaseType>Box</CaseType>
+					<Items>
+						<Item>
+							<SKU>LB-000060</SKU>
+							<Qty>2</Qty>
+							<!--<ItemDescription>maybe have the description as an attribute?</ItemDescription>-->
+						</Item>
+					</Items>
+				</Case>
+			</Cases>
+		</Container>
+	</Containers>
+</ShipmentLayout>
