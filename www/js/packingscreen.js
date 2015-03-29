@@ -28,12 +28,13 @@ $(document).ready(function() {
 		for (var i = 0; i < len; i++) {
 			var sku = data.Body.SalesOrder.OrderLines[i].ItemIdentifier.SupplierSKU;
 			var qty = data.Body.SalesOrder.OrderLines[i].Quantity;
+			var description = data.Body.SalesOrder.OrderLines[i].Description;
       //Adding a 5px margin on top of item to make drag n drop easier on a phone
 			var itemToAdd = $('<li class="dragableItem" style="margin-top: 5px">' + sku + '----' + qty + '</li>');
 			$('#unpackaged-items').append(itemToAdd);
 			
 			// setup order items body
-			$('#order_items').append(createTable(["SKU","QTY","QTY Left"], [sku,qty,qty], null));
+			$('#order_items').append(createTable(["Description","SKU","QTY","QTY Left"], [description,sku,qty,qty], null));
 		}
 		
 		// drag and drop setup
@@ -254,9 +255,9 @@ function updateOrderItems(){
 	var orderItemSet = $('#order_items').children();
 	for(var i=0; i<orderItemSet.length; i++){
 		var itemTable = $(orderItemSet).eq(i).find("tr");
-		var sku = $(itemTable).eq(0).children().eq(1).text();
-		var qty = $(itemTable).eq(1).children().eq(1).text();
-		var qtyLeft = $(itemTable).eq(2).children().eq(1).text();
+		var sku = $(itemTable).eq(1).children().eq(1).text();
+		var qty = $(itemTable).eq(2).children().eq(1).text();
+		var qtyLeft = $(itemTable).eq(3).children().eq(1).text();
 		
 		var isFound = 0;
 		for(var j=0; j<unpackedItems.length; j++){
@@ -264,33 +265,80 @@ function updateOrderItems(){
 			if(sku == unpackedItems.eq(j).text().substring(0,itemIndex)){
 				isFound = 1;
 				var currentQty = unpackedItems.eq(j).text().substring(itemIndex+4);
-				$(itemTable).eq(2).children().eq(1).text(currentQty);
+				$(itemTable).eq(3).children().eq(1).text(currentQty);
 				break;
 			}
 		}
 		if(isFound == 0){
-			$(itemTable).eq(2).children().eq(1).text(0);
+			$(itemTable).eq(3).children().eq(1).text(0);
 		}
 	}
 }
 
+function findDescription(sku){
+	var description = '';
+	var orderItemSet = $('#order_items').children();
+	for(var i=0; i<orderItemSet.length; i++){
+		var itemTable = $(orderItemSet).eq(i).find("tr");
+		var testSku = $(itemTable).eq(1).children().eq(1).text();
+		if(sku == testSku){
+			description = $(itemTable).eq(0).children().eq(1).text();
+			break;
+		}
+	}
+	return description;
+}
+
 // event on submit
 function processPacking(){
-	var test = 0;
 	var containerSet = $('#collapsibleSet').children();
+	var packedItems = [];
+	var currentContainer = 10000;
+	var currentCase = 1;
 	for(var i=0; i< containerSet.length; i++){
 		var caseSet = containerSet.eq(i).find('.caseCollapsibleSet').children();
 		for(var j=0; j<caseSet.length; j++){
 			var itemsSet = caseSet.eq(j).find('ul').children();
 			for(var k=0; k<itemsSet.length; k++){
 				var curItem = itemsSet.eq(k).text();
-				//alert(curItem);
+				var skuIndex = curItem.indexOf('----');
+				var o = {
+					'sku' : curItem.substring(0,skuIndex),
+					'qty' : curItem.substring(skuIndex+4),
+					'description': findDescription(curItem.substring(0,skuIndex)),
+					'containerCode' : currentContainer,
+					'caseCode' : currentCase,
+					'caseType' : 'Box'
+				};
+				packedItems.push(o);
 			}
+			currentCase++;
 		}
-		test += caseSet.length;
+		currentContainer += 10000;
 	}
-	alert('containers=' + containerSet.length + 'cases=' + test);
+	generateXML(packedItems);
 }
 
-
+function generateXML(formattedItems){
+	var xmlDoc = '';
+	//first case-container releation
+	var shipInfos = '<ShipmentInfos>';
+	for(var i=0; i< formattedItems.length;i++){
+		shipInfos = shipInfos + '<ShipmentInfo>';
+		var curItem = formattedItems[i];
+		shipInfos = shipInfos + '<DateShipped>' + $.now() + '</DateShipped>';
+		shipInfos = shipInfos + '<CarrierCode></CarrierCode>';
+		shipInfos = shipInfos + '<ShipmentCost></ShipmentCost>';
+		shipInfos = shipInfos + '<InsuranceCost></InsuranceCost>';
+		shipInfos = shipInfos + '<ContainerCode>' + curItem['caseCode'] + '</ContainerCode>';
+		shipInfos = shipInfos + '<Qty>' + curItem['qty'] + '</Qty>';
+		shipInfos = shipInfos + '<ContainerType>' + curItem['caseType'] + '</ContainerType>';
+		shipInfos = shipInfos + '<ShipmentContainerParentCode>' + curItem['containerCode'] + '</ShipmentContainerParentCode>';
+		shipInfos = shipInfos + '</ShipmentInfo>';
+	}
+	shipInfos = shipInfos + '</ShipmentInfos>';
+	//append to xml doc
+	xmlDoc = xmlDoc + shipInfos;
+	//Next item-case releation
+}
 
