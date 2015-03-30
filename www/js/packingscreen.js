@@ -388,8 +388,8 @@ function generateShipmentInfosXML(formattedItems){
 
 function generateShipmentLinesXML(formattedItems){
 	var shipmentLinesXML = '<ShipmentLines>';
-	for(var i=0; i< formattedItems.length;i++){
-		var curItem = formattedItems[i];
+	for(var i=0; i< _itemData.length;i++){
+		var curItem = _itemData[i];
 		var curSKU = curItem['sku'];
 		var shipLine = '<ShipmentLine>';
 		shipLine = shipLine + '<ItemIdentifier><PartnerSKU>' + curSKU + '</PartnerSKU><ParentSKU></ParentSKU><UPC></UPC></ItemIdentifier>';
