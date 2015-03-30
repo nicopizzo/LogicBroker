@@ -1,5 +1,6 @@
 var containerCount = 1;
 var caseCount = 1;
+var _itemData = [];
 
 $(document).ready(function() {
 	var key = getUrlParameter('auth');
@@ -22,7 +23,7 @@ $(document).ready(function() {
 	        console.log('packing_confirmation.html?auth=' + key + '&lbk=' + lbk );
 	        window.location = 'packing_confirmation.html?auth=' + key + '&lbk=' + lbk;
 	    });
-
+		
 		//unsorted list setup
 		var len = data.Body.SalesOrder.OrderLines.length;
 		for (var i = 0; i < len; i++) {
@@ -33,6 +34,17 @@ $(document).ready(function() {
 			var itemToAdd = $('<li class="dragableItem" style="margin-top: 5px">' + sku + '----' + qty + '</li>');
 			$('#unpackaged-items').append(itemToAdd);
 			
+			// add to itemData
+			var o = {
+				'sku': sku,
+				'qty': qty,
+				'description': description,
+				'price': data.Body.SalesOrder.OrderLines[i].Price,
+				'weight': data.Body.SalesOrder.OrderLines[i].Weight,
+				'isDropShip': data.Body.SalesOrder.OrderLines[i].IsDropShip,
+				'lineNumber': data.Body.SalesOrder.OrderLines[i].LineNumber
+			};
+			_itemData.push(o);
 			// setup order items body
 			$('#order_items').append(createTable(["Description","SKU","QTY","QTY Left"], [description,sku,qty,qty], null));
 		}
@@ -42,7 +54,6 @@ $(document).ready(function() {
 		var collapsible = $('<div data-role="collapsible" data-collapsed="false" id="container' + containerCount +'">');
 		collapsible.append('<h4>Container 1</h4>');
 		
-
 		var caseSet = $('<div data-role="collapsible-set" class="caseCollapsibleSet" id="caseCollapsibleSet' + containerCount + '">');
 		var case1 = $('<div data-role="collapsible" data-collapsed="false" id="case' + caseCount + '">');
 		case1.append('<h4>Case-Box ' + caseCount + '</h4>');
@@ -129,8 +140,7 @@ function addContainerEvent() {
 		var colmain = $('#collapsibleSet');
 		var collapsible = $('<div data-role="collapsible" data-collapsed="false" class="cont" id="container' + containerCount + '">');
 		collapsible.append('<h2>Container ' + containerCount + '</h2>');
-		
-		
+	
 		var caseSet = $('<div data-role="collapsible-set" id="caseCollapsibleSet' + containerCount + '" class="caseCollapsibleSet">');
 		caseCount++;
 		var case1 = $('<div data-role="collapsible" data-collapsed="false" id="case' + caseCount + '">');
@@ -275,18 +285,16 @@ function updateOrderItems(){
 	}
 }
 
-function findDescription(sku){
-	var description = '';
-	var orderItemSet = $('#order_items').children();
-	for(var i=0; i<orderItemSet.length; i++){
-		var itemTable = $(orderItemSet).eq(i).find("tr");
-		var testSku = $(itemTable).eq(1).children().eq(1).text();
-		if(sku == testSku){
-			description = $(itemTable).eq(0).children().eq(1).text();
+function findItemDataAttribute(sku, attribute){
+	var data;
+	for(var i=0; i<_itemData.length;i++){
+		var curItem = _itemData[i];
+		if(curItem['sku'] == sku){
+			data = curItem[attribute];
 			break;
 		}
 	}
-	return description;
+	return data;
 }
 
 // event on submit
@@ -305,7 +313,6 @@ function processPacking(){
 				var o = {
 					'sku' : curItem.substring(0,skuIndex),
 					'qty' : curItem.substring(skuIndex+4),
-					'description': findDescription(curItem.substring(0,skuIndex)),
 					'containerCode' : currentContainer,
 					'caseCode' : currentCase,
 					'caseType' : 'Box'
@@ -316,16 +323,54 @@ function processPacking(){
 		}
 		currentContainer += 10000;
 	}
-	generateXML(packedItems);
+	var xml = generateXML(packedItems);
+	LoadXMLString('page2Results',xml);
 }
 
 function generateXML(formattedItems){
-	var xmlDoc = '';
-	//first case-container releation
-	var shipInfos = '<ShipmentInfos>';
+	var xmlDoc = '<Shipment>';
+	//first case-container releation(shipmentInfos)
+	xmlDoc = xmlDoc + generateShipmentInfosXML(formattedItems);
+	//Next item-case releation
+	xmlDoc = xmlDoc + generateShipmentLinesXML(formattedItems);
+	
+	xmlDoc = xmlDoc + '</Shipment>';
+	
+	return xmlDoc;
+}
+
+function generateShipmentInfosXML(formattedItems){
+	var shipInfosXML = '<ShipmentInfos>';
+	var infosSet = [];
 	for(var i=0; i< formattedItems.length;i++){
-		shipInfos = shipInfos + '<ShipmentInfo>';
 		var curItem = formattedItems[i];
+		var isFound = 0;
+		var o = {
+			'containerCode' : curItem['containerCode'],
+			'caseCode' : curItem['caseCode'],
+			'qty' : curItem['qty'],
+			'caseType' : curItem['caseType']
+		};
+		if(infosSet.length == 0){
+			infosSet.push(o);
+		}
+		else{
+			for(var j=0; j<infosSet.length;j++){
+				var infoItem = infosSet[j];
+				if(o['caseCode'] == infoItem['caseCode']){
+					isFound = 1;
+					infoItem['qty'] = parseInt(infoItem['qty']) + parseInt(o['qty']);
+					infosSet[j] = infoItem;
+				}
+			}
+			if(isFound == 0){
+				infosSet.push(o);
+			}
+		}
+	}
+	for(var i=0; i < infosSet.length; i++){
+		var curItem = infosSet[i];
+		var shipInfos = '<ShipmentInfo>';
 		shipInfos = shipInfos + '<DateShipped>' + $.now() + '</DateShipped>';
 		shipInfos = shipInfos + '<CarrierCode></CarrierCode>';
 		shipInfos = shipInfos + '<ShipmentCost></ShipmentCost>';
@@ -335,10 +380,44 @@ function generateXML(formattedItems){
 		shipInfos = shipInfos + '<ContainerType>' + curItem['caseType'] + '</ContainerType>';
 		shipInfos = shipInfos + '<ShipmentContainerParentCode>' + curItem['containerCode'] + '</ShipmentContainerParentCode>';
 		shipInfos = shipInfos + '</ShipmentInfo>';
+		shipInfosXML = shipInfosXML + shipInfos;
 	}
-	shipInfos = shipInfos + '</ShipmentInfos>';
-	//append to xml doc
-	xmlDoc = xmlDoc + shipInfos;
-	//Next item-case releation
+	shipInfosXML = shipInfosXML + '</ShipmentInfos>';
+	return shipInfosXML;
 }
 
+function generateShipmentLinesXML(formattedItems){
+	var shipmentLinesXML = '<ShipmentLines>';
+	for(var i=0; i< formattedItems.length;i++){
+		var curItem = formattedItems[i];
+		var curSKU = curItem['sku'];
+		var shipLine = '<ShipmentLine>';
+		shipLine = shipLine + '<ItemIdentifier><PartnerSKU>' + curSKU + '</PartnerSKU><ParentSKU></ParentSKU><UPC></UPC></ItemIdentifier>';
+		shipLine = shipLine + '<Price>' + findItemDataAttribute(curSKU, 'price') + '</Price>';
+		shipLine = shipLine + '<Description>' + findItemDataAttribute(curSKU, 'description') + '</Description>';
+		shipLine = shipLine + '<ShipmentInfos>';
+		// iterate each shipmentInfos
+		for(var j=0; j<formattedItems.length;j++){
+			var curPackedItem = formattedItems[j];
+			if(curPackedItem['sku'] == curSKU){
+				shipLine = shipLine + '<ShipmentInfo>';
+				shipLine = shipLine + '<CarrierCode></CarrierCode>';
+				shipLine = shipLine + '<DateShipped>' + $.now() + '</DateShipped>';
+				shipLine = shipLine + '<ShipmentCost></ShipmentCost><InsuranceCost></InsuranceCost>';
+				shipLine = shipLine + '<ContainerCode>' + curPackedItem['caseCode'] + '</ContainerCode>';
+				shipLine = shipLine + '<Qty>' + curPackedItem['qty'] + '</Qty>';
+				shipLine = shipLine + '</ShipmentInfo>';
+			}
+		}
+		shipLine = shipLine + '</ShipmentInfos>';
+		shipLine = shipLine + '<IsDropShip>' + findItemDataAttribute(curSKU, 'isDropShip') + '</IsDropShip>';
+		shipLine = shipLine + '<Quantity>' + findItemDataAttribute(curSKU, 'qty') + '</Quantity>';
+		shipLine = shipLine + '<Weight>' + findItemDataAttribute(curSKU, 'weight') + '</Weight>';
+		shipLine = shipLine + '<ExtendedAttributes></ExtendedAttributes>'
+		shipLine = shipLine + '</ShipmentLine>';
+		shipmentLinesXML = shipmentLinesXML + shipLine;
+	}
+	
+	shipmentLinesXML = shipmentLinesXML + '</ShipmentLines>';
+	return shipmentLinesXML;
+}

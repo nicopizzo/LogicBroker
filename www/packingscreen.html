@@ -6,10 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Packing Screen</title>
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+	<link rel="stylesheet" href="css/XMLDisplay.css" />
 	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 	<script src="http://code.jquery.com/ui/1.11.3/jquery-ui.min.js"></script>
 	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
     <script src="js/jquery.ui.touch-punch.min.js"></script>
+	<script src="js/XMLDisplay.js"></script>
     <script src="js/packingscreen.js"></script>
 	<script src="js/Common.js"></script>
 </head>
@@ -123,7 +125,7 @@
             </div>
         </div>
         <div data-role="footer" class="ui-bar">
-            <div align="right" data-inline="true"><a onclick="processPacking()" rel="external" data-role="button">Submit</a></div>
+            <div align="right" data-inline="true"><a onclick="processPacking()" href="#page2" data-role="button">Submit</a></div>
         </div>
 
         <!-- Temporary button to bring us to packing confirmation page -->
@@ -132,6 +134,20 @@
         </div>
 
     </div>
+	
+	<div data-role="page" id="page2">
+		<div data-role="header">
+			<h1>Result Page</h1>
+		</div>
+		
+		<div role="main" class="ui-content">
+			<a href="#page1" data-role="button">Go Back</a>
+			
+			<div id="page2Results">
+		
+			</div>
+		</div>
+	</div>
 </body>
 </html>
 
