@@ -4,7 +4,7 @@ function getOrders(key) {
 	var allOrders = [];
     //Retrieve information via "SalesOrders- get list" for general data about all orders
     $.ajax({
-        url: 'https://logicbroker.azure-api.net/stage-api/v1/0/salesorders?status=Submitted&subscription-key=' + key,
+        url: 'https://logicbroker.azure-api.net/stage-api/v1/15056/salesorders?status=Submitted&subscription-key=' + key,
         type: 'GET',
         origin: 'foo'
     })
@@ -18,8 +18,8 @@ function getOrders(key) {
 			var orderNumber = data.Body.SalesOrders[i].OrderNumber;
 			var status = data.Body.SalesOrders[i].Status;
 			//Retrieve information via "SalesOrder-get" for a particular order
-			$.ajax({
-				url: 'https://logicbroker.azure-api.net/stage-api/v1/0/salesorders/' + lbk + '?subscription-key=' + key,
+            $.ajax({
+				url: 'https://logicbroker.azure-api.net/stage-api/v1/15056/salesorders/' + lbk + '?subscription-key=' + key,
 				type: 'GET',
 				origin: 'foo',
 				async: false

@@ -28,8 +28,9 @@ $(document).ready(function () {
 });
 
 function authenticate(user,pass) {
-	// do authentication process and return key
-	var key = '36bc998ba68b49488cacd8d72440fb33';
+    // do authentication process and return key
+    // Sub Key = FEEP perspective
+    var key = '90e2715c9f494de6b1f2190baf7228ca';
 	var authpass = 1;
 	if(authpass == 1){
 		window.location = "pending_orders.html?auth=" + key;

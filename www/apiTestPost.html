@@ -1,4 +1,4 @@
-﻿!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
 <title>JSSample</title>
@@ -7,20 +7,23 @@
 <body>
 <script type="text/javascript">
     var params = {
-        // Specify your subscription key
-        'subscription-key': '36bc998ba68b49488cacd8d72440fb33',
-        'CoId': 15056
+        // SlurpTest2 Sub Key = 36bc998ba68b49488cacd8d72440fb33
+        // FeepTest Sub Key = 90e2715c9f494de6b1f2190baf7228ca
+        // SLURP CoId - 15056
+        // FEEP CoId - 17052
+        'subscription-key': '90e2715c9f494de6b1f2190baf7228ca',
+        'CoId': 17052
+        
     };
     //Cppied from the developer portal more or less orderNumber and logicbroker key have been switched
     var sendingData =
     {
-      "ShipFromAddress":
-      {
-            "CompanyName": "fjdjdjf",
-            "FirstName": "KC",
-            "LastName": "Philcox",
+        "ShipFromAddress": {
+            "CompanyName": "FEEP",
+            "FirstName": null,
+            "LastName": null,
             "Title": null,
-            "Address1": "1111 Test Post Drive",
+            "Address1": "10 UIT Way",
             "Address2": null,
             "City": "Beacon Falls",
             "State": "CT",
@@ -43,13 +46,51 @@
         "ExpectedDeliveryDate": "2014-03-10T00:00:00",
         "InvoiceNumber": "",
         "ShipmentNumber": "232591006",
-        "ShipmentLines":
-        [
+        "ShipmentLines": [
           {
-            "ItemIdentifier":
-             {
-                  "SupplierSKU": null,
-                  "PartnerSKU": "46430663",
+              "ItemIdentifier": {
+                  "SupplierSKU": "LB-000110",
+                  "PartnerSKU": null,
+                  "ParentSKU": "",
+                  "ManufacturerSKU": null,
+                  "ExternalSKU": null,
+                  "ASIN": null,
+                  "UPC": "",
+                  "ISBN": null,
+                  "SerialNumber": null
+              },
+              "Price": 0,
+              "Cost": 0,
+              "MSRP": 0,
+              "Description": "apparently",
+              "Discounts": null,
+              "ShipmentInfos": [
+                {
+                    "DateShipped": null,
+                    "CarrierCode": "UNSP",
+                    "ClassCode": null,
+                    "TrackingNumber": null,
+                    "ShippingDiscounts": null,
+                    "SellerFullfillmentId": null,
+                    "ShipmentCost": 156,
+                    "ShipmentTaxes": null,
+                    "InsuranceCost": 0
+                }
+              ],
+              "Taxes": null,
+              "WarehouseCode": null,
+              "ShippingAddress": null,
+              "IsDropShip": false,
+              "Quantity": 24,
+              "LineNumber": 1,
+              "Weight": 0,
+              "WeightUOM": null,
+              "ExtendedAttributes": []
+          },
+          {
+              "ItemIdentifier": {
+                  "SupplierSKU": "LB-000078",
+                  "PartnerSKU": null,
                   "ParentSKU": "",
                   "ManufacturerSKU": null,
                   "ExternalSKU": null,
@@ -59,189 +100,51 @@
                   "SerialNumber": null
               },
               "Price": 6.5,
-              "Cost": 0.0,
-              "MSRP": 0.0,
-              "Description": "Camera accessories",
+              "Cost": 0,
+              "MSRP": 0,
+              "Description": "this is required",
               "Discounts": null,
-              "ShipmentInfos":
-              [
+              "ShipmentInfos": [
                 {
-                    "DateShipped": null,
+                    "DateShipped": "2014-09-30T16:00:00",
                     "CarrierCode": "UNSP",
                     "ClassCode": null,
                     "TrackingNumber": null,
                     "ShippingDiscounts": null,
                     "SellerFullfillmentId": null,
-                    "ShipmentCost": 156.0,
+                    "ShipmentCost": 156,
                     "ShipmentTaxes": null,
-                    "InsuranceCost": 0.0
+                    "InsuranceCost": 0
                 }
               ],
-            "Taxes": null,
-            "WarehouseCode": null,
-            "ShippingAddress": null,
-            "IsDropShip": false,
-            "Quantity": 24,
-            "LineNumber": 1,
-            "Weight": 0.0,
-            "WeightUOM": null,
-            "ExtendedAttributes":
-            [
-              {
-                  "Name": "Color",
-                  "Value": "BLACK",
-                  "Section": "LogicBroker"
-              },
-              {
-                  "Name": "ParentSkuUOM",
-                  "Value": "EA",
-                  "Section": "LogicBroker"
-              },
-              {
-                  "Name": "Size Code",
-                  "Value": "8",
-                  "Section": "LogicBroker"
-              },
-              {
-                  "Name": "StyleNumber",
-                  "Value": "08-15244",
-                  "Section": "LogicBroker"
-              },
-              {
-                  "Name": "StyleQualifier",
-                  "Value": "IT",
-                  "Section": "LogicBroker"
-              },
-              {
-                  "Name": "053",
-                  "Value": "24",
-                  "Section": "SDQ1"
-              }
-            ]
-        },
-        {
-            "ItemIdentifier": {
-                "SupplierSKU": null,
-                "PartnerSKU": "46430676",
-                "ParentSKU": "",
-                "ManufacturerSKU": null,
-                "ExternalSKU": null,
-                "ASIN": null,
-                "UPC": "",
-                "ISBN": null,
-                "SerialNumber": null
-            },
-            "Price": 6.5,
-            "Cost": 0.0,
-            "MSRP": 0.0,
-            "Description": "Refill pack",
-            "Discounts": null,
-            "ShipmentInfos": [
-            {
-                "DateShipped": "2014-09-30T16:00:00",
-                "CarrierCode": "UNSP",
-                "ClassCode": null,
-                "TrackingNumber": null,
-                "ShippingDiscounts": null,
-                "SellerFullfillmentId": null,
-                "ShipmentCost": 156.0,
-                "ShipmentTaxes": null,
-                "InsuranceCost": 0.0
-            }
-            ],
-            "Taxes": null,
-            "WarehouseCode": null,
-            "ShippingAddress": null,
-            "IsDropShip": null,
-            "Quantity": 24,
-            "LineNumber": 1,
-            "Weight": 0.0,
-            "WeightUOM": null,
-            "ExtendedAttributes": [
-            {
-                "Name": "Color",
-                "Value": "BLACK",
-                "Section": "LogicBroker"
-            },
-            {
-                "Name": "ParentSkuUOM",
-                "Value": "EA",
-                "Section": "LogicBroker"
-            },
-            {
-                "Name": "Size Code",
-                "Value": "10",
-                "Section": "LogicBroker"
-            },
-            {
-                "Name": "StyleNumber",
-                "Value": "08-15244",
-                "Section": "LogicBroker"
-            },
-            {
-                "Name": "StyleQualifier",
-                "Value": "IT",
-                "Section": "LogicBroker"
-            },
-            {
-                "Name": "053",
-                "Value": "24",
-                "Section": "SDQ1"
-            }
-            ]
-        }
+              "Taxes": null,
+              "WarehouseCode": null,
+              "ShippingAddress": null,
+              "IsDropShip": null,
+              "Quantity": 24,
+              "LineNumber": 1,
+              "Weight": 0,
+              "WeightUOM": null,
+              "ExtendedAttributes": []
+          }
         ],
         "Identifier": {
-            "SourceKey": "232591006",
-            "LogicbrokerKey": "36",
+            "SourceKey": "OR1410013665-001",
+            "LogicbrokerKey": 25,
             "DestinationKey": null,
-            "LinkKey": "1402025786"
+            "LinkKey": "1410013665"
         },
-        "OrderNumber": "OR1412014793-001",
-        "PartnerPO": "232591006",
+        "OrderNumber": "OR1410013665-001",
+        "PartnerPO": "OR1410013665-001",
         "SupplierPO": null,
         "OrderDate": "2014-02-12T00:00:00",
         "Discounts": null,
         "Taxes": null,
         "Payments": null,
-        "PaymentTerm": {
-            "TermsDescription": "CC Payment in ship",
-            "PayInNumberOfDays": 0
-        },
-        "ShipmentInfos": [
-        {
-            "DateShipped": "2014-09-30T16:00:00",
-            "CarrierCode": "UNSP",
-            "ClassCode": "UNSP",
-            "TrackingNumber": null,
-            "ShippingDiscounts": null,
-            "SellerFullfillmentId": null,
-            "ShipmentCost": 0.0,
-            "ShipmentTaxes": null,
-            "InsuranceCost": 0.0,
-            "ContainerCode": "008103400142178605",
-            "Qty": 0,
-            "ContainerType": "Box",
-            "ShipmentContainerParentCode": "008103400121403032"
-        },
-        {
-            "DateShipped": "2014-09-30T16:00:00",
-            "CarrierCode": "UNSP",
-            "ClassCode": "UNSP",
-            "TrackingNumber": null,
-            "ShippingDiscounts": null,
-            "SellerFullfillmentId": null,
-            "ShipmentCost": 0.0,
-            "ShipmentTaxes": null,
-            "InsuranceCost": 0.0,
-            "ContainerCode": "008103400142178674",
-            "Qty": 0,
-            "ContainerType": "Box",
-            "ShipmentContainerParentCode": "008103400121403032"
-        }
-        ],
+        "PaymentTerm": null,
+        "ShipmentInfos": null,
         "ShipToAddress": {
-            "CompanyName": "Company",
+            "CompanyName": "Burlington Coat Factory",
             "FirstName": null,
             "LastName": null,
             "Title": null,
@@ -288,40 +191,12 @@
             "Note": null,
             "ExtendedAttributes": null
         },
-        "ExtendedAttributes": [
-        {
-            "Name": "SourceSystem",
-            "Value": "Exact",
-            "Section": "Documents"
-        },
-        {
-            "Name": "LinkKey",
-            "Value": "1402025786",
-            "Section": "Documents"
-        },
-        {
-            "Name": "ExportedFileName",
-            "Value": "63527840656248801355782.xml",
-            "Section": "LogicBroker"
-        },
-        {
-            "Name": "Key",
-            "Value": "c4bfcaaf-76be-4d18-b2be-a10368a2d687",
-            "Section": "Documents"
-        }
-        ],
-        "TotalAmount": 624.0,
+        "ExtendedAttributes": null,
+        "TotalAmount": 624,
         "Currency": null,
         "Status": null,
-        "HandlingAmount": 0.0,
-        "HandlingTaxes": [
-        {
-            "TaxTitle": "Sales order tax",
-            "TaxCode": null,
-            "TaxAmount": 0.0,
-            "TaxRate": null
-        }
-        ],
+        "HandlingAmount": 0,
+        "HandlingTaxes": null,
         "Note": null,
         "WarehouseCode": null
     }
@@ -329,7 +204,8 @@
 
     $(document).ready(function () {
         $.ajax({
-            url: 'https://logicbroker.azure-api.net/stage-api/v1/10633/shipments?' + $.param(params),
+            //changed URL with updated FEEP CoId
+            url: 'https://logicbroker.azure-api.net/stage-api/v1/15056/shipments?' + $.param(params),
             type: 'POST',
             data: JSON.stringify(sendingData),
             contentType: 'application/json; charset=utf-8',

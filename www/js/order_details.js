@@ -81,7 +81,7 @@ $(document).ready(function(){
 	navigateToOrderDetails('#sideOrderDetails',key,lbk);
 	
 	$.ajax({
-        url: 'https://logicbroker.azure-api.net/stage-api/v1/0/salesorders/' + lbk + '?subscription-key=' + key,
+        url: 'https://logicbroker.azure-api.net/stage-api/v1/15056/salesorders/' + lbk + '?subscription-key=' + key,
         type: 'GET',
         origin: 'foo'
     })
