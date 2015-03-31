@@ -28,8 +28,8 @@
         .done(function (data) {
             alert("success- shipment get list - where are they!!!");
             var len = data.Body.Shipments.length;
-            for (var i = 0; i <= len; i++) {
-               $("#shipmentlist").append(data.Body.Shipments.Shipment[i].ShipmentNumber + "<br>" + data.Body.Shipments.Shipment[i].LogicbrokerKey + "<br><br>");
+            for (var i = 0; i < len; i++) {
+               $("#shipmentlist").append(data.Body.Shipments[i].ShipmentNumber + "<br>" + data.Body.Shipments[i].LogicbrokerKey + "<br><br>");
             }
         })
         .fail(function () {
