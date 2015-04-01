@@ -41,6 +41,34 @@ function createTable(headers, values, id){
 		return createdTable;
 	}
 };
+
+function getLogicbrokerTime(){
+	var d = new Date(Date.now());
+	var year = d.getFullYear();
+	var month = d.getMonth();
+	var date = d.getDate();
+	var hours = d.getHours();
+	var mins = d.getMinutes();
+	var secs = d.getSeconds();
+	if(parseInt(month) < 10){
+		month = '0' + month;
+	}
+	if(parseInt(date) < 10){
+		date = '0' + date;
+	}
+	if(parseInt(hours) < 10){
+		hours = '0' + hours;
+	}
+	if(parseInt(mins) < 10){
+		mins = '0' + mins;
+	}
+	if(parseInt(secs) < 10){
+		secs = '0' + secs;
+	}
+	var formattedTime = year + "-" + month + "-" + date + "TT" + hours + ":" + mins + ":" + secs;
+	return formattedTime;
+};
+
 function navigateToPendingOrders(id,key){
 	$(id).on('click', function(){
 		window.location = "pending_orders.html?auth=" + key;

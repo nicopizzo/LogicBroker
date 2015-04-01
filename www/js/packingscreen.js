@@ -371,7 +371,7 @@ function generateShipmentInfosXML(formattedItems){
 	for(var i=0; i < infosSet.length; i++){
 		var curItem = infosSet[i];
 		var shipInfos = '<ShipmentInfo>';
-		shipInfos = shipInfos + '<DateShipped>' + $.now() + '</DateShipped>';
+		shipInfos = shipInfos + '<DateShipped>' + getLogicbrokerTime() + '</DateShipped>';
 		shipInfos = shipInfos + '<CarrierCode></CarrierCode>';
 		shipInfos = shipInfos + '<ShipmentCost></ShipmentCost>';
 		shipInfos = shipInfos + '<InsuranceCost></InsuranceCost>';
@@ -402,7 +402,7 @@ function generateShipmentLinesXML(formattedItems){
 			if(curPackedItem['sku'] == curSKU){
 				shipLine = shipLine + '<ShipmentInfo>';
 				shipLine = shipLine + '<CarrierCode></CarrierCode>';
-				shipLine = shipLine + '<DateShipped>' + $.now() + '</DateShipped>';
+				shipLine = shipLine + '<DateShipped>' + getLogicbrokerTime() + '</DateShipped>';
 				shipLine = shipLine + '<ShipmentCost></ShipmentCost><InsuranceCost></InsuranceCost>';
 				shipLine = shipLine + '<ContainerCode>' + curPackedItem['caseCode'] + '</ContainerCode>';
 				shipLine = shipLine + '<Qty>' + curPackedItem['qty'] + '</Qty>';
