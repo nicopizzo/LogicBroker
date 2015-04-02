@@ -29,7 +29,7 @@
             alert("success- shipment get list - where are they!!!");
             var len = data.Body.Shipments.length;
             for (var i = 0; i < len; i++) {
-               $("#shipmentlist").append(data.Body.Shipments[i].ShipmentNumber + "<br>" + data.Body.Shipments[i].LogicbrokerKey + "<br><br>");
+               $("#shipmentlist").append("Shipment Number: " + data.Body.Shipments[i].ShipmentNumber + "<br>" + "LogicbrokerKey: " + data.Body.Shipments[i].LogicbrokerKey + "<br><br>");
             }
         })
         .fail(function () {
