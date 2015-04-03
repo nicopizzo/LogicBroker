@@ -297,7 +297,8 @@ function findItemDataAttribute(sku, attribute){
 	return data;
 }
 
-// event on submit
+//Returns an object containing string xml representation of shipmentLines & ShipmentInfos 
+//based on packing configuration on submit
 function processPacking(){
 	var containerSet = $('#collapsibleSet').children();
 	var packedItems = [];
@@ -323,21 +324,150 @@ function processPacking(){
 		}
 		currentContainer += 10000;
 	}
-	var xml = generateXML(packedItems);
-	LoadXMLString('page2Results',xml);
+  //Object containing string versions of shipmentInfos & shipmentLines xml
+	var dynamicPackingXML =
+  {
+    shipmentInfos: generateShipmentInfosXML(packedItems),
+    shipmentLines: generateShipmentLinesXML(packedItems)
+  };
+	return dynamicPackingXML;
 }
 
-function generateXML(formattedItems){
-	var xmlDoc = '<Shipment>';
-	//first case-container releation(shipmentInfos)
-	xmlDoc = xmlDoc + generateShipmentInfosXML(formattedItems);
-	//Next item-case releation
-	xmlDoc = xmlDoc + generateShipmentLinesXML(formattedItems);
-	
-	xmlDoc = xmlDoc + '</Shipment>';
-	
-	return xmlDoc;
+//Takes an object containing data required to be input by user of app (shipFrom attributes etc.)
+//and data in xml format acquired from salesOrder-GET. Combines data from these inputs with packaging
+//arrangement data on packing screen to create the final XML needed to post back to the API using shipment-CREATE method
+function combineXMLInfo(userInput, salesOrderGetDataXML)
+{
+  var packingXML = processPacking();
+  var xml = salesOrderGetDataXML;
+  var staticXML =
+    "<Shipment>" +
+      $(xml).find('Identifier').prop('outerHTML') +
+      $(xml).find('PartnerPO').prop('outerHTML') +
+      $(xml).find('OrderDate').prop('outerHTML') +
+      $(xml).find('PaymentTerm').prop('outerHTML') +
+      //INSERT DYNAMIC NICO CODE HERE 'ShipmentInfos'
+      packingXML.shipmentInfos + 
+        "<ShipToAddress>" +
+          $(xml).find('ShipToAddress').find('CompanyName').prop('outerHTML') +
+          $(xml).find('ShipToAddress').find('Address1').prop('outerHTML') +
+          $(xml).find('ShipToAddress').find('City').prop('outerHTML') +
+          $(xml).find('ShipToAddress').find('State').prop('outerHTML') +
+          $(xml).find('ShipToAddress').find('Zip').prop('outerHTML') +
+          $(xml).find('ShipToAddress').find('ContactType').prop('outerHTML') +
+        "</ShipToAddress>" +
+        "<BillToAddress>" +
+          $(xml).find('BillToAddress').find('CompanyName').prop('outerHTML') +
+          $(xml).find('BillToAddress').find('Address1').prop('outerHTML') +
+          $(xml).find('BillToAddress').find('Address2').prop('outerHTML') +
+          $(xml).find('BillToAddress').find('City').prop('outerHTML') +
+          $(xml).find('BillToAddress').find('State').prop('outerHTML') +
+          $(xml).find('BillToAddress').find('Zip').prop('outerHTML') +
+          //WHERE DO I FIND ADDRESS CODE?! Not available in from SalesOrder-GET.
+          //$(xml).find('BillToAddress').find('AddressCode').prop('outerHTML') +
+          //Adding empty xml object for now
+            "<AddressCode></AddressCode>" +
+          $(xml).find('BillToAddress').find('ContactType').prop('outerHTML') +
+          $(xml).find('BillToAddress').find('Email').prop('outerHTML') +
+        "</BillToAddress>" +
+      $(xml).find('ExtendedAttributes').prop('outerHTML') +
+      $(xml).find('TotalAmount').prop('outerHTML') +
+      $(xml).find('HandlingAmount').prop('outerHTML') +
+      $(xml).find('OrderDate').prop('outerHTML') +
+      //This section populates with info input by user of app 
+      "<ShipFromAddress>" +
+        "<CompanyName>" + userInput.CompanyName + "</CompanyName>" +
+        "<Address1>" + userInput.Address1 + "</Address1>" +
+        "<City>" + userInput.City + "</City>" +
+        "<State>" + userInput.State + "</State>" +
+        "<Country>" + userInput.Country + "</Country>" +
+        "<Zip>" + userInput.Zip + "</Zip>" +
+        "<Phone>" + userInput.Phone + "</Phone>" +
+        "<ContactType>" + userInput.ContactType + "</ContactType>" +
+      "</ShipFromAddress>" +
+      //Need to insert a time stamp formated in logicbroker standard 2014-03-03T00:00:00
+      "<ShipmentDate>" +
+        userInput.shipmentDate +
+      "</ShipmentDate>" +
+      //ExpectedDeliveryDate needs to be input by user
+      "<ExpectedDeliveryDate>" +
+        userInput.expectedDeliveryDate +
+      "</ExpectedDeliveryDate>" +
+      //Invoice Number is something the user needs to put in
+      "<InvoiceNumber>" +
+        userInput.invoiceNumber +
+      "</InvoiceNumber>" +
+      //Shipment Number is something the user needs to put in
+      "<ShipmentNumber>" +
+        userInput.shipmentNumber +
+      "</ShipmentNumber>" +
+      //DYNAMIC NICO CODE HERE ShipmentLines
+      packingXML.shipmentLines +
+    "</Shipment>";
+  return staticXML
 }
+
+//Triggered on submit button press, returns final XML
+//Also temporarily brings user to page 2 showing final XML in outline
+function generateXML()
+{
+  //Value is ERROR as default, changed to string version of XML if all goes well
+  var generatedXML = "ERROR";
+  var key = getUrlParameter('auth');
+  var lbk = getUrlParameter('lbk');
+  var params = {
+    // Specify your subscription key
+    'subscription-key': key,
+    'CoId': 17052
+  };
+  //Used as temporary replacement for real user info we acquire from FEEP via the app
+  var dummyUserInfo =
+  {
+    CompanyName: "FEEP",
+    Address1: "1221 East Dyer Rd",
+    City: "Santa Ana",
+    State: "CA",
+    Country: "USA",
+    Zip: "92715",
+    Phone: "203-907-7385",
+    ContactType: "Customer",
+    shipmentNumber: 5555,
+    invoiceNumber: "1234567890",
+    shipmentDate: "2014-03-03T00:00:00",
+    expectedDeliveryDate: "2014-03-10T00:00:00",
+  };
+  $.ajax({
+    url: 'https://logicbroker.azure-api.net/stage-api/v1/15056/salesorders/' + lbk + '?subscription-key=' + key,
+    type: 'GET',
+    origin: 'foo',
+    dataType: 'xml'
+  })
+  .done(function (data) {
+    alert("success - get XML");
+    var generatedXML = combineXMLInfo(dummyUserInfo, data);
+    LoadXMLString('page2Results', generatedXML);
+    
+
+  })
+  .fail(function () {
+    alert("Error on XML get");
+  });
+
+  return generatedXML;
+}
+
+//NICOS Version!!!!
+//function generateXML(formattedItems){
+//	var xmlDoc = '<Shipment>';
+//	//first case-container releation(shipmentInfos)
+//	xmlDoc = xmlDoc + generateShipmentInfosXML(formattedItems);
+//	//Next item-case releation
+//	xmlDoc = xmlDoc + generateShipmentLinesXML(formattedItems);
+	
+//	xmlDoc = xmlDoc + '</Shipment>';
+
+//	return xmlDoc;
+//}
 
 function generateShipmentInfosXML(formattedItems){
 	var shipInfosXML = '<ShipmentInfos>';
