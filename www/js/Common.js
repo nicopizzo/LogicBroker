@@ -65,7 +65,7 @@ function getLogicbrokerTime(){
 	if(parseInt(secs) < 10){
 		secs = '0' + secs;
 	}
-	var formattedTime = year + "-" + month + "-" + date + "TT" + hours + ":" + mins + ":" + secs;
+	var formattedTime = year + "-" + month + "-" + date + "T" + hours + ":" + mins + ":" + secs;
 	return formattedTime;
 };
 

@@ -447,6 +447,7 @@ function generateXML()
     var generatedXML = combineXMLInfo(dummyUserInfo, data);
     LoadXMLString('page2Results', generatedXML);
     
+	postShipmentCreate(generatedXML);
 
   })
   .fail(function () {
@@ -454,6 +455,34 @@ function generateXML()
   });
 
   return generatedXML;
+}
+
+function postShipmentCreate(sendingXML){
+	 var params = {
+        // SlurpTest2 Sub Key = 36bc998ba68b49488cacd8d72440fb33
+        // FeepTest Sub Key = 90e2715c9f494de6b1f2190baf7228ca
+        // SLURP CoId - 15056
+        // FEEP CoId - 17052
+        'subscription-key': '90e2715c9f494de6b1f2190baf7228ca',
+        'CoId': 17052
+        
+    };
+
+	$.ajax({
+            //changed URL with updated FEEP CoId
+            url: 'https://logicbroker.azure-api.net/stage-api/v1/15056/shipments?' + $.param(params),
+            type: 'POST',
+            data: sendingXML,
+            contentType: 'application/xml; charset=utf-8',
+            dataType: 'xml'
+        })
+        .done(function (data) {
+			var test = data;
+            alert("success");
+        })
+        .fail(function () {
+            alert("error");
+        });
 }
 
 //NICOS Version!!!!
