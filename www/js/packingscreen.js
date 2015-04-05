@@ -345,7 +345,8 @@ function combineXMLInfo(userInput, salesOrderGetDataXML)
       $(xml).find('Identifier').prop('outerHTML') +
       $(xml).find('PartnerPO').prop('outerHTML') +
       $(xml).find('OrderDate').prop('outerHTML') +
-      $(xml).find('PaymentTerm').prop('outerHTML') +
+      //$(xml).find('PaymentTerm').prop('outerHTML') +
+	  '<PaymentTerm><PayInNumberOfDays>0</PayInNumberOfDays><TermsDescription>CC Payment in ship</TermsDescription></PaymentTerm>' +
       //INSERT DYNAMIC NICO CODE HERE 'ShipmentInfos'
       packingXML.shipmentInfos + 
         "<ShipToAddress>" +
@@ -440,7 +441,8 @@ function generateXML()
     url: 'https://logicbroker.azure-api.net/stage-api/v1/15056/salesorders/' + lbk + '?subscription-key=' + key,
     type: 'GET',
     origin: 'foo',
-    dataType: 'xml'
+    dataType: 'xml',
+	async: 'false'
   })
   .done(function (data) {
     alert("success - get XML");
@@ -454,18 +456,11 @@ function generateXML()
     alert("Error on XML get");
   });
 
-  return generatedXML;
 }
 
 function postShipmentCreate(sendingXML){
 	 var params = {
-        // SlurpTest2 Sub Key = 36bc998ba68b49488cacd8d72440fb33
-        // FeepTest Sub Key = 90e2715c9f494de6b1f2190baf7228ca
-        // SLURP CoId - 15056
-        // FEEP CoId - 17052
         'subscription-key': '90e2715c9f494de6b1f2190baf7228ca',
-        'CoId': 17052
-        
     };
 
 	$.ajax({
@@ -474,29 +469,15 @@ function postShipmentCreate(sendingXML){
             type: 'POST',
             data: sendingXML,
             contentType: 'application/xml; charset=utf-8',
-            dataType: 'xml'
+			async: 'false'
         })
         .done(function (data) {
-			var test = data;
-            alert("success");
+            alert("success - post - ShipmentCreateLBKey=" + data.Body.LogicbrokerKey);
         })
         .fail(function () {
             alert("error");
         });
 }
-
-//NICOS Version!!!!
-//function generateXML(formattedItems){
-//	var xmlDoc = '<Shipment>';
-//	//first case-container releation(shipmentInfos)
-//	xmlDoc = xmlDoc + generateShipmentInfosXML(formattedItems);
-//	//Next item-case releation
-//	xmlDoc = xmlDoc + generateShipmentLinesXML(formattedItems);
-	
-//	xmlDoc = xmlDoc + '</Shipment>';
-
-//	return xmlDoc;
-//}
 
 function generateShipmentInfosXML(formattedItems){
 	var shipInfosXML = '<ShipmentInfos>';
@@ -531,9 +512,9 @@ function generateShipmentInfosXML(formattedItems){
 		var curItem = infosSet[i];
 		var shipInfos = '<ShipmentInfo>';
 		shipInfos = shipInfos + '<DateShipped>' + getLogicbrokerTime() + '</DateShipped>';
-		shipInfos = shipInfos + '<CarrierCode></CarrierCode>';
-		shipInfos = shipInfos + '<ShipmentCost></ShipmentCost>';
-		shipInfos = shipInfos + '<InsuranceCost></InsuranceCost>';
+		shipInfos = shipInfos + '<CarrierCode>UNSP</CarrierCode>';
+		shipInfos = shipInfos + '<ShipmentCost>0</ShipmentCost>';
+		shipInfos = shipInfos + '<InsuranceCost>0</InsuranceCost>';
 		shipInfos = shipInfos + '<ContainerCode>' + curItem['caseCode'] + '</ContainerCode>';
 		shipInfos = shipInfos + '<Qty>' + curItem['qty'] + '</Qty>';
 		shipInfos = shipInfos + '<ContainerType>' + curItem['caseType'] + '</ContainerType>';
@@ -560,9 +541,9 @@ function generateShipmentLinesXML(formattedItems){
 			var curPackedItem = formattedItems[j];
 			if(curPackedItem['sku'] == curSKU){
 				shipLine = shipLine + '<ShipmentInfo>';
-				shipLine = shipLine + '<CarrierCode></CarrierCode>';
+				shipLine = shipLine + '<CarrierCode>UNSP</CarrierCode>';
 				shipLine = shipLine + '<DateShipped>' + getLogicbrokerTime() + '</DateShipped>';
-				shipLine = shipLine + '<ShipmentCost></ShipmentCost><InsuranceCost></InsuranceCost>';
+				shipLine = shipLine + '<ShipmentCost>0</ShipmentCost><InsuranceCost>0</InsuranceCost>';
 				shipLine = shipLine + '<ContainerCode>' + curPackedItem['caseCode'] + '</ContainerCode>';
 				shipLine = shipLine + '<Qty>' + curPackedItem['qty'] + '</Qty>';
 				shipLine = shipLine + '</ShipmentInfo>';
