@@ -302,10 +302,10 @@ function findItemDataAttribute(sku, attribute){
 function processPacking(){
 	var containerSet = $('#collapsibleSet').children();
 	var packedItems = [];
-	var currentContainer = 10000;
-	var currentCase = 1;
+	var currentContainer = 1;
 	for(var i=0; i< containerSet.length; i++){
 		var caseSet = containerSet.eq(i).find('.caseCollapsibleSet').children();
+		var currentCase = 1;
 		for(var j=0; j<caseSet.length; j++){
 			var itemsSet = caseSet.eq(j).find('ul').children();
 			for(var k=0; k<itemsSet.length; k++){
@@ -315,14 +315,14 @@ function processPacking(){
 					'sku' : curItem.substring(0,skuIndex),
 					'qty' : curItem.substring(skuIndex+4),
 					'containerCode' : currentContainer,
-					'caseCode' : currentCase,
+					'caseCode' : currentContainer + '-' + currentCase,
 					'caseType' : 'Box'
 				};
 				packedItems.push(o);
 			}
 			currentCase++;
 		}
-		currentContainer += 10000;
+		currentContainer++;
 	}
   //Object containing string versions of shipmentInfos & shipmentLines xml
 	var dynamicPackingXML =
@@ -388,11 +388,11 @@ function combineXMLInfo(userInput, salesOrderGetDataXML)
       "</ShipFromAddress>" +
       //Need to insert a time stamp formated in logicbroker standard 2014-03-03T00:00:00
       "<ShipmentDate>" +
-        userInput.shipmentDate +
+        getLogicbrokerTime() +
       "</ShipmentDate>" +
       //ExpectedDeliveryDate needs to be input by user
       "<ExpectedDeliveryDate>" +
-        userInput.expectedDeliveryDate +
+        getLogicbrokerTime() +
       "</ExpectedDeliveryDate>" +
       //Invoice Number is something the user needs to put in
       "<InvoiceNumber>" +
@@ -422,7 +422,7 @@ function generateXML()
     'CoId': 17052
   };
   //Used as temporary replacement for real user info we acquire from FEEP via the app
-  var dummyUserInfo =
+  var userInfo =
   {
     CompanyName: "FEEP",
     Address1: "1221 East Dyer Rd",
@@ -432,10 +432,19 @@ function generateXML()
     Zip: "92715",
     Phone: "203-907-7385",
     ContactType: "Customer",
-    shipmentNumber: 5555,
-    invoiceNumber: "1234567890",
-    shipmentDate: "2014-03-03T00:00:00",
-    expectedDeliveryDate: "2014-03-10T00:00:00",
+    shipmentNumber: 987654,
+    invoiceNumber: "1234567890" 
+	/*
+	CompanyName: $('#companyname').val(),
+    Address1: $('#address').val(),
+    City: $('#city').val(),
+    State: $('#state').val(),
+    Country: $('#country').val(),
+    Zip: $('#zip').val(),
+    Phone: $('#phone').val(),
+    ContactType: $('#contact').val(),
+    shipmentNumber: $('#shipnumb').val(),
+    invoiceNumber: $('#invnumb').val() */
   };
   $.ajax({
     url: 'https://logicbroker.azure-api.net/stage-api/v1/15056/salesorders/' + lbk + '?subscription-key=' + key,
@@ -445,8 +454,8 @@ function generateXML()
 	async: 'false'
   })
   .done(function (data) {
-    alert("success - get XML");
-    var generatedXML = combineXMLInfo(dummyUserInfo, data);
+    //alert("success - get XML");
+    var generatedXML = combineXMLInfo(userInfo, data);
     LoadXMLString('page2Results', generatedXML);
     
 	postShipmentCreate(generatedXML);

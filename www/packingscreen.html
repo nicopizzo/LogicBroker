@@ -125,7 +125,7 @@
             </div>
         </div>
         <div data-role="footer" class="ui-bar">
-            <div align="right" data-inline="true"><a onclick="generateXML()" href="#page2" data-role="button">Submit</a></div>
+            <div align="right" data-inline="true"><a href="#page2" data-role="button">Submit</a></div>
         </div>
 
         <!-- Temporary button to bring us to packing confirmation page -->
@@ -146,6 +146,36 @@
 			<div id="page2Results">
 		
 			</div>
+			
+			<div id='userInput'>
+				<p><b>Ship from Address Information</b></p>
+				<label for='companyname'>CompanyName:</label>
+				<input type='text' name='companyname' id='companyname'>
+				<label for='address'>Address:</label>
+				<input type='text' name='address' id='address'>
+				<label for='city'>City:</label>
+				<input type='text' name='city' id='city'>
+				<label for='state'>State:</label>
+				<input type='text' name='state' id='state'>
+				<label for='country'>Country:</label>
+				<input type='text' name='country' id='country'>
+				<label for='country'>Country:</label>
+				<input type='text' name='country' id='country'>
+				<label for='zip'>Zip:</label>
+				<input type='text' name='zip' id='zip'>
+				<label for='phone'>Phone Number:</label>
+				<input type='text' name='phone' id='phone'>
+				<label for='contact'>Contact Type:</label>
+				<input type='text' name='contact' id='contact'>
+				<br>
+				<p><b>Shipment Info</b></p>
+				<label for='shipnumb'>Shipment Number:</label>
+				<input type='text' name='shipnumb' id='shipnumb'>
+				<label for='invnumb'>Invoice Number:</label>
+				<input type='text' name='invnumb' id='invnumb'>
+			</div>
+			
+			<a href='#' rel='external' id='finalizePacking' onclick="generateXML()" data-role='button'>Process</a>
 		</div>
 	</div>
 </body>
