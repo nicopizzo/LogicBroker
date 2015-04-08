@@ -9,7 +9,8 @@ $(document).ready(function() {
 	// set side pages
 	navigateToPendingOrders('#sidePendingOrders', key);
 	navigateToSplash('#sideSplash',key,lbk);
-	navigateToOrderDetails('#sideOrderDetails',key,lbk);
+	navigateToOrderDetails('#sideOrderDetails', key, lbk);
+	navigateToPackingScreen('#sidePackingScreen', key, lbk);
 	
 	$.ajax({
         url: 'https://logicbroker.azure-api.net/stage-api/v1/15056/salesorders/' + lbk + '?subscription-key=' + key,
