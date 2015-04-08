@@ -6,12 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Packing Screen</title>
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
-	<link rel="stylesheet" href="css/XMLDisplay.css" />
 	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 	<script src="http://code.jquery.com/ui/1.11.3/jquery-ui.min.js"></script>
 	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
     <script src="js/jquery.ui.touch-punch.min.js"></script>
-	<script src="js/XMLDisplay.js"></script>
     <script src="js/packingscreen.js"></script>
 	<script src="js/Common.js"></script>
 </head>
@@ -127,32 +125,21 @@
         <div data-role="footer" class="ui-bar">
             <div align="right" data-inline="true"><a href="#page2" data-role="button">Submit</a></div>
         </div>
-
-        <!-- Temporary button to bring us to packing confirmation page -->
-        <div>
-            <div><a id="confirm" rel="external" data-role="button">Confirm</a></div>
-        </div>
-
     </div>
 	
 	<div data-role="page" id="page2">
-		<div data-role="header">
-			<h1>Result Page</h1>
+		<div data-role="header" data-theme="a">
+			<h1 style="overflow:visible"><span class="ui-icon-shop ui-btn-icon-left " style="position: relative;" />Packing Screen</h1>
+			<a href="#" data-rel="back" class="ui-btn-right ui-btn ui-icon-back ui-btn-icon-notext ui-shadow ui-corner-all"  data-role="button" role="button">Back</a>
 		</div>
-		
+			
 		<div role="main" class="ui-content">
-			<a href="#page1" data-role="button">Go Back</a>
-			
-			<div id="page2Results">
-		
-			</div>
-			
 			<div id='userInput'>
 				<p><b>Ship from Address Information</b></p>
 				<label for='companyname'>CompanyName:</label>
 				<input type='text' name='companyname' id='companyname'>
-				<label for='address'>Address:</label>
-				<input type='text' name='address' id='address'>
+				<label for='address1'>Address1:</label>
+				<input type='text' name='address1' id='address1'>
 				<label for='city'>City:</label>
 				<input type='text' name='city' id='city'>
 				<label for='state'>State:</label>
@@ -175,7 +162,11 @@
 				<input type='text' name='invnumb' id='invnumb'>
 			</div>
 			
-			<a href='#' rel='external' id='finalizePacking' onclick="generateXML()" data-role='button'>Process</a>
+			<div data-role="footer" class="ui-bar">
+				<div align="right" data-inline="true">
+					<a href='#' rel='external' id='finalizePacking' onclick="generateXML()" data-role='button'>Process</a>
+				</div>
+			</div>
 		</div>
 	</div>
 </body>

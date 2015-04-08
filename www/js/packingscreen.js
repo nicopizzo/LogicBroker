@@ -81,9 +81,7 @@ function refreshDragandDrop() {
 	$(".draganddrop").sortable({
 		connectWith: $('.draganddrop'),
 		start: function (event, ui) {
-		  //jQuery object representing the current dragged element
 		  item = ui.item;
-      //Save current parent to both newList and oldList
 		  newList = oldList = ui.item.parent();
 
 		  /* Jeffs experimental code still under development */
@@ -121,12 +119,6 @@ function refreshDragandDrop() {
 						$(oldList).append(item);
 					});
 				}
-
-        /* Jeff's Experimental Code */
-			  //if (oldListID === "unpackaged-items")
-			  //{
-			  //  $("#unpackaged-items li").not(".currentlyDragging").show();
-			  //}
 				
 			},
 		})
@@ -327,7 +319,7 @@ function processPacking(){
   //Object containing string versions of shipmentInfos & shipmentLines xml
 	var dynamicPackingXML =
   {
-    shipmentInfos: generateShipmentInfosXML(packedItems),
+    //shipmentInfos: generateShipmentInfosXML(packedItems),
     shipmentLines: generateShipmentLinesXML(packedItems)
   };
 	return dynamicPackingXML;
@@ -347,8 +339,7 @@ function combineXMLInfo(userInput, salesOrderGetDataXML)
       $(xml).find('OrderDate').prop('outerHTML') +
       //$(xml).find('PaymentTerm').prop('outerHTML') +
 	  '<PaymentTerm><PayInNumberOfDays>0</PayInNumberOfDays><TermsDescription>CC Payment in ship</TermsDescription></PaymentTerm>' +
-      //INSERT DYNAMIC NICO CODE HERE 'ShipmentInfos'
-      packingXML.shipmentInfos + 
+      //packingXML.shipmentInfos + 
         "<ShipToAddress>" +
           $(xml).find('ShipToAddress').find('CompanyName').prop('outerHTML') +
           $(xml).find('ShipToAddress').find('Address1').prop('outerHTML') +
@@ -364,7 +355,6 @@ function combineXMLInfo(userInput, salesOrderGetDataXML)
           $(xml).find('BillToAddress').find('City').prop('outerHTML') +
           $(xml).find('BillToAddress').find('State').prop('outerHTML') +
           $(xml).find('BillToAddress').find('Zip').prop('outerHTML') +
-          //WHERE DO I FIND ADDRESS CODE?! Not available in from SalesOrder-GET.
           //$(xml).find('BillToAddress').find('AddressCode').prop('outerHTML') +
           //Adding empty xml object for now
             "<AddressCode></AddressCode>" +
@@ -402,7 +392,6 @@ function combineXMLInfo(userInput, salesOrderGetDataXML)
       "<ShipmentNumber>" +
         userInput.shipmentNumber +
       "</ShipmentNumber>" +
-      //DYNAMIC NICO CODE HERE ShipmentLines
       packingXML.shipmentLines +
     "</Shipment>";
   return staticXML
@@ -421,7 +410,7 @@ function generateXML()
     'subscription-key': key,
     'CoId': 17052
   };
-  //Used as temporary replacement for real user info we acquire from FEEP via the app
+  //User Input
   var userInfo =
   {
     CompanyName: "FEEP",
@@ -436,7 +425,7 @@ function generateXML()
     invoiceNumber: "1234567890" 
 	/*
 	CompanyName: $('#companyname').val(),
-    Address1: $('#address').val(),
+    Address1: $('#address1').val(),
     City: $('#city').val(),
     State: $('#state').val(),
     Country: $('#country').val(),
@@ -454,9 +443,7 @@ function generateXML()
 	async: 'false'
   })
   .done(function (data) {
-    //alert("success - get XML");
     var generatedXML = combineXMLInfo(userInfo, data);
-    LoadXMLString('page2Results', generatedXML);
     
 	postShipmentCreate(generatedXML);
 
@@ -468,8 +455,11 @@ function generateXML()
 }
 
 function postShipmentCreate(sendingXML){
+	var key = getUrlParameter('auth');
+	var lbk = getUrlParameter('lbk');
+	
 	 var params = {
-        'subscription-key': '90e2715c9f494de6b1f2190baf7228ca',
+        'subscription-key': key,
     };
 
 	$.ajax({
@@ -482,6 +472,9 @@ function postShipmentCreate(sendingXML){
         })
         .done(function (data) {
             alert("success - post - ShipmentCreateLBKey=" + data.Body.LogicbrokerKey);
+			// go back to splash
+			console.log('splash.html?auth=' + key + '&lbk=' + lbk);
+			window.location = 'splash.html?auth=' + key + '&lbk=' + lbk;
         })
         .fail(function () {
             alert("error");
@@ -517,6 +510,7 @@ function generateShipmentInfosXML(formattedItems){
 			}
 		}
 	}
+
 	for(var i=0; i < infosSet.length; i++){
 		var curItem = infosSet[i];
 		var shipInfos = '<ShipmentInfo>';
@@ -555,6 +549,7 @@ function generateShipmentLinesXML(formattedItems){
 				shipLine = shipLine + '<ShipmentCost>0</ShipmentCost><InsuranceCost>0</InsuranceCost>';
 				shipLine = shipLine + '<ContainerCode>' + curPackedItem['caseCode'] + '</ContainerCode>';
 				shipLine = shipLine + '<Qty>' + curPackedItem['qty'] + '</Qty>';
+				shipLine = shipLine + '<ShipmentContainerParentCode>' + curPackedItem['containerCode'] + '</ShipmentContainerParentCode>';
 				shipLine = shipLine + '</ShipmentInfo>';
 			}
 		}
