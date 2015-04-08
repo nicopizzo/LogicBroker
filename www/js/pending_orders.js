@@ -9,7 +9,6 @@ function getOrders(key) {
         origin: 'foo'
     })
     .done(function (data) {
-        //alert("success");
         //Add table rows here following the format below
         var len = data.Body.SalesOrders.length;
         for (var i = 0; i < len; i++) {
@@ -124,9 +123,6 @@ $(document).ready(function () {
 	var key = getUrlParameter('auth');
 	
 	orders = getOrders(key);
-	
-	//Add tables
-	//createTable(orders);
 });
 
 
