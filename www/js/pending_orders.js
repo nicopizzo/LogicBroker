@@ -1,6 +1,4 @@
-﻿var orders;
-
-function getOrders(key) {	
+﻿function getOrders(key) {	
 	var allOrders = [];
     //Retrieve information via "SalesOrders- get list" for general data about all orders
     $.ajax({
@@ -41,8 +39,8 @@ function getOrders(key) {
 			
 			allOrders.push(order);
 			//Automatically filter by default choice on load
-			filter();
         }
+		createTable(allOrders,key);
     })
     .fail(function () {
 		//Allow user the ability to reload page if an error occurs
@@ -62,13 +60,12 @@ function createTable(orders, key){
 	// string value for Company Filter
     var companyFilter = getCompanyString();
     // value for order filter
-    var orderFilter = getOrderString();
 	var numOrders = orders.length;
 	console.log(numOrders);
 	var ordersFound = 0;
 	for(var i=0; i < numOrders; i++){
 		var currentOrder = orders[i];
-		if ((currentOrder['companySource'] == companyFilter || companyFilter == "All Partners")&&(currentOrder['orderNumber']==orderFilter||orderFilter=="")) {
+		if (currentOrder['companySource'] == companyFilter || companyFilter == "All Partners"){
 			var tableCode = "<table style='font-size:small; width:100%; border:ridge' class='ui-responsive table-stripe clickable-div' id='lb" + currentOrder['lbk'] + "'><tbody>";
 			tableCode += "<tr><th>Order Number:</th><td class='orderNumber'>" + currentOrder['orderNumber'] + "</td></tr>";
 			tableCode += "<tr><th>Company Source:</th><td>" + currentOrder['companySource'] + "</td></tr>";
@@ -122,7 +119,22 @@ $(document).ready(function () {
 	//gets authentication key
 	var key = getUrlParameter('auth');
 	
-	orders = getOrders(key);
+	var orders = getOrders(key);
+	
+	$('#order-search').on('change keyup paste', function() {
+		$("#tableDiv").empty();
+		var curInput = $('#order-search').val().toLowerCase();
+		var searchedOrder = [];
+		for(var i=0; i<orders.length; i++){
+			var curItem = orders[i];
+			var orderNumber = curItem['orderNumber'].toLowerCase();
+			console.log(orderNumber.search(curInput));
+			if(orderNumber.search(curInput) != -1){
+				searchedOrder.push(curItem);
+			}
+		}
+		createTable(searchedOrder, key);
+	});
 });
 
 
