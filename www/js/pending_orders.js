@@ -9,6 +9,7 @@
     .done(function (data) {
         //Add table rows here following the format below
         var len = data.Body.SalesOrders.length;
+		var companySourceFilter = [];
         for (var i = 0; i < len; i++) {
 			var lbk = data.Body.SalesOrders[i].LogicbrokerKey;
 			var companySource = 'unknown';
@@ -36,10 +37,12 @@
 				'status' : status,
 				'lbk' : lbk
 			};
-			
 			allOrders.push(order);
-			//Automatically filter by default choice on load
+			
+			// creates company source filter
+			createCompanySourceFilter(companySourceFilter, companySource);
         }
+		populateCompanySourceFilter(companySourceFilter);
 		createTable(allOrders,key);
     })
     .fail(function () {
@@ -101,17 +104,29 @@ function getCompanyString() {
     return companyFilter;
 };
 
-// Returns string in Input form
-function getOrderString() {
-    var orderSearch = document.getElementById("order-search").value;
-    return orderSearch;
-};
-function filter() {
-    //document.getElementById(orderSelection).innerHTML = "";
-    $("#tableDiv").empty();
-    createTable(orders, getUrlParameter('auth'));
+//Creates company source filter array
+function createCompanySourceFilter(elems, toAdd){
+	var isFound = 0;
+	for(var i =0; i< elems.length; i++){
+		var curItem = elems[i];
+		if(toAdd == curItem){
+			// found
+			isFound = 1;
+			break;
+		}
+	}
+	if(isFound == 0){
+		elems.push(toAdd);
+	}
 };
 
+// Populates Company Source Filter
+function populateCompanySourceFilter(filters){
+	for(var i =0; i<filters.length;i++){
+		var curItem = filters[i];
+		$('#select-choice-1').append('<option value=' + i + '>' + curItem + '</option>');
+	}
+};
 
 ////Things to be accomplished on load
 $(document).ready(function () {
@@ -121,6 +136,7 @@ $(document).ready(function () {
 	
 	var orders = getOrders(key);
 	
+	// event on filter order
 	$('#order-search').on('change keyup paste', function() {
 		$("#tableDiv").empty();
 		var curInput = $('#order-search').val().toLowerCase();
@@ -134,6 +150,14 @@ $(document).ready(function () {
 			}
 		}
 		createTable(searchedOrder, key);
+	});
+	
+	// event on changing filter company source
+	$('#select-choice-1').on('change', function() {
+		$("#tableDiv").empty();
+		// clears textbox
+		$('#order-search').val('');
+		createTable(orders,key);
 	});
 });
 
