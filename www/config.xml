@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.LogicBroker.logicbroker" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
-    <name>LogicBroker</name>
+    <name>LogicBroker Packing</name>
     <description>
-        Moblie logicbroker portal.
+        Moblie logicbroker packing application.
     </description>
     <author href="https://github.com/nicopizzo/LogicBroker">
         Nico Pizzo, Jeff Daniewicz, Kenneth Philcox, Christian Pinho
@@ -24,7 +24,7 @@
     <preference name="android-minSdkVersion" value="7" />
     <preference name="android-installLocation" value="auto" />
     <gap:plugin name="org.apache.cordova.inappbrowser" />
-    <icon src="icon.png" />
+    <icon src="img/logicbroker_logo.png" />
     <icon gap:platform="android" gap:qualifier="ldpi" src="www/res/icon/android/icon-36-ldpi.png" />
     <icon gap:platform="android" gap:qualifier="mdpi" src="www/res/icon/android/icon-48-mdpi.png" />
     <icon gap:platform="android" gap:qualifier="hdpi" src="www/res/icon/android/icon-72-hdpi.png" />
