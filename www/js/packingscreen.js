@@ -32,7 +32,8 @@ $(document).ready(function() {
 			var qty = data.Body.SalesOrder.OrderLines[i].Quantity;
 			var description = data.Body.SalesOrder.OrderLines[i].Description;
       //Adding a 5px margin on top of item to make drag n drop easier on a phone
-			var itemToAdd = $('<li class="dragableItem" style="margin-top: 5px">' + sku + '----' + qty + '</li>');
+			//var itemToAdd = $('<li class="dragableItem" style="margin-top: 5px">' + sku + '----' + qty + '</li>');
+			var itemToAdd = $('<li class="dragableItem" style="margin-top: 5px"><table style="font-size:small; width:100%; border:ridge" class="ui-responsive table-stripe"><tbody><tr><th class="tableSKU">' + sku + '</th><td class="tableQTY">' + qty + '</td></tr></tbody></table></li>');
 			$('#unpackaged-items').append(itemToAdd);
 			
 			// add to itemData
@@ -166,38 +167,37 @@ function removeCaseEvent(caseId) {
 	var case1 = $('#case' + caseId).find('.draganddrop');
 	var caselen = $('#case' + caseId).find('.draganddrop li').length;
 	for(var i = 0; i < caselen; i++){
-		var item = $(case1).find(':first-child()');
+		var item = $($(case1).find('li')).eq(0);
 		$(unsorted).append(item);
 	}
 	
 	$('#case' + caseId).remove();
 	combineLikeItems($('#unpackaged-items'));
-	//$('#packing').trigger('create');
+	updateOrderItems();
 }
 	
 function removeContainerEvent(containerId) {	
 	var unsorted = $('#unpackaged-items');
 	var container = $('#container' + containerId);
 	var caseSet = $(container).find('#caseCollapsibleSet' + containerId);
-	
-	$(caseSet).children().each(function() {
-		var case1 = $(this).find('.draganddrop');
-		var caselen = $(this).find('.draganddrop li').length;
-		for(var i = 0; i < caselen; i++){
-			var item = $(case1).find(':first-child()');
+	var numCases = $(caseSet).children().length;
+	for(var i = 0; i<numCases; i++){
+		var curCase = $($($(caseSet).children()).eq(i)).find('ul');
+		var caselen = $(curCase).children().length;
+		for(var j = 0; j<caselen; j++){
+			var item = $($(curCase).find('li')).eq(0);
 			$(unsorted).append(item);
 		}
-	});
-	
+	}
 	$(container).remove();	
 	combineLikeItems($('#unpackaged-items'));
+	updateOrderItems();
 }
 
 function buildPopupQty(item){
 	$('#popupQty').empty();
 	var popupContents = '<p>Move How Many?</p><a href="#" id="popupClose" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>';
-	var qtyIndex = item.text().indexOf('----') + 4;
-	var maxQty = item.text().substring(qtyIndex);
+	var maxQty = $(item).find('.tableQTY').html();
 	popupContents += '<input id="popSlider" type="number" data-type="range" value="' + maxQty + '" min="1" max="' + maxQty + '" />';
 	popupContents += '<button type="button" data-mini="true" data-inline="false" id="popupSubmit">Done</button>';
 	$('#popupQty').append(popupContents);
@@ -208,10 +208,9 @@ function buildPopupQty(item){
 
 function splitItems(item, returnList, maxQty, sliderVal){
 	var remainingQty = maxQty - sliderVal;
-	var itemIndex = item.text().indexOf('----') + 4;
-	var remainingItem = '<li class="dragableItem" style="margin-top: 5px">' + item.text().substring(0,itemIndex) + remainingQty + '</li>';
-	var selectedItem = item.text().substring(0,itemIndex) + sliderVal
-	item.text(selectedItem);
+	var itemSKU = $(item).find('.tableSKU').html();
+	var remainingItem = '<li class="dragableItem" style="margin-top: 5px"><table style="font-size:small; width:100%; border:ridge" class="ui-responsive table-stripe"><tbody><tr><th class="tableSKU">' + itemSKU + '</th><td class="tableQTY">' + remainingQty + '</td></tr></tbody></table></li>';
+	$(item).find('.tableQTY').html(sliderVal);
 	$(returnList).append(remainingItem);
 	$('#collapsibleSet').trigger('create');
 	refreshDragandDrop();
@@ -223,10 +222,9 @@ function combineLikeItems(itemList){
 	var isChanged = 0;
 	var listChildren = itemList.children();
 	for(var i = 0; i < listChildren.length; i++){
-		var itemIndex = $($(listChildren).eq(i)).text().indexOf('----');
 		var o = {
-			'sku' :  $($(listChildren).eq(i)).text().substring(0,itemIndex),
-			'qty' :  parseInt($($(listChildren).eq(i)).text().substring(itemIndex+4))
+			'sku' :  $($(listChildren).eq(i)).find('.tableSKU').html(),
+			'qty' :  parseInt($($(listChildren).eq(i)).find('.tableQTY').html())
 		};
 		
 		var result = $.inArray(o['sku'],items)
@@ -236,7 +234,7 @@ function combineLikeItems(itemList){
 		}
 		else{
 			var newQty = qtys[result] + parseInt(o['qty']);
-			var newText =  $($(listChildren).eq(i)).text().substring(0,itemIndex+4) + newQty;
+			//var newText =  $($(listChildren).eq(i)).text().substring(0,itemIndex+4) + newQty;
 			qtys[result] = newQty;
 			isChanged = 1;
 		}
@@ -245,7 +243,7 @@ function combineLikeItems(itemList){
 	if(isChanged == 1){
 		$(itemList).empty();
 		for(var i = 0; i < items.length; i++){
-		  var itemCode = '<li class="dragableItem" style="margin-top: 5px">' + items[i] + '----' + qtys[i] + '</li>';
+		  var itemCode = '<li class="dragableItem" style="margin-top: 5px"><table style="font-size:small; width:100%; border:ridge" class="ui-responsive table-stripe"><tbody><tr><th class="tableSKU">' + items[i] + '</th><td class="tableQTY">' + qtys[i] + '</td></tr></tbody></table></li>';
 			$(itemList).append(itemCode);
 		}
 	}
@@ -264,10 +262,9 @@ function updateOrderItems(){
 		
 		var isFound = 0;
 		for(var j=0; j<unpackedItems.length; j++){
-			var itemIndex = unpackedItems.eq(j).text().indexOf('----');
-			if(sku == unpackedItems.eq(j).text().substring(0,itemIndex)){
+			if(sku == unpackedItems.eq(j).find('.tableSKU').html()){
 				isFound = 1;
-				var currentQty = unpackedItems.eq(j).text().substring(itemIndex+4);
+				var currentQty = unpackedItems.eq(j).find('.tableQTY').html();
 				$(itemTable).eq(3).children().eq(1).text(currentQty);
 				break;
 			}
@@ -302,11 +299,10 @@ function processPacking(){
 		for(var j=0; j<caseSet.length; j++){
 			var itemsSet = caseSet.eq(j).find('ul').children();
 			for(var k=0; k<itemsSet.length; k++){
-				var curItem = itemsSet.eq(k).text();
-				var skuIndex = curItem.indexOf('----');
+				var curItem = itemsSet.eq(k);
 				var o = {
-					'sku' : curItem.substring(0,skuIndex),
-					'qty' : curItem.substring(skuIndex+4),
+					'sku' : curItem.find('.tableSKU').html(),
+					'qty' : curItem.find('.tableQTY').html(),
 					'containerCode' : currentContainer,
 					'caseCode' : currentContainer + '-' + currentCase,
 					'caseType' : 'Box'
