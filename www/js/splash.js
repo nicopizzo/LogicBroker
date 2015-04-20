@@ -11,7 +11,16 @@ function setOrderDetails(key,lbk){
 	  var orderNumber = data.Body.SalesOrder.Identifier.SourceKey;
     //Assume Company Source comes from the person being billed for order (retailer)
 	  var companySource = data.Body.SalesOrder.BillToAddress.CompanyName;
-	  var orderDate = data.Body.SalesOrder.OrderDate;
+	//Here is where we create the correctly formatted time
+	  var initialOrderDate = data.Body.SalesOrder.OrderDate;
+	  var totalDate = initialOrderDate.split("T");
+	  var yearMonthDay = totalDate[0];
+	  var time = totalDate[1];
+	  var yearMonthDayArray = yearMonthDay.split("-");
+	  var year = yearMonthDayArray[0];
+	  var month = yearMonthDayArray[1];
+	  var day = yearMonthDayArray[2];
+	  var orderDate = month + "/" + day + "/" + year + " " + time;
     //Loop through orders to get total items, total weight, etc
 	      var len = data.Body.SalesOrder.OrderLines.length;
 	      var totalWeight = 0.0;
