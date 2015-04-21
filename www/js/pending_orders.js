@@ -135,7 +135,15 @@ $(document).ready(function () {
 	var key = getUrlParameter('auth');
 	
 	var orders = getOrders(key);
-	
+
+	//prevent user from pressing enter
+	$('#order-search').keypress(function (event) {
+
+	    if (event.keyCode == 10 || event.keyCode == 13)
+	        event.preventDefault();
+
+	});
+
 	// event on filter order
 	$('#order-search').on('change keyup paste', function() {
 		$("#tableDiv").empty();
