@@ -410,6 +410,7 @@ function generateXML()
   //User Input
   var userInfo =
   {
+	/*
     CompanyName: "FEEP",
     Address1: "1221 East Dyer Rd",
     City: "Santa Ana",
@@ -419,8 +420,8 @@ function generateXML()
     Phone: "203-907-7385",
     ContactType: "Customer",
     shipmentNumber: 987654,
-    invoiceNumber: "1234567890" 
-	/*
+    invoiceNumber: "1234567890" */
+
 	CompanyName: $('#companyname').val(),
     Address1: $('#address1').val(),
     City: $('#city').val(),
@@ -430,7 +431,7 @@ function generateXML()
     Phone: $('#phone').val(),
     ContactType: $('#contact').val(),
     shipmentNumber: $('#shipnumb').val(),
-    invoiceNumber: $('#invnumb').val() */
+    invoiceNumber: $('#invnumb').val() 
   };
   $.ajax({
     url: 'https://logicbroker.azure-api.net/stage-api/v1/15056/salesorders/' + lbk + '?subscription-key=' + key,

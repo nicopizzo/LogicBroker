@@ -65,8 +65,24 @@ function setPacking(key,lbk){
 };
 
 
-function setASN(key,lbk){
-	
+function setCurrentShipments(key,lbk){
+	$.ajax({
+		url: 'https://logicbroker.azure-api.net/stage-api/v1/15056/salesorders/' + lbk + '/shipments?subscription-key=' + key,
+        type: 'GET',
+        origin: 'foo'
+	})
+	.done(function (data) {
+		var numOfShipments = data.Body.Shipments.length;
+		$('#currentShipments').append('<table style="font-size:small; width:100%" class="ui-responsive table-stripe"><tbody><tr><th>Other Shipments</th></tr>');
+		for(var i=0; i<numOfShipments;i++){
+			var curShipment = data.Body.Shipments[i];
+			$('#currentShipments table').append('<tr><td>' + curShipment.ShipmentNumber + '</td></tr>');
+		}
+		$('#currentShipments').append('</tbody></table>');
+	})
+	.fail(function(){
+		//$("#currentShipments").append("<p>Failed to load Current Shipments</p>");
+	});
 };
 
 //Hide tables while ajax running
@@ -96,6 +112,6 @@ $(document).ready(function(){
 	.done(function(data) {
 		setOrderDetails(key,lbk);
 		setPacking(key,lbk);
-		setASN(key,lbk);
+		setCurrentShipments(key,lbk);
 	})
 });
