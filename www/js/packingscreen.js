@@ -474,8 +474,8 @@ function postShipmentCreate(sendingXML){
 			console.log('splash.html?auth=' + key + '&lbk=' + lbk);
 			window.location = 'splash.html?auth=' + key + '&lbk=' + lbk;
         })
-        .fail(function () {
-            alert("error");
+        .fail(function (jqXHR,textStatus) {
+            alert("Error: " + jqXHR.responseJSON.Message);
         });
 }
 
