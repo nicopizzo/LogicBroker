@@ -1,6 +1,6 @@
 function setGeneralDetails(data) {
     $('#ordernumber').append(nullTester(data.Body.SalesOrder.Identifier.SourceKey));
-    $('#status').append('Submitted');
+    $('#status').append(nullTester(data.Body.SalesOrder.Status));
 };
 
 function setBillToPage(data) {
