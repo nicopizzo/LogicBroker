@@ -112,6 +112,6 @@ $(document).ready(function(){
 	.done(function(data) {
 		setOrderDetails(key,lbk);
 		setPacking(key,lbk);
-		setCurrentShipments(key,lbk);
+		//setCurrentShipments(key,lbk); //currently takes too long if shipment is not there. disabled for demo day
 	})
 });

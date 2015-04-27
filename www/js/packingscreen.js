@@ -6,6 +6,18 @@ $(document).ready(function() {
 	var key = getUrlParameter('auth');
 	var lbk = getUrlParameter('lbk');
 	
+	// added for demo auto sets to prefiled values for ease
+	$('#companyname').val('FEEP');
+    $('#address1').val('1221 East Dyer Rd');
+    $('#city').val('Santa Ana');
+    $('#state').val('CA');
+    $('#country').val('USA');
+    $('#zip').val('92715');
+	$('#phone').val('203-907-7385');
+    $('#contact').val('Customer');
+    $('#shipnumb').val('987612');
+    $('#invnumb').val('56789');
+	
 	// set side pages
 	navigateToPendingOrders('#sidePendingOrders', key);
 	navigateToSplash('#sideSplash',key,lbk);
@@ -469,7 +481,7 @@ function postShipmentCreate(sendingXML){
 			async: 'false'
         })
         .done(function (data) {
-            alert("success - post - ShipmentCreateLBKey=" + data.Body.LogicbrokerKey);
+            alert("Your Shipment has been created");
 			// go back to splash
 			console.log('splash.html?auth=' + key + '&lbk=' + lbk);
 			window.location = 'splash.html?auth=' + key + '&lbk=' + lbk;
